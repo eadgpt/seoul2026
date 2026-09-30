@@ -1301,7 +1301,7 @@ window.__set=function(el,k,v){var c=el.__sv||(el.__sv={});if(c[k]===v)return;c[k
   var c=document.getElementById('leaves');if(!c||!c.getContext)return;
   var ctx=c.getContext('2d'),W=0,H=0,dpr=1,leaves=[];
   var pref=null;try{pref=localStorage.getItem('seoul_motion')}catch(e){}
-  var reduce=pref?pref==='off':matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduce=pref==='off';
   root.classList.toggle('still',reduce);
   var mb=document.getElementById('motionBtn');mb.setAttribute('aria-pressed',String(!reduce));mb.textContent=reduce?'Motion: off':'Motion: on';
   mb.addEventListener('click',function(){reduce=!reduce;try{localStorage.setItem('seoul_motion',reduce?'off':'on')}catch(e){}root.classList.toggle('still',reduce);mb.setAttribute('aria-pressed',String(!reduce));mb.textContent=reduce?'Motion: off':'Motion: on';if(!reduce)requestAnimationFrame(frame)});
