@@ -1,0 +1,1837 @@
+<meta charset="utf-8">
+<title>Seoul Autumn Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@300;400;600;800&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a field-notes booklet — hero question, chaptered "acts" with bilingual titles, side notes, a week grid, and a link index. */
+:root{
+  --paper:#F1EFE8;      /* hanji */
+  --paper-2:#E7E3D8;
+  --ink:#1D1B18;
+  --ink-2:#5A544B;
+  --rule:#CFC8B9;
+  --ginkgo:#B8860B;     /* 은행잎 */
+  --maple:#A93220;      /* 단풍 / dancheong red */
+  --pine:#2E4A3B;       /* palace pine */
+  --closed:#A93220;
+  --open:#2E4A3B;
+  --leaf-a:#D4A017; --leaf-b:#C2452D; --leaf-c:#E07B2A;
+  --persimmon:#D9661F; --river:#8FAABB; --leaf-green:#6F9A4A; --night:#1E2A55; --branch:#4A3A2C; --lantern-red:#B8322A; --lantern-blue:#2F4F8A; --decor-op:.2;
+  --f-display:"Hahmlet","Nanum Myeongjo","AppleMyungjo",Georgia,serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#121317; --paper-2:#1B1C21; --ink:#ECE5D6; --ink-2:#A69E90; --rule:#34332F;
+  --ginkgo:#E8B92F; --maple:#E2653F; --pine:#7FAE8F; --closed:#E2653F; --open:#7FAE8F;
+  --leaf-a:#E8B92F; --leaf-b:#D9542F; --leaf-c:#F08A3A;
+  --persimmon:#F07A30; --river:#3F5E72; --leaf-green:#8DB866; --night:#3A4F9A; --branch:#8A7560; --lantern-red:#E0503F; --lantern-blue:#5B7FC4; --decor-op:.26; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#121317; --paper-2:#1B1C21; --ink:#ECE5D6; --ink-2:#A69E90; --rule:#34332F;
+  --ginkgo:#E8B92F; --maple:#E2653F; --pine:#7FAE8F; --closed:#E2653F; --open:#7FAE8F;
+  --leaf-a:#E8B92F; --leaf-b:#D9542F; --leaf-c:#F08A3A;
+  --persimmon:#F07A30; --river:#3F5E72; --leaf-green:#8DB866; --night:#3A4F9A; --branch:#8A7560; --lantern-red:#E0503F; --lantern-blue:#5B7FC4; --decor-op:.26; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.65;margin:0}
+a{color:inherit;text-decoration-color:var(--ginkgo);text-underline-offset:3px}
+a:hover{color:var(--maple)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ginkgo);outline-offset:3px}
+
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+
+/* NAV */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav.top .wrap{display:flex;align-items:center;gap:24px;height:48px}
+nav.top .brand{white-space:nowrap}
+nav.top .brand b{color:var(--maple);font-weight:500}
+nav.top ul{display:flex;gap:20px;list-style:none;margin:0;padding:0;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+nav.top ul::-webkit-scrollbar{display:none}
+nav.top li a{text-decoration:none;color:var(--ink-2);white-space:nowrap}
+nav.top li a:hover{color:var(--ink)}
+nav.top .tag{color:var(--ginkgo);white-space:nowrap}
+@media (max-width:720px){nav.top .tag{display:none}}
+
+/* HERO */
+header.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}
+header.hero canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-inner{position:relative;padding-block:88px 72px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+.hero .kicker{color:var(--maple);margin-bottom:28px}
+.hero h1{font-family:var(--f-display);font-weight:300;font-size:clamp(38px,6.4vw,76px);line-height:1.06;letter-spacing:-.02em;margin:0;max-width:15ch;text-wrap:balance}
+.hero h1 em{font-style:normal;color:var(--ginkgo);font-weight:600}
+.hero .sub{margin-top:28px;color:var(--ink-2)}
+.hero .hangul{font-family:var(--f-display);font-weight:800;font-size:clamp(96px,17vw,220px);line-height:.9;writing-mode:vertical-rl;color:transparent;-webkit-text-stroke:1.5px var(--ginkgo);opacity:.9;user-select:none}
+@media (max-width:720px){.hero-inner{grid-template-columns:1fr;padding-block:56px 48px}.hero .hangul{writing-mode:horizontal-tb;font-size:88px;order:-1}}
+
+.lede{padding-block:56px;display:grid;grid-template-columns:200px 1fr;gap:40px;border-bottom:1px solid var(--rule)}
+.lede p{font-family:var(--f-display);font-size:clamp(18px,2vw,22px);line-height:1.6;margin:0 0 1em;max-width:62ch}
+.lede p:last-child{margin:0}
+.lede .mono{color:var(--ink-2)}
+@media (max-width:720px){.lede{grid-template-columns:1fr;gap:16px}}
+
+/* ACTS */
+section.act{padding-block:80px;border-bottom:1px solid var(--rule);scroll-margin-top:48px}
+.act-head{display:grid;grid-template-columns:200px 1fr;gap:40px;margin-bottom:48px}
+.act-head .mono{color:var(--maple);padding-top:14px}
+.act-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5vw,58px);line-height:1.08;margin:0;letter-spacing:-.015em;text-wrap:balance}
+.act-head h2 span{color:var(--ginkgo);font-weight:300;margin-left:.25em}
+.act-head .dek{margin-top:14px;color:var(--ink-2)}
+.act-body{display:grid;grid-template-columns:200px 1fr;gap:40px}
+.act-body > .side{color:var(--ink-2);font-size:14px}
+.act-body > .main{min-width:0}
+.prose p{max-width:64ch;margin:0 0 1.1em}
+@media (max-width:820px){.act-head,.act-body{grid-template-columns:1fr;gap:12px}.act-head .mono{padding-top:0}}
+
+/* deeper aside */
+.deeper{margin-top:36px;border-left:2px solid var(--ginkgo);padding:4px 0 4px 20px;max-width:66ch}
+.deeper .mono{color:var(--ginkgo);display:block;margin-bottom:8px}
+.deeper p{margin:0 0 .8em;font-size:15px;color:var(--ink-2)}
+.deeper p:last-child{margin:0}
+
+/* stat row */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ink);margin-top:40px}
+.stat{padding:18px 16px 18px 0;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:0}
+.stat + .stat{padding-left:16px}
+.stat b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(28px,3.4vw,40px);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .mono{color:var(--ink-2);font-size:12px;letter-spacing:.08em;display:block;margin-top:8px;line-height:1.5}
+@media (max-width:720px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat:nth-child(n+3){border-top:1px solid var(--rule)}.stat:nth-child(3){padding-left:0}}
+
+/* home card */
+.home{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid var(--ink)}
+.home > div{padding:24px;min-width:0}
+.home .addr{border-right:1px solid var(--ink)}
+.home .addr .big{font-family:var(--f-display);font-size:28px;line-height:1.2;margin:10px 0 6px}
+.home .addr .room{font-family:var(--f-mono);font-size:14px;color:var(--maple)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.btn{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);padding:8px 12px;text-decoration:none;background:transparent;color:var(--ink);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.btn:hover{background:var(--ink);color:var(--paper)}
+@media (max-width:720px){.home{grid-template-columns:1fr}.home .addr{border-right:0;border-bottom:1px solid var(--ink)}}
+
+/* routes */
+.routes{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px}
+.route h3{font-family:var(--f-display);font-weight:600;font-size:22px;margin:0 0 4px}
+.route .t{color:var(--ink-2);margin-bottom:20px}
+.route ol{list-style:none;margin:0;padding:0;position:relative}
+.route ol::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:var(--rule)}
+.route li{position:relative;padding:0 0 18px 32px}
+.route li::before{content:"";position:absolute;left:2px;top:7px;width:11px;height:11px;border-radius:50%;background:var(--paper);border:2px solid var(--ginkgo)}
+.route li:last-child::before{background:var(--maple);border-color:var(--maple)}
+.route li small{display:block;color:var(--ink-2);font-size:14px}
+.line6{display:inline-block;background:#CD7C2F;color:#fff;font-family:var(--f-mono);font-size:12px;padding:0 6px;margin-right:4px}
+.arex{display:inline-block;background:#0090D2;color:#fff;font-family:var(--f-mono);font-size:12px;padding:0 6px;margin-right:4px}
+.bus{display:inline-block;background:#D52D2D;color:#fff;font-family:var(--f-mono);font-size:12px;padding:0 6px;margin-right:4px}
+@media (max-width:720px){.routes{grid-template-columns:1fr}}
+
+/* entries */
+.entries{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--ink)}
+.entry{padding:28px 28px 28px 0;border-bottom:1px solid var(--rule);min-width:0;display:flex;flex-direction:column;gap:8px}
+.entry:nth-child(2n){padding-left:28px;padding-right:0;border-left:1px solid var(--rule)}
+.entry .fig{color:var(--ink-2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.entry .fig .district{color:var(--pine)}
+.entry h3{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.2;margin:4px 0 0;text-wrap:balance}
+.entry .ko{font-family:var(--f-display);color:var(--ginkgo);font-size:17px}
+.entry p{margin:0;max-width:56ch}
+.entry .where{font-size:14px;color:var(--ink-2)}
+.entry .btns{margin-top:auto;padding-top:10px}
+.flag{display:inline-block;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--closed);color:var(--closed);padding:2px 8px;align-self:flex-start}
+.flag.ok{border-color:var(--pine);color:var(--pine)}
+.entry.wide{grid-column:1/-1;padding-right:0}
+@media (max-width:760px){.entries{grid-template-columns:1fr}.entry,.entry:nth-child(2n){padding:24px 0;border-left:0}}
+
+/* lotus feature */
+.lotus{margin-top:0;border:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr}
+.lotus > div{padding:28px;min-width:0}
+.lotus .l{border-right:1px solid var(--ink);background:var(--paper-2)}
+.lotus h3{font-family:var(--f-display);font-weight:400;font-size:32px;line-height:1.1;margin:10px 0 4px}
+.lotus .ko{font-family:var(--f-display);color:var(--ginkgo);font-size:22px}
+.times{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.times span{font-family:var(--f-mono);font-size:15px;border:1px solid var(--ginkgo);padding:6px 12px;font-variant-numeric:tabular-nums}
+.lotus dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0}
+.lotus dt{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+.lotus dd{margin:0}
+@media (max-width:760px){.lotus{grid-template-columns:1fr}.lotus .l{border-right:0;border-bottom:1px solid var(--ink)}}
+
+/* pull quote */
+.pull{padding-block:64px;text-align:left;border-bottom:1px solid var(--rule)}
+.pull blockquote{margin:0;font-family:var(--f-display);font-weight:300;font-size:clamp(26px,3.6vw,42px);line-height:1.25;max-width:26ch;text-wrap:balance}
+.pull blockquote em{font-style:normal;color:var(--maple)}
+.pull .mono{margin-top:20px;color:var(--ink-2)}
+
+/* week grid */
+.gridwrap{overflow-x:auto;border-top:1px solid var(--ink)}
+table.week{border-collapse:collapse;width:100%;min-width:620px;font-variant-numeric:tabular-nums}
+table.week th,table.week td{padding:12px 8px;border-bottom:1px solid var(--rule);text-align:center}
+table.week th{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;font-weight:500;color:var(--ink-2)}
+table.week th:first-child,table.week td:first-child{text-align:left;padding-left:0}
+table.week td:first-child{font-family:var(--f-display);font-size:16px}
+table.week td:first-child small{display:block;font-family:var(--f-body);font-size:12px;color:var(--ink-2)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--open)}
+.dot.x{background:transparent;border:2px solid var(--closed);position:relative;border-radius:0;width:14px;height:14px}
+.dot.x::after{content:"";position:absolute;inset:-2px;background:linear-gradient(45deg,transparent 45%,var(--closed) 45%,var(--closed) 55%,transparent 55%)}
+.dot.eve{background:var(--ginkgo)}
+th.mon,td.mon{background:color-mix(in srgb,var(--maple) 8%,transparent)}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+
+/* districts */
+.districts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
+.district-card{padding:20px 20px 20px 0;border-bottom:1px solid var(--rule);min-width:0}
+.district-card h4{font-family:var(--f-display);font-size:20px;font-weight:600;margin:0}
+.district-card h4 span{color:var(--ginkgo);font-weight:400;margin-left:6px}
+.district-card .n{color:var(--ink-2);margin:4px 0 10px}
+.district-card ul{margin:0;padding:0;list-style:none;font-size:14px}
+.district-card li{padding:2px 0}
+@media (max-width:900px){.districts{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.districts{grid-template-columns:1fr}}
+
+/* index */
+.index{border-top:1px solid var(--ink)}
+.index-row{display:grid;grid-template-columns:44px 1fr auto;gap:16px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.index-row .num{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+.index-row .nm{font-family:var(--f-display);font-size:18px;min-width:0}
+.index-row .nm small{display:block;font-family:var(--f-mono);font-size:12px;color:var(--ink-2);word-break:break-all;letter-spacing:0}
+.index-row a.go{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+
+footer{padding-block:48px 64px;color:var(--ink-2)}
+footer p{margin:0 0 8px}
+footer .mono{line-height:1.8}
+
+.theme-btn{background:none;border:1px solid var(--rule);color:var(--ink-2);font-family:var(--f-mono);font-size:12px;padding:4px 8px;cursor:pointer;white-space:nowrap}
+.theme-btn:hover{color:var(--ink);border-color:var(--ink)}
+
+/* autumn decor */
+.hero-inner{padding-block:88px 280px}
+@media (max-width:720px){.hero-inner{padding-block:48px 230px}}
+section.act{position:relative;overflow:clip}
+.pull-band{position:relative;overflow:hidden}
+section.act > .wrap,.pull-band > .wrap{position:relative;z-index:1}
+.decor{position:absolute;top:24px;right:max(-40px,calc((100vw - 1180px)/2));width:min(380px,48vw);height:auto;opacity:var(--decor-op);pointer-events:none;z-index:0}
+.decor.low{top:auto;bottom:-10px}
+.decor.left{right:auto;left:-30px}
+@media (max-width:720px){.decor{width:52vw;opacity:calc(var(--decor-op) * .8)}}
+
+/* scroll motion */
+#drift{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;will-change:transform}
+nav.top{z-index:10}
+header.hero,.lede,section.act,.pull-band,footer{position:relative;z-index:1}
+.decor{will-change:transform}
+.hero .hangul{will-change:transform}
+.sway{transform-box:fill-box;transform-origin:50% 0;transform:rotate(var(--swing,0deg));transition:transform .9s cubic-bezier(.25,1.8,.45,1)}
+.play .sway{animation:idle 5s ease-in-out infinite alternate}
+.sway:nth-of-type(2n){animation-duration:6.2s;animation-delay:-2s}
+@keyframes idle{from{rotate:-2.5deg}to{rotate:2.5deg}}
+html.still .sway{animation:none;transition:none;transform:none}html.still #drift{display:none}
+.motion-btn[aria-pressed="true"]{color:var(--ginkgo);border-color:var(--ginkgo)}
+
+/* per-section motion */
+.route ol::after{content:"";position:absolute;left:6px;top:10px;width:3px;height:calc((100% - 20px) * var(--p,0));background:var(--maple)}
+.route .train{position:absolute;left:-8px;top:calc(10px + (100% - 20px) * var(--p,0) - 16px);width:32px;height:32px;border-radius:50%;background:var(--vc,#0090D2);z-index:2;display:grid;place-items:center;box-shadow:0 0 0 3px var(--paper),0 2px 8px rgba(0,0,0,.25);transition:background .4s}
+.route .train svg{width:20px;height:20px}
+.route ol::after{width:4px;left:6px}
+.route li.passed::before{background:var(--ginkgo)}
+#palaces{background:color-mix(in srgb,var(--night) calc(var(--dusk,0) * 13%),transparent)}
+#palaces .sway{filter:drop-shadow(0 0 calc(var(--dusk,0) * 14px) var(--lantern-red))}
+#views{background:color-mix(in srgb,var(--persimmon) calc(var(--sunset,0) * 9%),transparent)}
+#tables .steam path{stroke-dasharray:22 12}
+#tables .play .steam path{animation:steam 2.6s linear infinite}
+#tables .steam path:nth-child(2){animation-delay:-.9s}#tables .steam path:nth-child(3){animation-delay:-1.7s}
+@keyframes steam{from{stroke-dashoffset:0;transform:translateY(0);opacity:1}to{stroke-dashoffset:-68px;transform:translateY(-14px);opacity:.4}}
+table.week.stamp td.mon .dot.x{animation:stamp .5s cubic-bezier(.3,1.7,.5,1) both}
+table.week.stamp tr:nth-child(2) td.mon .dot.x{animation-delay:.12s}table.week.stamp tr:nth-child(3) td.mon .dot.x{animation-delay:.24s}table.week.stamp tr:nth-child(4) td.mon .dot.x{animation-delay:.36s}table.week.stamp tr:nth-child(5) td.mon .dot.x{animation-delay:.48s}table.week.stamp tr:nth-child(6) td.mon .dot.x{animation-delay:.6s}
+@keyframes stamp{0%{transform:scale(2.4) rotate(-20deg);opacity:.2}100%{transform:none;opacity:1}}
+table.week.stamp th.mon,table.week.stamp td.mon{transition:background .8s;background:color-mix(in srgb,var(--maple) 16%,transparent)}
+footer{overflow:hidden}
+#pile{position:absolute;left:0;bottom:0;width:100%;height:220px;pointer-events:none;z-index:0}
+footer .wrap{position:relative;z-index:1}
+html.still #tables .steam path{animation:none}
+html.still table.week.stamp td.mon .dot.x{animation:none}
+
+/* sticky decor rails: drawings stay in view while you read the section */
+.rail{position:absolute;inset:0;pointer-events:none;z-index:0}
+.rail .decor{position:sticky;top:70px;right:auto;display:block;margin-left:auto;margin-right:max(-40px,calc((100vw - 1180px)/2));opacity:1}
+.rail .decor > *{opacity:var(--decor-op)}
+.rail .decor > .vivid,.rail .decor > g.vivid,#museums .rail .decor > g[style]{opacity:.85}
+@media (max-width:720px){.rail .decor{top:56px}.rail .decor > .vivid,#museums .rail .decor > g[style]{opacity:.6}}
+#palaces{background:color-mix(in srgb,var(--night) calc(var(--dusk,0) * 26%),transparent)}
+#palaces .rail .decor > .sway{opacity:calc(.35 + var(--dusk,0) * .6)}
+#views{background:color-mix(in srgb,var(--persimmon) calc(var(--sunset,0) * 18%),transparent)}
+
+/* ---------- v7: gate · map · stacking · leaf windows ---------- */
+#drift{z-index:6}
+#gate{position:fixed;inset:0;z-index:100;overflow:hidden;background:#140f0c;perspective:1400px;transition:opacity .9s ease .9s,visibility 0s linear 1.8s}
+#gate.open{opacity:0;visibility:hidden}
+#gate.skip{display:none}
+.gate-photo{position:absolute;inset:0}
+.gate-photo .scene{width:100%;height:100%;object-fit:cover;transform:scale(1.15);transition:transform 2.2s cubic-bezier(.2,.7,.2,1);filter:saturate(1.1)}
+#gate.open .gate-photo .scene{transform:scale(1)}
+.door{position:absolute;top:0;bottom:0;width:50.5%;z-index:2;transition:transform 1.5s cubic-bezier(.6,0,.25,1);
+  background:
+   radial-gradient(circle at 30px 30px,#E3B64A 0 4px,#8a5a12 5px,transparent 6px) 0 70px/60px 60px,
+   repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 3px,transparent 3px 60px),
+   linear-gradient(180deg,#A42F22,#7A1E16)}
+.door::before{content:"";position:absolute;left:0;right:0;top:0;height:60px;background:repeating-linear-gradient(90deg,#2F6B55 0 22px,#E3B64A 22px 28px,#2A4D8F 28px 50px,#C9412E 50px 56px);box-shadow:inset 0 -6px 0 rgba(0,0,0,.25)}
+.door::after{content:"";position:absolute;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;border:5px solid #E3B64A;box-shadow:0 0 0 3px #6b4a0e inset}
+.door.left{left:0;transform-origin:0 50%;box-shadow:inset -8px 0 0 rgba(0,0,0,.35)}
+.door.left::after{right:24px}
+.door.right{right:0;transform-origin:100% 50%;box-shadow:inset 8px 0 0 rgba(0,0,0,.35)}
+.door.right::after{left:24px}
+#gate.open .door.left{transform:rotateY(-105deg)}
+#gate.open .door.right{transform:rotateY(105deg)}
+.gate-ui{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#F6EBD6;text-align:center;transition:opacity .5s;padding-inline:16px}
+#gate.open .gate-ui{opacity:0}
+.gate-kicker{font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;background:rgba(20,15,12,.55);padding:6px 12px}
+.gate-title{font-family:var(--f-display);font-weight:800;font-size:clamp(72px,14vw,160px);line-height:.9;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+.gate-title span{display:block;font-weight:300;font-size:.28em;letter-spacing:.3em;text-transform:uppercase;margin-top:12px}
+#enterBtn{font-family:var(--f-mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;background:#E3B64A;color:#2A1A08;border:0;padding:14px 22px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+#enterBtn span{margin-left:8px;font-family:var(--f-body);letter-spacing:0;text-transform:none}
+#enterBtn:hover{background:#F3CB62}
+#enterBtn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* map */
+.map-sec{position:relative;height:340vh;z-index:1;border-bottom:1px solid var(--rule)}
+.map-sticky{position:sticky;top:0;height:100vh;height:100dvh;display:flex;flex-direction:column;justify-content:center;gap:10px;overflow:hidden;padding-block:56px 12px}
+.map-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,4vw,46px);margin:4px 0 2px;line-height:1.1}
+.map-status{color:var(--ink-2)}
+.map-box{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding-inline:12px}
+#mapSvg{width:100%;max-width:1240px;height:100%;max-height:70vh}
+#mapSvg .street{fill:none;stroke:var(--ink);stroke-opacity:.16;stroke-width:1.3}
+#mapSvg .river{fill:none;stroke:var(--river);stroke-width:26;stroke-linecap:round;stroke-linejoin:round}
+#mapSvg .stream{fill:none;stroke:var(--river);stroke-width:7;stroke-linecap:round}
+#mapSvg .rail-line{fill:none;stroke-width:5;stroke-linecap:round}
+#mapSvg .hill{fill:var(--pine);opacity:.14}
+#mapSvg text{font-family:var(--f-body);font-weight:600;fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:5px;stroke-linejoin:round}
+#mapSvg .area{font-family:var(--f-mono);font-weight:400;fill:var(--ink-2);letter-spacing:.12em;text-transform:uppercase}
+#mapSvg .pin-label{transition:opacity .35s;font-size:var(--mf,17px)}
+.map-legend{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 16px}
+.map-legend li{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:6px;transition:color .3s}
+.map-legend li i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.map-legend li.on{color:var(--ink);font-weight:500}
+.map-legend li{cursor:pointer;padding:4px 6px;border-radius:4px}
+.map-legend li:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.map-legend li:focus-visible{outline:2px solid var(--ginkgo)}
+
+/* stacking chapters */
+section.act{position:relative;background:var(--paper);border-bottom:1px solid var(--rule)}
+.dim{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:4;border-radius:inherit;will-change:opacity}
+#palaces{background:linear-gradient(color-mix(in srgb,var(--night) calc(var(--dusk,0) * 26%),transparent),color-mix(in srgb,var(--night) calc(var(--dusk,0) * 26%),transparent)),var(--paper)}
+#views{background:linear-gradient(color-mix(in srgb,var(--persimmon) calc(var(--sunset,0) * 18%),transparent),color-mix(in srgb,var(--persimmon) calc(var(--sunset,0) * 18%),transparent)),var(--paper)}
+section.act{padding-top:0}
+section.act > .wrap{padding-top:64px}
+
+/* leaf-window photos */
+.leafwin{margin:0;padding:20px 20px 0;position:relative;z-index:1}
+.lw-frame{height:min(68vh,640px);overflow:hidden;border-radius:18px 18px 0 0;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 58C22 58 4 34 10 10C28 20 40 16 48 26L50 34L52 26C60 16 72 20 90 10C96 34 78 58 50 58Z'/%3E%3Cpath d='M48 56h4v40h-4z'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 58C22 58 4 34 10 10C28 20 40 16 48 26L50 34L52 26C60 16 72 20 90 10C96 34 78 58 50 58Z'/%3E%3Cpath d='M48 56h4v40h-4z'/%3E%3C/svg%3E");
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:50% 42%;mask-position:50% 42%;-webkit-mask-size:auto var(--ms,40%);mask-size:auto var(--ms,40%)}
+.lw-frame.open{-webkit-mask-image:none;mask-image:none}
+.lw-frame .scene{width:100%;height:100%;object-fit:cover;display:block;transform:scale(calc(1.22 - var(--lp,0) * .22))}
+.leafwin figcaption{color:var(--ink-2);padding:10px 0 0;max-width:1120px;margin-inline:auto}
+html.still .lw-frame{-webkit-mask-image:none;mask-image:none}
+html.still .lw-frame .scene{transform:none}
+
+/* lantern photo band */
+.pull-band{background:#2a2119}
+.pull-band .band-img{position:absolute;left:0;top:-15%;width:100%;height:130%;display:block;will-change:transform}
+.pull-band > .decor{display:none}
+.pull-band .pull{border-bottom:0;padding-block:110px}
+.pull-band blockquote{color:#FBF3E4;text-shadow:0 2px 24px rgba(20,14,10,.9),0 0 8px rgba(20,14,10,.7)}
+.pull-band blockquote em{color:#F3C75A}
+.pull-band .pull .mono{color:#E8DCC6}
+.pull-band{z-index:2}
+
+/* footer photo */
+footer{background:var(--paper);position:relative;z-index:2;padding-top:0}
+.foot-photo{height:46vh;min-height:260px;position:relative;overflow:hidden;margin-bottom:40px}
+.foot-photo .scene{width:100%;height:100%;object-fit:cover;display:block}
+.foot-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,var(--paper))}
+
+/* one colour grade so all photos read as a set */
+
+
+/* neighbourhood map */
+.homemap{margin:24px 0 0;border:1px solid var(--ink)}
+.homemap svg{display:block;width:100%;height:auto}
+.homemap figcaption{padding:10px 14px;color:var(--ink-2);border-top:1px solid var(--rule)}
+.hm-bg{fill:var(--paper-2)}
+.hm-streets path{stroke:var(--ink);stroke-opacity:.12;stroke-width:6;fill:none}
+.hm-river{fill:var(--river);opacity:.8}
+.hm-area{font-family:var(--f-mono);font-size:26px;letter-spacing:.14em;text-transform:uppercase;fill:var(--paper)}
+.hm-area.small{font-size:20px;fill:var(--ink-2);opacity:.9}
+.hm-line6{fill:none;stroke:#CD7C2F;stroke-width:10;stroke-linejoin:round}
+.hm-line2{fill:none;stroke:#3CA03C;stroke-width:10;stroke-linejoin:round}
+.hm-walk{fill:none;stroke:var(--maple);stroke-width:6;stroke-dasharray:4 14;stroke-linecap:round}
+.hm-walk.bus{stroke:var(--ink-2)}
+.play-map .hm-walk{animation:walk 1.2s linear 12}
+@keyframes walk{to{stroke-dashoffset:-36}}
+.hm-stn{fill:var(--paper);stroke-width:7}
+.hm-stn.l6{stroke:#CD7C2F}.hm-stn.l2{stroke:#3CA03C}
+.hm-market{fill:var(--ginkgo)}
+.hm-lbl{font-family:var(--f-body);font-weight:600;font-size:26px;fill:var(--ink);paint-order:stroke;stroke:var(--paper-2);stroke-width:6px;stroke-linejoin:round}
+.hm-lbl.home{font-size:30px;fill:var(--maple)}
+.hm-sub{font-family:var(--f-mono);font-size:20px;fill:var(--ink-2);paint-order:stroke;stroke:var(--paper-2);stroke-width:5px}
+.hm-time{font-family:var(--f-mono);font-size:21px;fill:var(--maple);paint-order:stroke;stroke:var(--paper-2);stroke-width:5px}
+.hm-pin{fill:var(--maple);stroke:var(--paper);stroke-width:3}
+.hm-dot{fill:var(--paper)}
+.hm-pulse{fill:var(--maple);opacity:0;transform-box:fill-box;transform-origin:center}
+.play-map .hm-pulse{animation:pulse 2s ease-out 7}
+@keyframes pulse{0%{opacity:.45;transform:scale(.4)}100%{opacity:0;transform:scale(2.2)}}
+html.still .play-map .hm-walk,html.still .play-map .hm-pulse{animation:none}
+@media (max-width:600px){.hm-lbl{font-size:34px}.hm-lbl.home{font-size:38px}.hm-sub,.hm-time{font-size:26px}.hm-area.small{display:none}}
+
+/* v14: event calendar, maybe list, subhead */
+.cal-wrap{overflow-x:auto;border-top:1px solid var(--ink);padding-top:12px}
+.cal{min-width:760px}
+.cal-row{display:grid;grid-template-columns:190px 1fr;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--rule)}
+.cal-lbl{font-family:var(--f-display);font-size:15px;line-height:1.2}
+.cal-lbl small{display:block;font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+.cal-cells{display:grid;grid-template-columns:repeat(32,1fr);gap:2px}
+.cal-cells i{height:18px;border-radius:3px;background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.cal-cells i.mon,.cal-cells b.mon{box-shadow:inset 0 -3px 0 color-mix(in srgb,var(--maple) 45%,transparent)}
+.cal-head .cal-cells b{font-family:var(--f-mono);font-size:12px;font-weight:500;text-align:center;line-height:1.1;color:var(--ink-2)}
+.cal-head .cal-cells b small{display:block;font-size:11px;opacity:.8}
+.cal-row.nod i.on{background:var(--lantern-blue)}
+.cal-row.jam i.on{background:var(--persimmon)}
+.cal-row.lot i.on{background:var(--lantern-red)}
+.cal-row.jam i.on[title]{background:var(--ginkgo);box-shadow:0 0 0 2px var(--persimmon) inset}
+.cal-key{display:inline-block;width:14px;height:14px;border-radius:3px}
+.cal-key.nod{background:var(--lantern-blue)}.cal-key.jam{background:var(--persimmon)}.cal-key.lot{background:var(--lantern-red)}.cal-key.mon{background:color-mix(in srgb,var(--maple) 45%,transparent)}
+.maybe{margin-top:36px;border:1px dashed var(--ink-2);padding:16px 20px}
+.maybe-h{color:var(--ink-2);margin-bottom:8px}
+.maybe-row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 0;border-top:1px solid var(--rule)}
+.maybe-row b{font-family:var(--f-display);font-size:19px;font-weight:600}
+.maybe-row .ko{font-family:var(--f-display);color:var(--ginkgo);margin-left:6px}
+.maybe-row small{color:var(--ink-2);font-size:14px}
+.maybe-row .btns{margin-top:0}
+.subhead{font-family:var(--f-display);font-weight:400;font-size:30px;margin:48px 0 12px;display:flex;align-items:baseline;gap:14px}
+.subhead .mono{color:var(--maple)}
+.subhead .ko{color:var(--ginkgo);font-size:20px}
+.dot.day{background:var(--persimmon)}
+.dot.none{background:transparent;border:1px dashed var(--rule)}
+
+/* v15: calmer scene banners */
+.leafwin{max-width:1120px;margin:0 auto;padding:56px 20px 0}
+.lw-frame{height:clamp(200px,34vh,340px);border-radius:14px;-webkit-mask-image:none!important;mask-image:none!important;opacity:calc(.35 + var(--lp,1) * .65);transition:opacity .2s linear}
+.lw-frame .scene{transform:none!important}
+.leafwin figcaption{padding-left:0}
+section.act > .wrap{padding-top:40px}
+/* banners now carry the pictures — corner drawings retired */
+section.act > .rail{display:none}
+
+/* itinerary */
+.plan-note{max-width:70ch;margin:0 0 32px;padding:14px 18px;border-left:3px solid var(--ginkgo);background:color-mix(in srgb,var(--ginkgo) 8%,transparent);font-size:15px}
+.days{display:flex;flex-direction:column;border-top:1px solid var(--ink)}
+.day{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.day-date b{display:block;font-family:var(--f-display);font-weight:400;font-size:48px;line-height:1}
+.day-date span{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--maple);margin-top:6px}
+.day-date small{display:block;font-family:var(--f-mono);font-size:12px;color:var(--ink-2);margin-top:2px}
+.day-body{min-width:0}
+.day-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:10px}
+.day-top h3{font-family:var(--f-display);font-weight:600;font-size:22px;margin:0;text-wrap:balance}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--rule);color:var(--ink-2);border-radius:999px}
+.chip.area{border-color:transparent;background:color-mix(in srgb,var(--pine) 12%,transparent);color:var(--ink)}
+.chip.warn{border-color:var(--maple);color:var(--maple)}
+.chip.book{border-color:var(--ginkgo);color:var(--ink);background:color-mix(in srgb,var(--ginkgo) 18%,transparent)}
+.chip.fest{border-color:var(--persimmon);color:var(--persimmon)}
+.slots{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.slots li{display:grid;grid-template-columns:120px 1fr;gap:12px}
+.slots .when{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);padding-top:3px}
+.tip{margin:12px 0 0;font-size:14px;color:var(--ink-2)}
+.day.today{background:color-mix(in srgb,var(--ginkgo) 10%,transparent);box-shadow:inset 3px 0 0 var(--ginkgo);padding-left:14px}
+.day.today .day-date span::after{content:" · today";color:var(--ginkgo)}
+.day.past{opacity:.55}
+@media (max-width:640px){.day{grid-template-columns:1fr;gap:8px}.day-date{display:flex;align-items:baseline;gap:10px}.day-date b{font-size:36px}.slots li{grid-template-columns:1fr;gap:2px}}
+
+/* ---- itinerary booklet ---- */
+.book-bar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.bk-btn{font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--ink);background:transparent;color:var(--ink);padding:9px 14px;cursor:pointer;flex:none}
+.bk-btn:hover:not(:disabled){background:var(--ink);color:var(--paper)}
+.bk-btn:disabled{opacity:.3;cursor:default}
+.bk-tabs{display:flex;gap:4px;overflow-x:auto;flex:1;min-width:0;scrollbar-width:none;justify-content:center}
+.bk-tabs::-webkit-scrollbar{display:none}
+.bk-tab{font-family:var(--f-mono);font-size:13px;min-width:34px;height:34px;border:1px solid var(--rule);background:transparent;color:var(--ink-2);cursor:pointer;border-radius:50%;flex:none}
+.bk-tab.on{background:var(--maple);border-color:var(--maple);color:#fff}
+.bk-tab.today{border-color:var(--ginkgo);border-width:2px}
+.book{position:relative;height:clamp(540px,74vh,680px);perspective:2600px;outline:none;margin-inline:auto;max-width:1120px}
+.book:focus-visible{box-shadow:0 0 0 2px var(--ginkgo)}
+.bk-empty{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-2);font-family:var(--f-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;border:1px dashed var(--rule);text-align:center;padding:24px}
+.bk-base,.leaf{position:absolute;top:0;height:100%;width:50%}
+.bk-base.l{left:0}.bk-base.r{left:50%}
+.leaf{left:50%;transform-origin:0 50%;transform-style:preserve-3d;transition:transform .95s cubic-bezier(.45,.05,.2,1)}
+.leaf.flipped{transform:rotateY(-180deg)}
+html.still .leaf{transition:none}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.face.back{transform:rotateY(180deg)}
+.pg{position:absolute;inset:0;background:var(--paper);overflow:auto;padding:34px 36px 44px;scrollbar-width:thin;
+  background-image:linear-gradient(90deg,color-mix(in srgb,var(--ink) 9%,transparent),transparent 8%);box-shadow:0 1px 0 var(--rule),0 12px 30px -18px rgba(0,0,0,.35)}
+.pg.right{background-image:linear-gradient(90deg,color-mix(in srgb,var(--ink) 9%,transparent),transparent 8%)}
+.pg.left{background-image:linear-gradient(270deg,color-mix(in srgb,var(--ink) 9%,transparent),transparent 8%)}
+.pg{border:1px solid var(--rule)}
+.pg-num{position:absolute;bottom:14px;font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+.pg.right .pg-num{right:22px}.pg.left .pg-num{left:22px}
+.pg-head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:14px}
+.pg-head .num{font-family:var(--f-display);font-size:52px;line-height:.9}
+.pg-head .dt{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--maple)}
+.pg-head .dt small{display:block;color:var(--ink-2);letter-spacing:.08em}
+.pg-head .edit{margin-left:auto;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--rule);background:transparent;color:var(--ink-2);padding:6px 10px;cursor:pointer}
+.pg-head .edit:hover{border-color:var(--ink);color:var(--ink)}
+.pg h3{font-family:var(--f-display);font-weight:600;font-size:23px;line-height:1.2;margin:0 0 10px;text-wrap:balance}
+.pg .chips{margin-bottom:14px}
+.pg .slots li{grid-template-columns:104px 1fr;font-size:15px}
+.pg .tip{border-top:1px dashed var(--rule);padding-top:10px}
+.pg.today{box-shadow:inset 0 4px 0 var(--ginkgo),0 12px 30px -18px rgba(0,0,0,.35)}
+.pg.today .pg-head .dt::after{content:" · today";color:var(--ginkgo)}
+.pg-intro h2{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1.05;margin:6px 0 14px}
+.pg-intro h2 span{color:var(--ginkgo)}
+.pg-intro p{font-size:15px;margin:0 0 12px}
+.pg-intro .book-now{border-left:3px solid var(--ginkgo);padding:8px 12px;background:color-mix(in srgb,var(--ginkgo) 9%,transparent);font-size:14px}
+.toc{list-style:none;margin:14px 0 0;padding:0;columns:2;column-gap:18px}
+.toc li{break-inside:avoid;padding:4px 0;border-bottom:1px dotted var(--rule);font-size:14px}
+.toc button{all:unset;cursor:pointer;display:flex;gap:8px;width:100%}
+.toc button:hover span:last-child{color:var(--maple)}
+.toc button:focus-visible{outline:2px solid var(--ginkgo)}
+.toc b{font-family:var(--f-mono);font-weight:500;color:var(--ink-2);min-width:44px;font-size:12px;padding-top:2px}
+.pg-end{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:10px}
+.pg-end .big{font-family:var(--f-display);font-weight:800;font-size:72px;color:transparent;-webkit-text-stroke:1.5px var(--ginkgo)}
+.pg-end p{color:var(--ink-2);font-size:14px;max-width:32ch;margin:0}
+/* edit form */
+.ef label{display:block;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:10px 0 4px}
+.ef input,.ef textarea{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--paper-2);border:1px solid var(--rule);padding:7px 9px;border-radius:4px;box-sizing:border-box}
+.ef textarea{resize:vertical;min-height:52px}
+.ef input:focus,.ef textarea:focus{outline:2px solid var(--ginkgo);outline-offset:0}
+.ef .srow{display:grid;grid-template-columns:110px 1fr 34px;gap:6px;margin-bottom:6px;align-items:start}
+.ef .srow button{height:34px;border:1px solid var(--rule);background:transparent;color:var(--ink-2);cursor:pointer;border-radius:4px}
+.ef .acts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.ef .acts button{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:9px 14px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.ef .acts .save{background:var(--maple);border-color:var(--maple);color:#fff}
+.ef .note{font-size:13px;color:var(--ink-2);margin-top:8px}
+.ef .err{color:var(--maple);font-size:13px;margin-top:8px}
+.bk-hint{color:var(--ink-2);text-align:center;margin-top:14px}
+/* phone: one page at a time */
+.book.single .bk-base,.book.single .leaf{display:none}
+.bk-single{position:absolute;inset:0;transform-origin:0 50%;transition:transform .35s ease-in,opacity .35s}
+.bk-single.out{transform:perspective(1400px) rotateY(-80deg);opacity:0}
+.bk-single.in{transform:perspective(1400px) rotateY(12deg);opacity:0;transition:none}
+html.still .bk-single{transition:none}
+@media (max-width:760px){.book{height:auto;min-height:560px}.pg{position:relative;min-height:560px;padding:26px 20px 40px}.pg .slots li{grid-template-columns:1fr}.toc{columns:1}.ef .srow{grid-template-columns:1fr 34px}.ef .srow input{grid-column:1/-1}}
+</style>
+
+<div id="gate" role="dialog" aria-label="Welcome">
+  <div class="gate-photo"><canvas class="scene" data-scene="gate" aria-hidden="true"></canvas></div>
+  <div class="door left" aria-hidden="true"></div><div class="door right" aria-hidden="true"></div>
+  <div class="gate-ui">
+    <div class="gate-kicker">Field Notes · Autumn 2026</div>
+    <div class="gate-title">서울<span>Seoul</span></div>
+    <button id="enterBtn" type="button">Enter Seoul <span>서울로 →</span></button>
+  </div>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="maple" viewBox="0 0 100 100"><polygon fill="currentColor" points="50,2 58,30 80,16 72,42 97,45 73,58 84,82 58,69 52,90 48,90 42,69 16,82 27,58 3,45 28,42 20,16 42,30"/><path d="M50 60 V99" stroke="currentColor" stroke-width="3" fill="none"/></symbol>
+  <symbol id="ginkgo" viewBox="0 0 100 100"><path fill="currentColor" d="M50 58 C22 58 4 34 10 10 C28 20 40 16 48 26 L50 34 L52 26 C60 16 72 20 90 10 C96 34 78 58 50 58 Z"/><path d="M50 56 L50 99" stroke="currentColor" stroke-width="3" fill="none"/></symbol>
+  <symbol id="persimmon" viewBox="0 0 60 60"><circle cx="30" cy="34" r="24" fill="var(--persimmon)"/><path d="M30 12 L22 6 L26 14 L14 14 L24 18 L20 26 L30 20 L40 26 L36 18 L46 14 L34 14 L38 6 Z" fill="var(--pine)"/><ellipse cx="22" cy="28" rx="5" ry="3" fill="#fff" opacity=".25"/></symbol>
+  <symbol id="lantern" viewBox="0 0 60 150"><rect x="19" y="0" width="22" height="10" fill="var(--ink)"/><rect x="4" y="10" width="52" height="44" rx="12" fill="var(--lantern-red)"/><rect x="4" y="50" width="52" height="40" rx="12" fill="var(--lantern-blue)"/><rect x="19" y="90" width="22" height="8" fill="var(--ink)"/><path d="M30 98 V120" stroke="var(--lantern-red)" stroke-width="3"/><path d="M24 120 h12 l-2 28 h-8 z" fill="var(--lantern-red)"/></symbol>
+</defs></svg>
+<nav class="top" aria-label="Sections">
+  <div class="wrap">
+    <span class="mono brand">Seoul <b>서울</b></span>
+    <ul class="mono">
+      <li><a href="#plan">Plan</a></li>
+      <li><a href="#map">Map</a></li>
+      <li><a href="#arrival">Arrival</a></li>
+      <li><a href="#palaces">Events</a></li>
+      <li><a href="#views">Places</a></li>
+      <li><a href="#museums">Museums</a></li>
+      <li><a href="#tables">Food</a></li>
+      <li><a href="#cafes">Cafés</a></li>
+      <li><a href="#week">The Week</a></li>
+      <li><a href="#index">Links</a></li>
+    </ul>
+    <span class="mono tag">Autumn · 2026</span>
+    <button class="theme-btn motion-btn" id="motionBtn" type="button" aria-pressed="false">Motion</button>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle light and dark">◐</button>
+  </div>
+</nav>
+
+<canvas id="drift" aria-hidden="true"></canvas>
+<header class="hero">
+  <canvas id="leaves" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div>
+      <div class="mono kicker">Field Notes · Seoul · 가을 여행 계획</div>
+      <h1>Where do you stand when the whole city turns <em>gold</em>?</h1>
+      <div class="mono sub">A trip plan in six chapters — home, events, places, museums, food, cafés &nbsp;·&nbsp; scroll ↓</div>
+    </div>
+    <div class="hangul" aria-hidden="true">가을</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="lede">
+    <div class="mono">Before you go</div>
+    <div>
+      <p>Seoul in autumn runs on two colours: ginkgo yellow on the avenues, maple red in the palace gardens. This booklet collects everything saved for the trip — where you sleep, how you get there, which palace glows at night, and where to eat after.</p>
+      <p>One pattern shows up again and again in the notes: <strong>Monday</strong>. Five of the places below close on Mondays, the lotus show skips Monday and Tuesday, and Odozip shuts on Sundays. Plan those days around the city's open doors — see <a href="#week">The Week</a>.</p>
+    </div>
+  </div>
+</div>
+
+<section id="map" class="map-sec" aria-label="Map of saved places">
+  <div class="map-sticky">
+    <div class="wrap map-head">
+      <div class="mono" style="color:var(--maple)">The Map — 지도</div>
+      <h2>Your Seoul, pinned</h2>
+      <div class="mono map-status" id="mapStatus">Scroll to draw the city ↓</div>
+    </div>
+    <div class="map-box"><svg id="mapSvg" viewBox="0 0 1000 450" role="img" aria-label="Hand-drawn map of Seoul with the Han River and saved places"></svg></div>
+    <div class="wrap"><ul class="map-legend" id="mapLegend"></ul></div>
+  </div>
+</section>
+
+<!-- PLAN -->
+<section class="act" id="plan">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">The Plan — 일정</div>
+      <div>
+        <h2>Twelve Days, 3&#8288;–&#8288;14&nbsp;October<span>일정</span></h2>
+        <div class="mono dek">Every saved place fitted in once, grouped by neighbourhood, dodging the closed days</div>
+      </div>
+    </div>
+    <div class="book-bar">
+      <button class="bk-btn" id="bkPrev" type="button" aria-label="Previous pages">‹ Prev</button>
+      <div class="bk-tabs" id="bkTabs" role="tablist" aria-label="Jump to a day"></div>
+      <button class="bk-btn" id="bkNext" type="button" aria-label="Next pages">Next ›</button>
+    </div>
+    <div class="book" id="book" tabindex="0" aria-label="Itinerary booklet — use arrow keys to turn pages">
+      <div class="bk-empty" id="bkEmpty">Opening your plan…</div>
+    </div>
+    <div class="mono bk-hint" id="bkHint">Tap ✎ Edit on any day to change it — edits are saved for next time.</div>
+  </div>
+</section>
+
+<!-- ACT I -->
+<section class="act" id="arrival">
+  <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><g fill="none" stroke="var(--branch)" stroke-linecap="round"><path d="M330 20 C250 44 190 90 110 180" stroke-width="7"/><path d="M236 58 C228 100 218 140 206 172" stroke-width="4"/><path d="M168 110 C148 118 118 114 84 96" stroke-width="4"/><path d="M280 36 C284 70 280 90 270 110" stroke-width="3"/></g>
+<use href="#persimmon" x="176" y="164" width="60" height="60"/><use href="#persimmon" x="84" y="170" width="54" height="54"/><use href="#persimmon" x="58" y="92" width="50" height="50"/><use href="#persimmon" x="244" y="104" width="50" height="50"/>
+<g style="color:var(--leaf-c)"><use href="#maple" x="150" y="40" width="46" height="46" transform="rotate(-20 173 63)"/><use href="#maple" x="20" y="230" width="36" height="36" transform="rotate(30 38 248)"/></g><g style="color:var(--leaf-a)"><use href="#ginkgo" x="120" y="240" width="40" height="40" transform="rotate(50 140 260)"/><use href="#ginkgo" x="250" y="200" width="34" height="34" transform="rotate(-30 267 217)"/></g></svg></div>
+  <figure class="leafwin"><div class="lw-frame"><canvas class="scene" data-scene="arrival" role="img" aria-label="Ginkgo avenue in autumn"></canvas></div><figcaption class="mono">Fig. 01 — Ginkgo avenue in autumn · Drawn scene</figcaption></figure>
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Chapter I — Arrival</div>
+      <div>
+        <h2>Home in Mangwon<span>망원</span></h2>
+        <div class="mono dek">Mapo-gu, west Seoul · about 70 minutes from Incheon</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="side mono">Base camp<br>Airbnb</div>
+      <div class="main">
+        <div class="home">
+          <div class="addr">
+            <div class="mono" style="color:var(--ink-2)">Address</div>
+            <div class="big">83, Poeun-ro<br>Mapo-gu, Seoul</div>
+            <div class="room">Room 301</div>
+            <div class="btns">
+              <button class="btn" type="button" data-copy="83, Poeun-ro, Mapo-gu, Seoul, Room 301">Copy address</button>
+            </div>
+          </div>
+          <div>
+            <div class="mono" style="color:var(--ink-2)">Open in maps</div>
+            <p style="margin:10px 0 0;color:var(--ink-2);font-size:15px">Naver Map works best inside Korea for walking and transit. Google is fine for a first look.</p>
+            <div class="btns">
+              <a class="btn" href="https://naver.me/xBM1SnqC" target="_blank" rel="noopener">Naver ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/hQsCkWkSUkqDpXXu6" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </div>
+        </div>
+
+<figure class="homemap">
+  <svg viewBox="0 0 1000 745" role="img" aria-label="Neighbourhood map: the Airbnb at 83 Poeun-ro, a 7 minute walk west of Mangwon Station exit 2, and about 12 minutes from the Hapjeong bus stop">
+    <rect width="1000" height="745" class="hm-bg"/>
+    <g class="hm-streets"><path d="M0 120 L1000 300"/><path d="M0 40 L1000 210"/><path d="M0 230 L1000 420"/><path d="M80 0 L300 745"/><path d="M330 0 L470 745"/><path d="M560 0 L700 745"/><path d="M760 0 L900 745"/><path d="M0 420 L700 40"/><path d="M200 745 L1000 160"/></g>
+    <path class="hm-river" d="M0 318 L1000 832 L1000 745 L0 745 Z"/>
+    <text class="hm-area" x="70" y="420" transform="rotate(27 70 420)">Han River · 한강</text>
+    <text class="hm-area small" x="40" y="352" transform="rotate(27 40 352)">Mangwon Hangang Park</text>
+    <path class="hm-line6" d="M300 -20 L650 172 L805 533 L900 760"/>
+    <path class="hm-line2" d="M600 760 L805 533 L1010 360"/>
+    <path class="hm-walk" d="M650 172 Q560 250 420 263"/>
+    <path class="hm-walk bus" d="M805 533 Q640 470 420 263"/>
+    <g transform="translate(468 155)"><rect x="-10" y="-10" width="20" height="20" rx="4" class="hm-market"/><text class="hm-lbl" x="-18" y="-14" text-anchor="end">Mangwon Market</text></g>
+    <g transform="translate(650 172)"><circle r="16" class="hm-stn l6"/><text class="hm-lbl" x="24" y="-10">Mangwon Stn</text><text class="hm-sub" x="24" y="20">Line 6 · Exit 2</text></g>
+    <g transform="translate(805 533)"><circle r="16" class="hm-stn l2"/><text class="hm-lbl" x="-26" y="-6" text-anchor="end">Hapjeong Stn</text><text class="hm-sub" x="-26" y="24" text-anchor="end">Bus 6002 stop</text></g>
+    <text class="hm-time" x="500" y="282">7 min walk</text>
+    <text class="hm-time" x="640" y="420">12 min walk</text>
+    <g transform="translate(420 263)" class="hm-home"><circle r="30" class="hm-pulse"/><path d="M0 0 C-12 -14 -17 -22 -17 -30 A17 17 0 1 1 17 -30 C17 -22 12 -14 0 0Z" class="hm-pin"/><circle cy="-30" r="6" class="hm-dot"/><text class="hm-lbl home" x="-26" y="-48" text-anchor="end">Home · 83 Poeun-ro</text></g>
+  </svg>
+  <figcaption class="mono">Around home — hand-drawn, roughly to scale</figcaption>
+</figure>
+
+        <div class="routes">
+          <div class="route">
+            <div class="mono" style="color:var(--maple)">Route A · Rail</div>
+            <h3>By subway</h3>
+            <div class="mono t">Total · about 70 min</div>
+            <ol>
+              <li><span class="arex">AREX</span> Board the Airport Railroad at Incheon Airport</li>
+              <li>Get off at <b>Digital Media City</b></li>
+              <li><span class="line6">Line 6</span> Transfer at the same station<small>No need to exit the gates</small></li>
+              <li>Get off at <b>Mangwon</b> on Line 6</li>
+              <li>Exit 2 → walk about 7 min<small>Arrive at 83 Poeun-ro</small></li>
+            </ol>
+          </div>
+          <div class="route">
+            <div class="mono" style="color:var(--maple)">Route B · Road</div>
+            <h3>By airport bus</h3>
+            <div class="mono t">Total · about 70 min (±10–15 with traffic)</div>
+            <ol>
+              <li><span class="bus">6002</span> Airport Bus 6002 from Incheon Airport<small>Easier with big luggage — no transfer</small></li>
+              <li>Get off at the <b>Hapjeong Station</b> stop</li>
+              <li>Taxi about 5 min, or walk about 12 min<small>Arrive at 83 Poeun-ro</small></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="deeper">
+          <span class="mono">Deeper — which route when</span>
+          <p>Both take about the same time. The subway is predictable at rush hour; the bus has one seat all the way and no stairs, which matters more after a flight with suitcases.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT II -->
+<section class="act" id="palaces">
+  <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><circle class="moon vivid" cx="278" cy="150" r="20" fill="var(--ginkgo)"/><path d="M-10 34 Q40 72 160 74 Q280 72 330 34 L330 50 Q280 90 160 92 Q40 90 -10 50 Z" fill="var(--ink)"/><path d="M0 92 H320 V100 H0Z" fill="var(--pine)"/><path d="M0 100 H320 V104 H0Z" fill="var(--maple)"/>
+<path d="M90 104 V132 M230 104 V150" stroke="var(--ink)" stroke-width="2"/><use class="sway vivid" href="#lantern" x="66" y="130" width="48" height="120"/><use class="sway vivid" href="#lantern" x="206" y="148" width="48" height="120"/>
+<g style="color:var(--leaf-b)"><use href="#maple" x="140" y="250" width="40" height="40" transform="rotate(15 160 270)"/><use href="#maple" x="280" y="270" width="30" height="30"/></g></svg></div>
+  <figure class="leafwin"><div class="lw-frame"><canvas class="scene" data-scene="palaces" role="img" aria-label="A palace pavilion at night, reflected in its pond"></canvas></div><figcaption class="mono">Fig. 02 — A palace pavilion at night, reflected in its pond · Drawn scene</figcaption></figure>
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Chapter II — Events</div>
+      <div>
+        <h2>Autumn Nights Out<span>행사</span></h2>
+        <div class="mono dek">A lotus show, a bridge festival, an island lit up — three things with dates</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="side mono">Three dates<br>to plan around</div>
+      <div class="main">
+        <div class="cal-wrap"><div class="cal">
+          <div class="cal-row cal-head"><div class="cal-lbl mono">Oct 2026 → Nov 1</div><div class="cal-cells"><b class="">1<small>T</small></b><b class="">2<small>F</small></b><b class="">3<small>S</small></b><b class="">4<small>S</small></b><b class="mon">5<small>M</small></b><b class="">6<small>T</small></b><b class="">7<small>W</small></b><b class="">8<small>T</small></b><b class="">9<small>F</small></b><b class="">10<small>S</small></b><b class="">11<small>S</small></b><b class="mon">12<small>M</small></b><b class="">13<small>T</small></b><b class="">14<small>W</small></b><b class="">15<small>T</small></b><b class="">16<small>F</small></b><b class="">17<small>S</small></b><b class="">18<small>S</small></b><b class="mon">19<small>M</small></b><b class="">20<small>T</small></b><b class="">21<small>W</small></b><b class="">22<small>T</small></b><b class="">23<small>F</small></b><b class="">24<small>S</small></b><b class="">25<small>S</small></b><b class="mon">26<small>M</small></b><b class="">27<small>T</small></b><b class="">28<small>W</small></b><b class="">29<small>T</small></b><b class="">30<small>F</small></b><b class="">31<small>S</small></b><b class="">1<small>S</small></b></div></div>
+          <div class="cal-row nod"><div class="cal-lbl">Nodeul Island Light Up<small>Oct 2–11</small></div><div class="cal-cells"><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on mon"></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+          <div class="cal-row jam"><div class="cal-lbl">Jamsugyo Festival<small>Sundays</small></div><div class="cal-cells"><i class=""></i><i class=""></i><i class=""></i><i class="on " title="Food Road — 100+ food trucks"></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+          <div class="cal-row lot"><div class="cal-lbl">Moonlight Lotus Show<small>Oct 7 – Nov 1</small></div><div class="cal-cells"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i></div></div>
+        </div></div>
+        <div class="legend"><span><span class="cal-key nod"></span> Nodeul Island, daily 18:30–22:30</span><span><span class="cal-key jam"></span> Jamsugyo festival, Sundays (Oct 4 = Food Road)</span><span><span class="cal-key lot"></span> Lotus show, Wed–Sun evenings</span><span><span class="cal-key mon"></span> Monday</span></div>
+
+        <div class="lotus" style="margin-top:40px">
+          <div class="l">
+            <div class="mono" style="color:var(--maple)">Night event · Tickets online only</div>
+            <h3>Changgyeonggung Moonlight Lotus Show</h3>
+            <div class="ko">창경궁 물빛연화</div>
+            <div class="times"><span>19:00</span><span>19:30</span><span>20:00</span></div>
+            <p style="margin:0;color:var(--ink-2);font-size:15px">16 minutes each show · 400 people per session</p>
+          </div>
+          <div>
+            <dl>
+              <dt>Dates</dt><dd>Oct 7 (Wed) – Nov 1 (Sun)</dd>
+              <dt>Days</dt><dd>Wednesday to Sunday only</dd>
+              <dt>Where</dt><dd>Chundangji Pond, Changgyeonggung Palace<br><span style="color:var(--ink-2);font-size:14px">185 Changgyeonggung-ro, Jongno-gu</span></dd>
+              <dt>Booking</dt><dd>Opened Sept 11 (Fri), 11:00 KST — first come, first served. Check if seats are left.</dd>
+            </dl>
+            <div class="btns">
+              <a class="btn" href="https://negunde.com/en/news/2026-09-03-royal-changgyeonggung-mulbit-yeonhwa-reservation" target="_blank" rel="noopener">Booking guide ↗</a>
+              <a class="btn" href="https://map.naver.com/p/search/%EC%B0%BD%EA%B2%BD%EA%B6%81%20%EC%B6%98%EB%8B%B9%EC%A7%80" target="_blank" rel="noopener">Map ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="entries">
+          <article class="entry">
+            <div class="fig mono"><span>Note 01 · Festival</span><span class="district">Seocho-gu · Han River</span></div>
+            <h3>Jamsugyo TtubeokTtubeok Festival</h3>
+            <div class="ko">잠수교 뚜벅뚜벅 축제</div>
+            <span class="flag">Sundays only</span>
+            <p class="where">Jamsugyo Bridge &amp; Banpo Hangang Park</p>
+            <p>Every Sunday through <b>October 25</b>. On <b>Oct 4</b> it becomes a Food Road — 100+ food trucks take over the bridge.</p>
+            <div class="btns">
+              <a class="btn" href="https://world.nol.com/en/content/festas/019e38f3-d2c0-76e1-bff8-6d564ccc77f1" target="_blank" rel="noopener">Details ↗</a>
+              <a class="btn" href="https://map.naver.com/p/search/%EC%9E%A0%EC%88%98%EA%B5%90" target="_blank" rel="noopener">Naver ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 02 · Light festival</span><span class="district">Yongsan-gu</span></div>
+            <h3>Nodeul Island Light Up</h3>
+            <div class="ko">노들섬</div>
+            <p class="where">445 Yangnyeong-ro, Yongsan-gu</p>
+            <p><b>Oct 2–11</b>, daily 18:30–22:30. Subway: Nodeul Station (Line 9), Exit 2, then a 9–11 minute walk.</p>
+            <div class="btns">
+              <a class="btn" href="https://theseoulog.com/en/korea-seoul-nodeul-island-seoul-light-bitseom-festival-2026-en/" target="_blank" rel="noopener">Details ↗</a>
+              <a class="btn" href="https://map.naver.com/p/search/%EB%85%B8%EB%93%A4%EC%84%AC" target="_blank" rel="noopener">Naver ↗</a>
+            </div>
+          </article>
+        </div>
+        <div class="deeper">
+          <span class="mono">Deeper — one evening, two palaces</span>
+          <p>Book a lotus slot first, then build the day backwards: Changdeokgung and its Secret Garden in the afternoon (Chapter III), dinner nearby at Maegchon or Odozip, and the 19:30 or 20:00 show after dark.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pull-band"><canvas class="band-img scene" data-scene="lanterns" aria-hidden="true"></canvas><svg class="decor" viewBox="0 0 320 200" aria-hidden="true" style="top:0"><path d="M0 8 Q160 50 320 8" fill="none" stroke="var(--ink)" stroke-width="2"/><use class="sway vivid" href="#lantern" x="40" y="14" width="40" height="100"/><use class="sway vivid" href="#lantern" x="140" y="30" width="40" height="100"/><use class="sway vivid" href="#lantern" x="240" y="14" width="40" height="100"/></svg><div class="wrap">
+  <div class="pull">
+    <blockquote>Palace by afternoon light, pond by <em>lantern</em> light — same walk.</blockquote>
+    <div class="mono">Chapter II — the one evening worth booking ahead</div>
+  </div>
+</div></div>
+
+<!-- ACT III -->
+<section class="act" id="views">
+  <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><circle class="sun vivid" cx="96" cy="150" r="30" fill="var(--persimmon)"/><path d="M-10 250 Q70 170 170 186 Q250 198 330 244 V330 H-10Z" fill="var(--ink)"/><path d="M168 186 V70" stroke="var(--ink)" stroke-width="7"/><rect x="150" y="70" width="36" height="18" rx="4" fill="var(--ink)"/><rect x="156" y="60" width="24" height="10" fill="var(--ink)"/><path d="M168 60 V14" stroke="var(--ink)" stroke-width="3"/><circle cx="168" cy="14" r="3" fill="var(--maple)"/>
+<g fill="var(--leaf-a)"><circle cx="60" cy="210" r="16"/><circle cx="78" cy="200" r="14"/><circle cx="96" cy="206" r="12"/><circle cx="230" cy="206" r="14"/></g><g fill="var(--leaf-b)"><circle cx="118" cy="194" r="12"/><circle cx="256" cy="214" r="13"/><circle cx="290" cy="226" r="12"/></g>
+<g fill="none" stroke="var(--ginkgo)" stroke-width="2.5" stroke-linecap="round"><path d="M10 290 q20 -8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/><path d="M30 306 q20 -8 40 0 t40 0 t40 0 t40 0 t40 0 t40 0"/></g></svg></div>
+  <figure class="leafwin"><div class="lw-frame"><canvas class="scene" data-scene="views" role="img" aria-label="Han River bridge at dusk, Namsan behind"></canvas></div><figcaption class="mono">Fig. 03 — Han River bridge at dusk, Namsan behind · Drawn scene</figcaption></figure>
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Chapter III — Places</div>
+      <div>
+        <h2>Places to Stand In<span>명소</span></h2>
+        <div class="mono dek">A sunset deck, a river bridge, a palace garden, a department store, a flagship</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="side mono">Five places<br>+ a maybe list</div>
+      <div class="main">
+        <div class="entries">
+          <article class="entry">
+            <div class="fig mono"><span>Note 03 · Sunset deck</span><span class="district">Yeongdeungpo-gu</span></div>
+            <h3>63 Skypicnic</h3>
+            <div class="ko">63 스카이피크닉</div>
+            <p class="where">50 63-ro, Yeongdeungpo-gu</p>
+            <p>Observation deck in the 63 Building — saved for sunsets.</p>
+            <div class="btns">
+              <a class="btn" href="https://63skypicnic.com/?locale=en" target="_blank" rel="noopener">Website ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/JJ6hVkvm43ekHaBu6" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 04 · Observatory</span><span class="district">Gangdong-gu</span></div>
+            <h3>Gwangjingyo Observatory</h3>
+            <div class="ko">광진교 리버뷰 8번가</div>
+            <p class="where">Riverview 8th Avenue · 77 Gucheonmyeon-ro, Gangdong-gu</p>
+            <p>A viewing deck built into the bridge over the Han River.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/BKEiZxeRg7nsaTbHA" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 05 · Department store</span><span class="district">Yeongdeungpo-gu</span></div>
+            <h3>The Hyundai Seoul</h3>
+            <div class="ko">더현대 서울</div>
+            <p class="where">108 Yeoui-daero, Yeongdeungpo-gu</p>
+            <p>In Yeouido, a short hop from 63 Skypicnic — pair them for an afternoon.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/dCJA2xrKVNkvvcwo9" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 06 · Flagship</span><span class="district">Seongdong-gu</span></div>
+            <h3>HAUS NOWHERE SEOUL</h3>
+            <div class="ko">하우스 노웨어 서울</div>
+            <p class="where">433 Ttukseom-ro, Seongdong-gu</p>
+            <p>Gentle Monster's space in Seongsu.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/6nDdfDAHUHWUbXHp8" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry wide">
+            <div class="fig mono"><span>Note 07 · Palace</span><span class="district">Jongno-gu</span></div>
+            <h3>Changdeokgung</h3>
+            <div class="ko">창덕궁</div>
+            <span class="flag">Closed Mondays</span>
+            <p class="where">99 Yulgok-ro, Jongno-gu</p>
+            <p>Has the Secret Garden. It sits right next to Changgyeonggung, so it pairs with an evening lotus show: palace by afternoon light, pond by lantern light, same walk.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/uDA1vKrLEypLgGPV7" target="_blank" rel="noopener">Google ↗</a>
+              <a class="btn" href="https://map.naver.com/p/search/%EC%B0%BD%EB%8D%95%EA%B6%81" target="_blank" rel="noopener">Naver ↗</a>
+            </div>
+          </article>
+        </div>
+        <div class="maybe">
+          <div class="mono maybe-h">To check out? — maybe list</div>
+          <div class="maybe-row"><div><b>Seongbuk-dong</b> <span class="ko">성북동</span><br><small>Quiet hillside streets of old houses and small galleries · Seongbuk-gu</small></div><div class="btns"><a class="btn" href="https://www.timeout.com/seoul/things-to-do/hold-your-breath-for-seongbukdong" target="_blank" rel="noopener">Time Out ↗</a><a class="btn" href="https://map.naver.com/p/search/%EC%84%B1%EB%B6%81%EB%8F%99" target="_blank" rel="noopener">Naver ↗</a></div></div>
+          <div class="maybe-row"><div><b>Dongmyo Flea Market</b> <span class="ko">동묘벼룩시장</span><br><small>102-8 Sungin-dong, Jongno-gu</small></div><div class="btns"><a class="btn" href="https://maps.app.goo.gl/87hrGeyVT9HUyEcC8" target="_blank" rel="noopener">Google ↗</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT IV -->
+<section class="act" id="museums">
+  <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><g fill="none" stroke="var(--branch)" stroke-linecap="round"><path d="M330 40 C240 60 170 110 60 150" stroke-width="6"/><path d="M220 72 C200 110 190 150 184 200" stroke-width="3.5"/><path d="M130 124 C110 150 104 180 108 214" stroke-width="3"/></g>
+<g style="color:var(--leaf-b)"><use href="#maple" x="36" y="120" width="60" height="60" transform="rotate(-25 66 150)"/><use href="#maple" x="160" y="190" width="56" height="56" transform="rotate(10 188 218)"/><use href="#maple" x="250" y="40" width="44" height="44"/></g><g style="color:var(--leaf-c)"><use href="#maple" x="84" y="206" width="50" height="50" transform="rotate(20 109 231)"/><use href="#maple" x="190" y="30" width="44" height="44" transform="rotate(-40 212 52)"/></g><g style="color:var(--leaf-a)"><use href="#maple" x="120" y="60" width="40" height="40" transform="rotate(35 140 80)"/></g></svg></div>
+  <figure class="leafwin"><div class="lw-frame"><canvas class="scene" data-scene="museums" role="img" aria-label="Hanok rooftops in Bukchon"></canvas></div><figcaption class="mono">Fig. 04 — Hanok rooftops in Bukchon · Drawn scene</figcaption></figure>
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Chapter IV — Museums</div>
+      <div>
+        <h2>Four Rooms of Art<span>미술관</span></h2>
+        <div class="mono dek">A painter's foundation, two big public museums, and a light-and-space show in Bukchon</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="side mono">Two of four<br>closed Mondays</div>
+      <div class="main">
+        <div class="entries">
+          <article class="entry">
+            <div class="fig mono"><span>Note 08 · Foundation</span><span class="district">Seodaemun-gu</span></div>
+            <h3>Park Seo-Bo Foundation</h3>
+            <div class="ko">박서보재단</div>
+            <p class="where">9-2 Yeonhui-ro 24-gil, Seodaemun-gu</p>
+            <p>Dedicated to the Dansaekhwa painter, in Yeonhui-dong — a short hop from Mangwon.</p>
+            <div class="btns">
+              <a class="btn" href="https://parkseobofoundation.org/" target="_blank" rel="noopener">Website ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/8HtDPE7cmjUur59g8" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 09 · Museum</span><span class="district">Jongno-gu</span></div>
+            <h3>MMCA Seoul</h3>
+            <div class="ko">국립현대미술관 서울</div>
+            <p class="where">30 Samcheong-ro, Jongno-gu</p>
+            <p><b>Do Ho Suh</b> exhibition. Also on: <b>MMCA × LG OLED Series 2026</b>.</p>
+            <div class="btns">
+              <a class="btn" href="https://www.mmca.go.kr/eng/exhibitions/exhibitionsDetail.do?exhFlag=1" target="_blank" rel="noopener">Exhibition ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/2DbRzpK3GkYNFvvb8" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 10 · Museum</span><span class="district">Jung-gu</span></div>
+            <h3>SeMA — Seoul Museum of Art</h3>
+            <div class="ko">서울시립미술관</div>
+            <span class="flag">Closed Mondays</span>
+            <p class="where">61 Deoksugung-gil, Jung-gu</p>
+            <p><b>Yoo Youngkuk: A Mountain Within Me.</b></p>
+            <div class="btns">
+              <a class="btn" href="https://sema.seoul.go.kr/en/whatson/exhibition/detail" target="_blank" rel="noopener">Exhibition ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/MQ6sbDqeVyi45F5q8" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 11 · Exhibition space</span><span class="district">Jongno-gu</span></div>
+            <h3>Futura Seoul</h3>
+            <span class="flag">Closed Mondays</span>
+            <p class="where">61 Bukchon-ro, Jongno-gu</p>
+            <p>Es Devlin's show on "breaching voids". Book through Naver.</p>
+            <div class="btns">
+              <a class="btn" href="https://booking.naver.com/booking/5/bizes/1562003" target="_blank" rel="noopener">Book ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/bVvF66wapcDSGAaAA" target="_blank" rel="noopener">Google ↗</a>
+              <a class="btn" href="https://www.koreajoongangdaily.com/lifestyle/es-devlin-brings-her-works-on-breaching-voids-creating-connection-to-seoul/12823848" target="_blank" rel="noopener">Article ↗</a>
+            </div>
+          </article>
+        </div>
+        <div class="deeper">
+          <span class="mono">Deeper — a Samcheong-ro afternoon</span>
+          <p>MMCA and Futura Seoul are both on the Bukchon side of Jongno, close to Changdeokgung. One afternoon can hold two of them plus the palace, as long as it isn't a Monday.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT V -->
+<section class="act" id="tables">
+  <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><g class="steam vivid" fill="none" stroke="var(--ginkgo)" stroke-width="4" stroke-linecap="round"><path d="M120 150 c-14 -20 14 -34 0 -54 c-14 -20 14 -34 0 -54"/><path d="M160 150 c-14 -20 14 -34 0 -54 c-14 -20 14 -34 0 -54"/><path d="M200 150 c-14 -20 14 -34 0 -54 c-14 -20 14 -34 0 -54"/></g>
+<ellipse cx="160" cy="170" rx="130" ry="18" fill="var(--maple)"/><path d="M30 170 H290 Q280 272 160 276 Q40 272 30 170Z" fill="var(--ink)"/><path d="M230 140 L310 60 M244 148 L318 76" stroke="var(--branch)" stroke-width="5" stroke-linecap="round"/><g style="color:var(--leaf-a)"><use href="#ginkgo" x="20" y="250" width="40" height="40" transform="rotate(-30 40 270)"/></g></svg></div>
+  <figure class="leafwin"><div class="lw-frame"><canvas class="scene" data-scene="food" role="img" aria-label="Pork belly on the grill, side dishes all around"></canvas></div><figcaption class="mono">Fig. 05 — Pork belly on the grill, side dishes all around · Drawn scene</figcaption></figure>
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Chapter V — Food</div>
+      <div>
+        <h2>Warm Bowls, Hot Grills<span>식탁</span></h2>
+        <div class="mono dek">Noodles, stews, dumplings, porridge, tonkatsu — then two grills</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="side mono">Eight tables<br>+ two grills</div>
+      <div class="main">
+        <div class="entries">
+          <article class="entry">
+            <div class="fig mono"><span>Note 12 · Chicken noodle soup</span><span class="district">Jongno-gu</span></div>
+            <h3>Maegchon</h3>
+            <div class="ko">맥촌</div>
+            <p class="where">49-3 Yulgok-ro 4-gil, Jongno-gu · 지상 1층</p>
+            <p>Near Changdeokgung — an easy dinner before the lotus show.</p>
+            <div class="btns">
+              <a class="btn" href="https://naver.me/GvWNeCmG" target="_blank" rel="noopener">Naver ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/QHdzXoqBetRYMH7b7" target="_blank" rel="noopener">Google ↗</a>
+              <button class="btn" type="button" data-copy="서울 종로구 율곡로4길 49-3 지상1층">Copy 주소</button>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 13 · Stew &amp; bossam</span><span class="district">Jongno-gu</span></div>
+            <h3>Odozip</h3>
+            <div class="ko">오도집</div>
+            <span class="flag">Closed Sundays</span>
+            <p class="where">7 Yulgok-ro 4-gil, Jongno-gu · Insadong area</p>
+            <p>Same little street as Maegchon.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/9siAkCFbL87zvW9Q8" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 14 · Dumplings</span><span class="district">Jongno-gu</span></div>
+            <h3>KOONG</h3>
+            <div class="ko">개성만두 궁</div>
+            <p class="where">11-3 Insadong 10-gil, Jongno-gu</p>
+            <p>Gaeseong-style traditional dumpling house in Insadong.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/eKVjZwuD2iQfoNQg7" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 15 · Cube pork &amp; stew</span><span class="district">Jongno-gu</span></div>
+            <h3>Doma Insadong</h3>
+            <div class="ko">도마 인사점</div>
+            <p class="where">15-1 Gwanhun-dong, Jongno-gu</p>
+            <p>On Insadong's main street, turn into the alley by <b>Bling Box</b>.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/n2aACn6xhHX7GbqQ7" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 16 · Tonkatsu &amp; cold noodles</span><span class="district">Jongno-gu</span></div>
+            <h3>Gwanghwamun Mijin</h3>
+            <div class="ko">광화문 미진</div>
+            <p class="where">19 Jong-ro, Jongno-gu</p>
+            <p>Inside the mall in the outside alley, opposite <b>Olive Better</b>.</p>
+            <div class="btns">
+              <a class="btn" href="https://mijin1954.modoo.at/" target="_blank" rel="noopener">Website ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/iX9Z6tyRgMUFQjb76" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 17 · Abalone porridge</span><span class="district">Jung-gu</span></div>
+            <h3>Seowonjuk</h3>
+            <div class="ko">서원죽 · 명동</div>
+            <p class="where">141 Toegye-ro, Jung-gu</p>
+            <p>Myeongdong abalone porridge — a gentle breakfast on a cold morning.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/JRtnQgL7KJy52d7z9" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 18 · Perilla oil noodles</span><span class="district">Mapo-gu</span></div>
+            <h3>Chang Hwa Dang</h3>
+            <div class="ko">창화당 연남동점</div>
+            <p class="where">22-6 Yanghwa-ro 23-gil, Seogyo-dong, Mapo-gu</p>
+            <p>Hongdae side — close to home.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/yXJxVyC9WmvgYxX6A" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 19 · Kimchi jjim</span><span class="district">Mapo-gu</span></div>
+            <h3>산청엔흑돼지</h3>
+            <p class="where">망원동 414-5, 1층 · Mangwon-dong</p>
+            <p>A few minutes' walk from home in Mangwon.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/KgHFD1G8Z7e1qEQAA" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+        </div>
+        <h3 class="subhead"><span class="mono">KBBQ</span> Two grills <span class="ko">고기</span></h3>
+        <div class="entries">
+          <article class="entry">
+            <div class="fig mono"><span>Note 20 · Grilled chicken BBQ</span><span class="district">Jung-gu</span></div>
+            <h3>Dalmaji Plaza BBQ</h3>
+            <div class="ko">달맞이광장바베큐 본점</div>
+            <p class="where">112-1 Eulji-ro, Jung-gu</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/Q9HTTAtfkSjoduNz5" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 21 · KBBQ</span><span class="district">Seodaemun-gu</span></div>
+            <h3>TheDoi Sinchon</h3>
+            <div class="ko">더도이 축산직영점 신촌점</div>
+            <p class="where">24 Yonsei-ro 7-gil, Seodaemun-gu · 1층</p>
+            <p>Short 5-minute walk from <b>Sinchon Station Exit 2</b>.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/7xJjkVRUDmTFNAw69" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+        </div>
+        <div class="deeper">
+          <span class="mono">Deeper — an Insadong food crawl</span>
+          <p>Maegchon, Odozip, KOONG and Doma all sit within a few hundred metres of each other around Insadong and Anguk. Odozip is shut on Sundays — plan that street for another day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT VI -->
+<section class="act" id="cafes">
+  <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><g fill="none" stroke="var(--branch)" stroke-linecap="round"><path d="M330 30 C260 50 210 70 150 120" stroke-width="5"/><path d="M240 58 L230 100 M200 78 L188 118 M170 104 L150 140" stroke-width="2.5"/></g>
+<g class="turn vivid" style="color:var(--leaf-a)"><use href="#ginkgo" x="206" y="92" width="48" height="48" transform="rotate(170 230 116)"/><use href="#ginkgo" x="164" y="110" width="46" height="46" transform="rotate(190 187 133)"/><use href="#ginkgo" x="124" y="130" width="50" height="50" transform="rotate(160 149 155)"/><use href="#ginkgo" x="270" y="44" width="40" height="40" transform="rotate(200 290 64)"/></g>
+<path d="M70 230 H190 V260 Q190 300 130 300 Q70 300 70 260Z" fill="var(--ink)"/><path d="M190 240 q30 0 30 20 q0 20 -30 20" fill="none" stroke="var(--ink)" stroke-width="7"/><g fill="none" stroke="var(--ginkgo)" stroke-width="3" stroke-linecap="round"><path d="M110 220 c-10 -14 10 -22 0 -36"/><path d="M150 220 c-10 -14 10 -22 0 -36"/></g></svg></div>
+  <figure class="leafwin"><div class="lw-frame"><canvas class="scene" data-scene="cafes" role="img" aria-label="Two tea bowls by a paper window"></canvas></div><figcaption class="mono">Fig. 06 — Two tea bowls by a paper window · Drawn scene</figcaption></figure>
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Chapter VI — Cafés &amp; Paper</div>
+      <div>
+        <h2>Slow Afternoons<span>카페 · 문구</span></h2>
+        <div class="mono dek">Five cafés, two shops for paper and home things</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="side mono">Three of seven<br>in Seongsu</div>
+      <div class="main">
+        <div class="entries">
+          <article class="entry">
+            <div class="fig mono"><span>Note 22 · Café</span><span class="district">Mapo-gu</span></div>
+            <h3>Perception</h3>
+            <div class="ko">퍼셉션</div>
+            <p class="where">16 Eoulmadang-ro 1-gil, Hapjeong-dong, Mapo-gu</p>
+            <p>Hapjeong — close to home.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/DdrS6giTPp32455M7" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 23 · Café</span><span class="district">Yongsan-gu</span></div>
+            <h3>Maha Hannam</h3>
+            <div class="ko">마하 한남</div>
+            <p class="where">85 Seobinggo-ro 91na-gil, Yongsan-gu · 4층</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/zKjREnpZj6uuGz536" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 24 · Café</span><span class="district">Jung-gu</span></div>
+            <h3>Coffee Hanyakbang</h3>
+            <div class="ko">커피한약방</div>
+            <p class="where">16-6 Samil-daero 12-gil, Jung-gu</p>
+            <div class="btns">
+              <a class="btn" href="https://coffeehanyakbang.com/" target="_blank" rel="noopener">Website ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/tR2MVK5Ciax1kQgY7" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 25 · Café</span><span class="district">Seongdong-gu</span></div>
+            <h3>Point Two Five Second Seongsu Haus</h3>
+            <div class="ko">포인트투파이브세컨드 성수 하우스</div>
+            <p class="where">20 Wangsimni-ro 14-gil, Seongdong-gu</p>
+            <div class="btns">
+              <a class="btn" href="https://www.pointtwofivesecond.com/" target="_blank" rel="noopener">Website ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/K8ZWLEJwjvzWAjaV8" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 26 · Café</span><span class="district">Mapo-gu</span></div>
+            <h3>Woomul</h3>
+            <div class="ko">우물</div>
+            <span class="flag">Closed Mondays</span>
+            <p class="where">40 Seongji-gil, Mapo-gu</p>
+            <p>Also in Mapo — close to home.</p>
+            <div class="btns">
+              <a class="btn" href="https://www.instagram.com/woomul.seoul" target="_blank" rel="noopener">Instagram ↗</a>
+            </div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Note 27 · Stationery</span><span class="district">Seongdong-gu</span></div>
+            <h3>Poset Seongsu</h3>
+            <div class="ko">포셋 성수 · 2층</div>
+            <span class="flag">Closed Mondays</span>
+            <p class="where">36 Seoulsup-gil, Seongdong-gu, 2nd floor</p>
+            <div class="btns">
+              <a class="btn" href="https://poset.co.kr/" target="_blank" rel="noopener">Website ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/NNAzfmeZmR1LEzYT8" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+          <article class="entry wide">
+            <div class="fig mono"><span>Note 28 · Home goods</span><span class="district">Seongdong-gu</span></div>
+            <h3>29cm Home</h3>
+            <div class="ko">이구홈 성수</div>
+            <p class="where">315-10 Seongsu-dong 2-ga, Seongdong-gu</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/xfGkRKpUSq3XZTZr7" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
+        </div>
+        <div class="deeper">
+          <span class="mono">Deeper — a Seongsu afternoon</span>
+          <p>Poset, 29cm Home and Point Two Five Second are all in Seongsu, with HAUS NOWHERE a short walk away. Avoid Monday — Poset is shut.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE WEEK -->
+<section class="act" id="week">
+  <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><g style="color:var(--leaf-a)"><use href="#ginkgo" x="40" y="30" width="50" height="50" transform="rotate(-20 65 55)"/><use href="#ginkgo" x="220" y="160" width="44" height="44" transform="rotate(60 242 182)"/><use href="#ginkgo" x="110" y="230" width="40" height="40" transform="rotate(140 130 250)"/></g><g style="color:var(--leaf-b)"><use href="#maple" x="160" y="40" width="56" height="56" transform="rotate(25 188 68)"/><use href="#maple" x="40" y="160" width="46" height="46" transform="rotate(-40 63 183)"/></g><g style="color:var(--leaf-c)"><use href="#maple" x="250" y="60" width="40" height="40"/><use href="#maple" x="200" y="260" width="36" height="36" transform="rotate(70 218 278)"/></g></svg></div>
+  <figure class="leafwin"><div class="lw-frame"><canvas class="scene" data-scene="week" role="img" aria-label="A ginkgo avenue carpeted in gold"></canvas></div><figcaption class="mono">Fig. 07 — A ginkgo avenue carpeted in gold · Drawn scene</figcaption></figure>
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Planner — The Week</div>
+      <div>
+        <h2>The Monday Rule<span>월요일 휴무</span></h2>
+        <div class="mono dek">Only places with a closing day in your notes are shown — everything else, check before going</div>
+      </div>
+    </div>
+    <div class="gridwrap">
+      <table class="week">
+        <thead><tr><th>Place</th><th class="mon">Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
+        <tbody>
+          <tr><td>Changdeokgung<small>Palace · Jongno</small></td><td class="mon"><span class="dot x" title="Closed"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Moonlight Lotus Show<small>Evenings · Oct 7 – Nov 1</small></td><td class="mon"><span class="dot x" title="Closed"></span></td><td><span class="dot x" title="Closed"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td></tr>
+          <tr><td>SeMA<small>Museum · Jung-gu</small></td><td class="mon"><span class="dot x" title="Closed"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Futura Seoul<small>Exhibition · Jongno</small></td><td class="mon"><span class="dot x" title="Closed"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Poset Seongsu<small>Stationery · Seongdong</small></td><td class="mon"><span class="dot x" title="Closed"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Woomul<small>Café · Mapo</small></td><td class="mon"><span class="dot x" title="Closed"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td></tr>
+          <tr><td>Odozip<small>Stew &amp; bossam · Jongno</small></td><td class="mon"><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot"></span></td><td><span class="dot x" title="Closed"></span></td></tr>
+          <tr><td>Jamsugyo Festival<small>Sundays to Oct 25</small></td><td class="mon"><span class="dot none" title="Not on"></span></td><td><span class="dot none" title="Not on"></span></td><td><span class="dot none" title="Not on"></span></td><td><span class="dot none" title="Not on"></span></td><td><span class="dot none" title="Not on"></span></td><td><span class="dot none" title="Not on"></span></td><td><span class="dot day"></span></td></tr>
+          <tr><td>Nodeul Island Light Up<small>Daily evenings · Oct 2–11</small></td><td class="mon"><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td><td><span class="dot eve"></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><span class="dot"></span> Open</span>
+      <span><span class="dot eve"></span> Evening shows 19:00 / 19:30 / 20:00</span>
+      <span><span class="dot x"></span> Closed / no show</span><span><span class="dot day"></span> Festival day</span><span><span class="dot none"></span> Not on</span>
+    </div>
+    <div class="deeper" style="margin-top:32px">
+      <span class="mono">Deeper — what to do on a Monday</span>
+      <p>Nothing else in your notes has a closing day, so Monday is a good day for the views (63 Skypicnic, Gwangjingyo), The Hyundai Seoul, HAUS NOWHERE, Seongbuk-dong, the other cafés and most restaurants — check hours before going. Sunday is the Jamsugyo festival; Odozip is shut that day.</p>
+    </div>
+
+    <div style="margin-top:64px">
+      <div class="mono" style="color:var(--maple);margin-bottom:16px">By neighbourhood — group days by district</div>
+      <div class="districts">
+        <div class="district-card"><h4>Jongno<span>종로</span></h4><div class="mono n">10 places</div><ul><li>Changdeokgung</li><li>Lotus Show</li><li>MMCA Seoul</li><li>Futura Seoul</li><li>Dongmyo Flea Market</li><li>Maegchon</li><li>Odozip</li><li>KOONG</li><li>Doma Insadong</li><li>Gwanghwamun Mijin</li></ul></div>
+        <div class="district-card"><h4>Jung<span>중구</span></h4><div class="mono n">4 places</div><ul><li>SeMA</li><li>Seowonjuk</li><li>Dalmaji Plaza BBQ</li><li>Coffee Hanyakbang</li></ul></div>
+        <div class="district-card"><h4>Mapo<span>마포</span></h4><div class="mono n">5 places</div><ul><li>Airbnb, Mangwon</li><li>Chang Hwa Dang</li><li>Kimchi jjim (산청엔흑돼지)</li><li>Perception</li><li>Woomul</li></ul></div>
+        <div class="district-card"><h4>Seongdong<span>성동</span></h4><div class="mono n">4 places</div><ul><li>HAUS NOWHERE</li><li>Point Two Five Second</li><li>Poset Seongsu</li><li>29cm Home</li></ul></div>
+        <div class="district-card"><h4>Yeongdeungpo<span>영등포</span></h4><div class="mono n">2 places</div><ul><li>63 Skypicnic</li><li>The Hyundai Seoul</li></ul></div>
+        <div class="district-card"><h4>Seodaemun<span>서대문</span></h4><div class="mono n">2 places</div><ul><li>Park Seo-Bo Foundation</li><li>TheDoi Sinchon</li></ul></div>
+        <div class="district-card"><h4>Yongsan<span>용산</span></h4><div class="mono n">2 places</div><ul><li>Nodeul Island</li><li>Maha Hannam</li></ul></div>
+        <div class="district-card"><h4>Elsewhere<span>기타</span></h4><div class="mono n">3 places</div><ul><li>Gwangjingyo (Gangdong)</li><li>Jamsugyo (Seocho)</li><li>Seongbuk-dong (Seongbuk)</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEX -->
+<section class="act" id="index">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">The Index — 링크</div>
+      <div>
+        <h2>Every Saved Link<span>목록</span></h2>
+        <div class="mono dek">Straight from the notes, in one place</div>
+      </div>
+    </div>
+    <div class="index" id="indexList"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-photo" aria-hidden="true"><canvas class="scene" data-scene="footer"></canvas></div>
+  <canvas id="pile" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="mono">Seoul Field Notes · 서울 가을 · Autumn 2026</p>
+    <p style="font-size:14px">Built from the trip notes file. Opening days are only what the notes say — confirm hours before heading out.</p>
+  </div>
+</footer>
+
+<script>
+// write a style value only when it changed (avoids restyling big sections every frame)
+window.__set=function(el,k,v){var c=el.__sv||(el.__sv={});if(c[k]===v)return;c[k]=v;el.style.setProperty(k,v)};
+// each moving thing plays for 15s after it comes on screen, then rests
+(function(){var L={};window.__live=function(k,vis){var st=L[k]||(L[k]={on:false,t0:0}),now=performance.now();if(vis&&!st.on){st.on=true;st.t0=now}if(!vis)st.on=false;return vis&&now-st.t0<15000}})();
+</script>
+<script>
+(function(){
+  // theme toggle
+  var btn=document.getElementById('themeBtn'),root=document.documentElement;
+  try{var s=localStorage.getItem('seoul_theme');if(s)root.setAttribute('data-theme',s)}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var nxt=cur==='dark'?'light':'dark';root.setAttribute('data-theme',nxt);
+    try{localStorage.setItem('seoul_theme',nxt)}catch(e){}
+  });
+
+  // copy buttons
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=b.getAttribute('data-copy'),old=b.textContent;
+      var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent=old},1400)};
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(done,function(){b.textContent=t});
+      } else b.textContent=t;
+    });
+  });
+
+  // index
+  var links=[["Airbnb — Naver", "https://naver.me/xBM1SnqC"], ["Airbnb — Google", "https://maps.app.goo.gl/hQsCkWkSUkqDpXXu6"], ["Moonlight Lotus Show — booking guide", "https://negunde.com/en/news/2026-09-03-royal-changgyeonggung-mulbit-yeonhwa-reservation"], ["Jamsugyo TtubeokTtubeok Festival", "https://world.nol.com/en/content/festas/019e38f3-d2c0-76e1-bff8-6d564ccc77f1"], ["Nodeul Island Light Up", "https://theseoulog.com/en/korea-seoul-nodeul-island-seoul-light-bitseom-festival-2026-en/"], ["63 Skypicnic", "https://63skypicnic.com/?locale=en"], ["63 Skypicnic — map", "https://maps.app.goo.gl/JJ6hVkvm43ekHaBu6"], ["Gwangjingyo Observatory", "https://maps.app.goo.gl/BKEiZxeRg7nsaTbHA"], ["The Hyundai Seoul", "https://maps.app.goo.gl/dCJA2xrKVNkvvcwo9"], ["HAUS NOWHERE SEOUL", "https://maps.app.goo.gl/6nDdfDAHUHWUbXHp8"], ["Changdeokgung", "https://maps.app.goo.gl/uDA1vKrLEypLgGPV7"], ["Seongbuk-dong — Time Out", "https://www.timeout.com/seoul/things-to-do/hold-your-breath-for-seongbukdong"], ["Dongmyo Flea Market", "https://maps.app.goo.gl/87hrGeyVT9HUyEcC8"], ["Park Seo-Bo Foundation", "https://parkseobofoundation.org/"], ["Park Seo-Bo Foundation — map", "https://maps.app.goo.gl/8HtDPE7cmjUur59g8"], ["MMCA — Do Ho Suh", "https://www.mmca.go.kr/eng/exhibitions/exhibitionsDetail.do?exhFlag=1"], ["MMCA — map", "https://maps.app.goo.gl/2DbRzpK3GkYNFvvb8"], ["SeMA — Yoo Youngkuk", "https://sema.seoul.go.kr/en/whatson/exhibition/detail"], ["SeMA — map", "https://maps.app.goo.gl/MQ6sbDqeVyi45F5q8"], ["Futura Seoul — map", "https://maps.app.goo.gl/bVvF66wapcDSGAaAA"], ["Futura Seoul — Naver booking", "https://booking.naver.com/booking/5/bizes/1562003"], ["Futura Seoul — Es Devlin article", "https://www.koreajoongangdaily.com/lifestyle/es-devlin-brings-her-works-on-breaching-voids-creating-connection-to-seoul/12823848"], ["Maegchon — Naver", "https://naver.me/GvWNeCmG"], ["Maegchon — Google", "https://maps.app.goo.gl/QHdzXoqBetRYMH7b7"], ["Odozip", "https://maps.app.goo.gl/9siAkCFbL87zvW9Q8"], ["KOONG", "https://maps.app.goo.gl/eKVjZwuD2iQfoNQg7"], ["Doma Insadong", "https://maps.app.goo.gl/n2aACn6xhHX7GbqQ7"], ["Gwanghwamun Mijin", "https://mijin1954.modoo.at/"], ["Gwanghwamun Mijin — map", "https://maps.app.goo.gl/iX9Z6tyRgMUFQjb76"], ["Seowonjuk", "https://maps.app.goo.gl/JRtnQgL7KJy52d7z9"], ["Chang Hwa Dang", "https://maps.app.goo.gl/yXJxVyC9WmvgYxX6A"], ["산청엔흑돼지 — kimchi jjim", "https://maps.app.goo.gl/KgHFD1G8Z7e1qEQAA"], ["Dalmaji Plaza BBQ", "https://maps.app.goo.gl/Q9HTTAtfkSjoduNz5"], ["TheDoi Sinchon", "https://maps.app.goo.gl/7xJjkVRUDmTFNAw69"], ["Perception", "https://maps.app.goo.gl/DdrS6giTPp32455M7"], ["Maha Hannam", "https://maps.app.goo.gl/zKjREnpZj6uuGz536"], ["Coffee Hanyakbang", "https://coffeehanyakbang.com/"], ["Coffee Hanyakbang — map", "https://maps.app.goo.gl/tR2MVK5Ciax1kQgY7"], ["Point Two Five Second", "https://www.pointtwofivesecond.com/"], ["Point Two Five Second — map", "https://maps.app.goo.gl/K8ZWLEJwjvzWAjaV8"], ["Woomul — Instagram", "https://www.instagram.com/woomul.seoul"], ["Poset Seongsu", "https://poset.co.kr/"], ["Poset Seongsu — map", "https://maps.app.goo.gl/NNAzfmeZmR1LEzYT8"], ["29cm Home", "https://maps.app.goo.gl/xfGkRKpUSq3XZTZr7"]];
+  var box=document.getElementById('indexList');
+  links.forEach(function(l,i){
+    var r=document.createElement('div');r.className='index-row';
+    var n=String(i+1).padStart(2,'0');
+    r.innerHTML='<span class="num">'+n+'</span><span class="nm"></span><a class="go" target="_blank" rel="noopener">Open ↗</a>';
+    var nm=r.querySelector('.nm');nm.textContent=l[0];
+    var sm=document.createElement('small');sm.textContent=l[1].replace(/^https?:\/\//,'');nm.appendChild(sm);
+    r.querySelector('a').href=l[1];
+    box.appendChild(r);
+  });
+
+  // hero scene in three parallax layers + falling leaves; page-wide drifting leaves; scroll-linked decor
+  var c=document.getElementById('leaves');if(!c||!c.getContext)return;
+  var ctx=c.getContext('2d'),W=0,H=0,dpr=1,leaves=[];
+  var pref=null;try{pref=localStorage.getItem('seoul_motion')}catch(e){}
+  var reduce=pref?pref==='off':matchMedia('(prefers-reduced-motion: reduce)').matches;
+  root.classList.toggle('still',reduce);
+  var mb=document.getElementById('motionBtn');mb.setAttribute('aria-pressed',String(!reduce));mb.textContent=reduce?'Motion: off':'Motion: on';
+  mb.addEventListener('click',function(){reduce=!reduce;try{localStorage.setItem('seoul_motion',reduce?'off':'on')}catch(e){}root.classList.toggle('still',reduce);mb.setAttribute('aria-pressed',String(!reduce));mb.textContent=reduce?'Motion: off':'Motion: on';if(!reduce)requestAnimationFrame(frame)});
+  var layers=[document.createElement('canvas'),document.createElement('canvas'),document.createElement('canvas')],factors=[.42,.24,.08];
+  var hangul=document.querySelector('.hero .hangul');
+  function col(v){return getComputedStyle(root).getPropertyValue(v).trim()||'#888'}
+  function rnd(seed){return function(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}}
+  function ridge(g,base,amp,f,ph,color,alpha){g.globalAlpha=alpha;g.fillStyle=color;g.beginPath();g.moveTo(0,H);for(var x=0;x<=W+10;x+=10){var y=base-amp*(Math.sin(x*f+ph)*.6+Math.sin(x*f*2.3+ph*1.7)*.3+Math.sin(x*f*5.1)*.1);g.lineTo(x,y)}g.lineTo(W,H);g.closePath();g.fill();g.globalAlpha=1}
+  function buildScene(){
+    var gs=layers.map(function(l){l.width=W*dpr;l.height=H*dpr;var g=l.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);return g});
+    var ink=col('--ink'),gold=col('--ginkgo'),red=col('--maple'),per=col('--persimmon'),pine=col('--pine'),lr=col('--lantern-red'),lb=col('--lantern-blue');
+    var ground=H-34,R=rnd(7),g=gs[0];
+    for(var i=0;i<14;i++){g.globalAlpha=.012*i;g.fillStyle=gold;g.fillRect(0,H*.45+i*(H*.55/14),W,H*.55/14+1)}g.globalAlpha=1;
+    ridge(g,H-190,46,.006,1.2,ink,.06);
+    var tx=W*.76;g.globalAlpha=.13;g.fillStyle=ink;g.beginPath();g.ellipse(tx,H-120,Math.min(220,W*.3),70,0,Math.PI,0);g.fill();
+    g.fillRect(tx-3,H-300,6,120);g.fillRect(tx-14,H-300,28,12);g.fillRect(tx-9,H-310,18,10);g.fillRect(tx-1,H-350,2,40);g.globalAlpha=1;
+    ridge(g,H-110,28,.009,3.1,ink,.09);
+    g=gs[1];var colors=[gold,gold,gold,red,per];
+    for(var x=-10;x<W+20;x+=18+R()*22){var r=10+R()*14,ty=ground-6-R()*10,cc=colors[Math.floor(R()*colors.length)];
+      g.globalAlpha=.55;g.strokeStyle=ink;g.lineWidth=2;g.beginPath();g.moveTo(x,ground+40);g.lineTo(x,ty-r*.4);g.stroke();
+      g.globalAlpha=.62+R()*.2;g.fillStyle=cc;g.beginPath();g.arc(x,ty-r,r,0,6.3);g.arc(x-r*.6,ty-r*.4,r*.7,0,6.3);g.arc(x+r*.6,ty-r*.5,r*.72,0,6.3);g.fill()}
+    g.globalAlpha=1;g=gs[2];
+    var rw=Math.min(W*.46,440),x0=Math.max(12,W*.04),rb=ground-86,rh=Math.max(34,rw*.13);
+    g.globalAlpha=.18;g.fillStyle=ink;g.fillRect(0,ground,W,H-ground);
+    g.fillStyle=ink;g.globalAlpha=.9;g.fillRect(x0+rw*.06,ground-14,rw*.88,14);
+    var np=5;for(var p=0;p<np;p++){var px=x0+rw*.12+p*(rw*.76/(np-1));g.fillStyle=lr;g.globalAlpha=.9;g.fillRect(px-4,rb+8,8,ground-14-rb-8)}
+    g.globalAlpha=.9;g.fillStyle=pine;g.fillRect(x0+rw*.08,rb+2,rw*.84,7);g.fillStyle=gold;g.fillRect(x0+rw*.08,rb+9,rw*.84,3);
+    g.fillStyle=ink;g.globalAlpha=.92;g.beginPath();g.moveTo(x0-14,rb-16);g.quadraticCurveTo(x0+rw*.2,rb+6,x0+rw/2,rb+4);g.quadraticCurveTo(x0+rw*.8,rb+6,x0+rw+14,rb-16);
+    g.lineTo(x0+rw*.82,rb-rh);g.quadraticCurveTo(x0+rw/2,rb-rh+8,x0+rw*.18,rb-rh);g.closePath();g.fill();
+    g.fillRect(x0+rw*.16,rb-rh-5,rw*.68,6);
+    [0.3,0.7].forEach(function(f){var lx=x0+rw*f;g.globalAlpha=.9;g.fillStyle=lr;g.beginPath();g.ellipse(lx,rb+30,9,9,0,Math.PI,0);g.fill();g.fillStyle=lb;g.beginPath();g.ellipse(lx,rb+30,9,9,0,0,Math.PI);g.fill()});
+    g.globalAlpha=1;
+  }
+  function size(){var r=c.getBoundingClientRect();W=r.width;H=r.height;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);buildScene();sizeDrift();if(typeof sizePile==='function'&&pc)sizePile()}
+  function mk(y){return{x:Math.random()*W,y:y==null?Math.random()*H:y,s:8+Math.random()*14,r:Math.random()*6.28,vr:(Math.random()-.5)*.03,vy:.3+Math.random()*.6,ph:Math.random()*6.28,k:Math.random()<.6?0:1,c:['--leaf-a','--leaf-b','--leaf-c'][Math.floor(Math.random()*3)],a:.35+Math.random()*.45}}
+  function ginkgo(g,s){g.beginPath();g.moveTo(0,s*.5);g.lineTo(-s*.06,0);g.bezierCurveTo(-s*.7,-s*.1,-s*.75,-s*.7,-s*.1,-s*.75);g.lineTo(0,-s*.55);g.lineTo(s*.1,-s*.75);g.bezierCurveTo(s*.75,-s*.7,s*.7,-s*.1,s*.06,0);g.closePath();g.fill()}
+  function maple(g,s){g.beginPath();var p=5;for(var i=0;i<p*2;i++){var ang=-Math.PI/2+i*Math.PI/p,rad=i%2?s*.28:s*(i===0?.62:.52);g.lineTo(Math.cos(ang)*rad,Math.sin(ang)*rad)}g.closePath();g.fill();g.fillRect(-s*.03,0,s*.06,s*.55)}
+  var cols={};function readCols(){cols={'--leaf-a':col('--leaf-a'),'--leaf-b':col('--leaf-b'),'--leaf-c':col('--leaf-c')}}
+  function leaf(g,l){g.save();g.translate(l.x,l.y);g.rotate(l.r);g.globalAlpha=l.a;g.fillStyle=cols[l.c];l.k?maple(g,l.s):ginkgo(g,l.s);g.restore()}
+
+  // page-wide drift layer
+  var d=document.getElementById('drift'),dctx=d.getContext('2d'),VW=0,VH=0,drift=[];
+  function sizeDrift(){VW=innerWidth;VH=innerHeight;d.width=VW*dpr;d.height=VH*dpr;dctx.setTransform(dpr,0,0,dpr,0,0)}
+  function mkd(y){var l=mk();l.x=Math.random()*VW;l.y=y==null?Math.random()*VH:y;l.depth=.15+Math.random()*.6;l.s=7+l.depth*18;l.a=.14+l.depth*.22;l.vy=.15+l.depth*.35;return l}
+
+  // section motion setup
+  var routes=[].slice.call(document.querySelectorAll('.route ol'));
+  var trainSvg='<svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="2" width="14" height="16" rx="4"/><rect x="7.5" y="5" width="9" height="5" rx="1" fill="var(--vc,#0090D2)"/><circle cx="8.5" cy="14" r="1.4" fill="var(--vc,#0090D2)"/><circle cx="15.5" cy="14" r="1.4" fill="var(--vc,#0090D2)"/><path d="M7 22l2.5-4M17 22l-2.5-4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>';
+  var busSvg='<svg viewBox="0 0 24 24" fill="#fff"><rect x="4" y="2" width="16" height="17" rx="3"/><rect x="6" y="5" width="12" height="6" rx="1" fill="#D52D2D"/><circle cx="8" cy="15" r="1.3" fill="#D52D2D"/><circle cx="16" cy="15" r="1.3" fill="#D52D2D"/><rect x="6" y="19" width="3" height="3" rx="1"/><rect x="15" y="19" width="3" height="3" rx="1"/></svg>';
+  routes.forEach(function(ol,i){var t=document.createElement('span');t.className='train';t.setAttribute('aria-hidden','true');t.innerHTML=i?busSvg:trainSvg;if(i)ol.style.setProperty('--vc','#D52D2D');ol.appendChild(t)});
+  var palaces=document.getElementById('palaces'),moon=palaces.querySelector('.moon');
+  var views=document.getElementById('views'),sun=views.querySelector('.sun');
+  var museums=document.getElementById('museums'),mUses=[].slice.call(museums.querySelectorAll('.decor use')).map(function(u,i){return{el:u,base:u.getAttribute('transform')||'',vx:-60-Math.random()*160,vy:40+Math.random()*140,rot:(Math.random()<.5?-1:1)*(120+Math.random()*240)}});
+  var cafes=document.getElementById('cafes'),turn=cafes.querySelector('.turn');
+  var week=document.querySelector('table.week');
+  function clamp(v){return v<0?0:v>1?1:v}
+  function prog(el){var r=el.getBoundingClientRect();return clamp((VH-r.top)/(VH+r.height))}
+  function sections(){
+    var now=performance.now();
+    routes.forEach(function(ol,i){var r=ol.getBoundingClientRect(),vis=!(r.bottom<0||r.top>VH);if(!__live('route'+i,vis))return;
+      var lis=[].filter.call(ol.children,function(el){return el.tagName==='LI'}),span=ol.offsetHeight-20;
+      var st=lis.map(function(li){return clamp((li.offsetTop+2.5)/span)});
+      var MOVE=2000,DWELL=1400,SEG=MOVE+DWELL,total=(st.length-1)*SEG+2500,t=(now+i*1300)%total,k=Math.floor(t/SEG),p;
+      if(k>=st.length-1)p=st[st.length-1];else{var f=Math.min(1,(t-k*SEG)/MOVE);f=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2;p=st[k]+(st[k+1]-st[k])*f}
+      __set(ol,'--p',p.toFixed(3));
+      var np=0;lis.forEach(function(li,j){var on=st[j]<=p+.002;li.classList.toggle('passed',on);if(on)np++});
+      if(i===0)__set(ol,'--vc',np>=3?'#CD7C2F':'#0090D2')});
+    var pp=clamp((prog(palaces)-.15)/.55);__set(palaces,'--dusk',pp.toFixed(2));if(moon)__set(moon,'transform','translate(0,'+((1-pp)*120).toFixed(0)+'px)');
+    var vp=clamp((prog(views)-.2)/.6);__set(views,'--sunset',Math.sin(vp*Math.PI).toFixed(2));if(sun)__set(sun,'transform','translate('+(vp*50).toFixed(0)+'px,'+(vp*150).toFixed(0)+'px)');
+    var mp=clamp((prog(museums)-.4)/.5);mUses.forEach(function(m){m.el.setAttribute('transform',m.base+' translate('+(m.vx*mp).toFixed(1)+' '+(m.vy*mp).toFixed(1)+') rotate('+(m.rot*mp).toFixed(1)+' 50 50)')});
+    if(turn){var cp=clamp((prog(cafes)-.2)/.5);turn.style.color='color-mix(in srgb, var(--leaf-a) '+(cp*100).toFixed(0)+'%, var(--leaf-green))'}
+    if(week&&!week.classList.contains('stamp')){var wr=week.getBoundingClientRect();if(wr.top<VH*.8&&wr.bottom>0)week.classList.add('stamp')}
+  }
+
+  // footer leaf pile
+  var pc=document.getElementById('pile'),pctx=pc.getContext('2d'),PW=0,PH=220,fall=[],heights=[],BIN=8;
+  function sizePile(){PW=pc.getBoundingClientRect().width;pc.width=PW*dpr;pc.height=PH*dpr;pctx.setTransform(dpr,0,0,dpr,0,0);heights=new Array(Math.ceil(PW/BIN)+1).fill(0);fall=[]}
+  function pileLeaf(){var l=mk();l.x=Math.random()*PW;l.y=-20;l.vx=0;l.vy=.6+Math.random()*.8;l.s=9+Math.random()*9;l.a=.5;l.settled=false;return l}
+  function pileStep(t,visible){
+    pctx.clearRect(0,0,PW,PH);
+    if(visible&&Math.abs(vel)>18){fall.forEach(function(l){if(l.settled||l.vy>=0){l.settled=false;l.vx=(Math.random()-.3)*14*Math.sign(vel||1);l.vy=-4-Math.random()*6}});heights.fill(0)}
+    if(visible&&fall.length<150&&Math.random()<.35)fall.push(pileLeaf());
+    fall.forEach(function(l){
+      if(!l.settled){l.vy=Math.min(l.vy+.06,1.6);l.x+=l.vx+Math.sin(t/900+l.ph)*.4;l.vx*=.97;l.y+=l.vy;l.r+=l.vr*3;
+        var b=Math.max(0,Math.min(heights.length-1,Math.floor(l.x/BIN))),gy=PH-6-heights[b];
+        if(l.vy>0&&l.y>=gy&&l.x>0&&l.x<PW){l.y=gy;l.settled=true;for(var k=-1;k<=1;k++){var bb=b+k;if(bb>=0&&bb<heights.length)heights[bb]+=k?1.2:2.4}}}
+      leaf(pctx,l)});
+    fall=fall.filter(function(l){return l.y<PH+40&&l.x>-60&&l.x<PW+60&&l.y>-400});
+  }
+
+  // tap for a leaf burst
+  var burst=[];
+  document.addEventListener('pointerdown',function(e){if(reduce||e.target.closest('a,button'))return;
+    for(var i=0;i<14;i++){var l=mk(),a=Math.random()*6.28,sp=2+Math.random()*5;l.x=e.clientX;l.y=e.clientY;l.bx=Math.cos(a)*sp;l.by=Math.sin(a)*sp-3;l.a=.9;l.life=1;l.s=9+Math.random()*10;burst.push(l)}});
+  function burstStep(){burst.forEach(function(l){l.x+=l.bx;l.y+=l.by;l.by+=.15;l.bx*=.98;l.r+=.12;l.life-=.012;var a=l.a;l.a=Math.max(0,l.life)*.9;leaf(dctx,l);l.a=a});burst=burst.filter(function(l){return l.life>0})}
+
+  var swingHosts=[].slice.call(document.querySelectorAll('svg.decor')).filter(function(x){return x.querySelector('.sway')});
+  var heroDirty=true,lastY=scrollY,vel=0,decors=[].slice.call(document.querySelectorAll('.decor'));
+  function frame(t){
+    var y=scrollY,dy=y-lastY;lastY=y;vel=vel*.85+dy*.15;
+    // hero
+    var heroLive=__live('hero',y<H+50);
+    if(W>0&&H>0&&y<H+50&&(heroLive||dy!==0||heroDirty)){heroDirty=false;
+      ctx.clearRect(0,0,W,H);
+      for(var i=0;i<3;i++)ctx.drawImage(layers[i],0,y*factors[i],W,H);
+      leaves.forEach(function(l){l.y+=(heroLive?l.vy:0)-dy*.25;if(heroLive)l.x+=Math.sin(t/1400+l.ph)*.5;l.r+=(heroLive?l.vr:0)+vel*.003;if(l.y>H+30)Object.assign(l,mk(-30));if(l.y<-40)Object.assign(l,mk(H+20));leaf(ctx,l)});
+      if(hangul)hangul.style.transform='translateY('+(y*.3).toFixed(1)+'px)';
+    }
+    // page leaves (hidden over hero)
+    var fade=Math.min(1,Math.max(0,(y-H*.4)/(H*.5))),driftLive=__live('drift',fade>0),moving=dy!==0||Math.abs(vel)>.05;
+    if(fade<=0||driftLive||moving||burst.length)dctx.clearRect(0,0,VW,VH);
+    if(fade>0&&(driftLive||moving||burst.length)){
+      drift.forEach(function(l){l.y+=(driftLive?l.vy:0)-dy*l.depth*.9;if(driftLive)l.x+=Math.sin(t/1800+l.ph)*.35*l.depth;l.x+=vel*.02;l.r+=(driftLive?l.vr:0)+vel*.004*l.depth;
+        if(l.y>VH+30){Object.assign(l,mkd(-30))}else if(l.y<-40){Object.assign(l,mkd(VH+30))}
+        if(l.x<-30)l.x=VW+20;else if(l.x>VW+30)l.x=-20;
+        var a=l.a;l.a=a*fade;leaf(dctx,l);l.a=a});
+    }
+    // chapter decor float + tilt
+    var scrolling=dy!==0||Math.abs(vel)>.05||!frame.did;frame.did=true;
+    if(scrolling)decors.forEach(function(el,di){var host=el.parentElement,r=host.getBoundingClientRect(),vis=!(r.bottom<-100||r.top>VH+100);el.classList.toggle('play',__live('decor'+di,vis));if(!vis)return;
+      var p=(r.top+r.height/2-VH/2)/VH;el.style.transform='translate3d(0,'+(p*-70).toFixed(1)+'px,0) rotate('+(p*-5).toFixed(2)+'deg)'});
+    if(scrolling&&window.__extra)window.__extra(t,dy);
+    sections();
+    var fr=pc.getBoundingClientRect(),pv=fr.top<VH&&fr.bottom>0;if(__live('pile',pv)||(pv&&Math.abs(vel)>18))pileStep(t,pv);
+    burstStep();
+    // lantern swing from scroll speed
+    var sw=Math.max(-14,Math.min(14,-vel*.6)).toFixed(0)+'deg';swingHosts.forEach(function(h){__set(h,'--swing',sw)});
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  readCols();size();
+  var n=Math.round(Math.min(40,W/28));for(var i=0;i<n;i++)leaves.push(mk());
+  var dn=Math.round(Math.min(22,innerWidth/55));for(var j=0;j<dn;j++)drift.push(mkd());
+  function retheme(){readCols();buildScene();heroDirty=true;if(reduce)frame(0)}
+  window.addEventListener('resize',function(){size();heroDirty=true;if(reduce)frame(0)});
+  new MutationObserver(retheme).observe(root,{attributes:true,attributeFilter:['data-theme']});
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',retheme)}catch(e){}
+  requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(function(){
+  var root=document.documentElement;
+  function still(){return root.classList.contains('still')}
+  function clamp(v){return v<0?0:v>1?1:v}
+
+  // ---- gate ----
+  var gate=document.getElementById('gate');
+  function openGate(){if(gate.classList.contains('open'))return;gate.classList.add('open');document.body.style.overflow='';setTimeout(function(){gate.classList.add('skip')},2000)}
+  document.body.style.overflow='hidden';window.scrollTo(0,0);
+  document.getElementById('enterBtn').addEventListener('click',openGate);
+  try{document.getElementById('enterBtn').focus({preventScroll:true})}catch(e){}
+  setTimeout(openGate,10000);
+
+  // ---- smooth scroll ----
+
+
+  // ---- map ----
+  var svg=document.getElementById('mapSvg'),NS='http://www.w3.org/2000/svg',mapSec=document.getElementById('map');
+  function P(lat,lon){return[(lon-126.85)/.28*1000,(37.605-lat)/.10*450]}
+  function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e}
+  function pathOf(pts){return pts.map(function(p,i){var q=P(p[0],p[1]);return(i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1)}).join(' ')}
+  function smooth(pts){var q=pts.map(function(p){return P(p[0],p[1])}),d='M'+q[0][0]+' '+q[0][1];for(var i=1;i<q.length-1;i++){var mx=(q[i][0]+q[i+1][0])/2,my=(q[i][1]+q[i+1][1])/2;d+=' Q'+q[i][0].toFixed(1)+' '+q[i][1].toFixed(1)+' '+mx.toFixed(1)+' '+my.toFixed(1)}var l=q[q.length-1];return d+' L'+l[0]+' '+l[1]}
+  var drawn=[];
+  function drawable(e,a,b){e.setAttribute('pathLength','1');e.style.strokeDasharray='1';e.style.strokeDashoffset='1';drawn.push({e:e,a:a,b:b})}
+  // hills
+  el('path',{class:'hill',d:'M300 0 Q360 40 420 20 Q470 60 520 30 Q580 55 640 15 Q690 40 720 0Z'});
+  var ns=P(37.5512,126.9882);el('ellipse',{class:'hill',cx:ns[0],cy:ns[1],rx:40,ry:24});
+  // streets (seeded)
+  var seed=11;function R(){seed=(seed*16807)%2147483647;return(seed-1)/2147483646}
+  var g=el('g',{});
+  for(var i=0;i<46;i++){var horiz=R()<.5,x=R()*1000,y=R()*450,len=120+R()*260,ang=(horiz?0:90)+(R()-.5)*22,rad=ang*Math.PI/180;
+    var x2=x+Math.cos(rad)*len,y2=y+Math.sin(rad)*len,mx=(x+x2)/2+(R()-.5)*30,my=(y+y2)/2+(R()-.5)*30;
+    var st=el('path',{class:'street',d:'M'+x.toFixed(0)+' '+y.toFixed(0)+' Q'+mx.toFixed(0)+' '+my.toFixed(0)+' '+x2.toFixed(0)+' '+y2.toFixed(0)},g);drawable(st,i/46*.12,.08+i/46*.12)}
+  // river
+  var han=[[37.585,126.80],[37.572,126.845],[37.560,126.878],[37.550,126.900],[37.543,126.918],[37.535,126.935],[37.527,126.950],[37.519,126.966],[37.515,126.982],[37.519,126.998],[37.527,127.013],[37.535,127.028],[37.537,127.048],[37.531,127.066],[37.527,127.083],[37.535,127.100],[37.552,127.118],[37.565,127.14]];
+  var river=el('path',{class:'river',d:smooth(han)});drawable(river,.04,.24);
+  var stream=el('path',{class:'stream',d:smooth([[37.61,127.07],[37.585,127.06],[37.562,127.045],[37.545,127.035],[37.537,127.03]])});drawable(stream,.14,.26);
+  // AREX + Line 6
+  var arex=el('path',{class:'rail-line',stroke:'#0090D2',d:pathOf([[37.565,126.80],[37.577,126.900],[37.557,126.924],[37.554,126.972]])});drawable(arex,.2,.3);
+  var l6=el('path',{class:'rail-line',stroke:'#CD7C2F',d:pathOf([[37.577,126.900],[37.5558,126.9105]])});drawable(l6,.26,.31);
+  // area labels
+  [['Mapo',37.553,126.895],['Jongno',37.588,126.975],['Seongdong',37.556,127.045],['Yeongdeungpo',37.512,126.905],['Gangnam',37.500,127.04],['Han River · 한강',37.528,126.99]].forEach(function(a){var q=P(a[1],a[2]);var t=el('text',{class:'area',x:q[0],y:q[1],'text-anchor':'middle'});t.textContent=a[0]});
+  // pins
+  var groups=[
+    {name:'Home',c:'var(--maple)',pins:[['Airbnb · Mangwon',37.55442,126.90524]]},
+    {name:'Places',c:'var(--persimmon)',pins:[['63 Skypicnic',37.51981,126.94006,'L'],['The Hyundai Seoul',37.52606,126.92831,'L',-10],['HAUS NOWHERE',37.53806,127.05894],['Changdeokgung',37.57944,126.99106],['Gwangjingyo',37.54444,127.11419,'L']]},
+    {name:'Events',c:'var(--lantern-red)',pins:[['Lotus Show',37.5800,126.9948],['Jamsugyo Festival',37.5110,126.9960],['Nodeul Island',37.5176,126.9587]]},
+    {name:'Museums',c:'var(--pine)',pins:[['Park Seo-Bo',37.57144,126.93556],['MMCA',37.57881,126.98044,'L'],['SeMA',37.56406,126.97381,'L'],['Futura Seoul',37.58231,126.98469]]},
+    {name:'Food',c:'var(--ginkgo)',pins:[['Maegchon',37.57356,126.98144,'L',14],['Odozip',37.57519,126.98219,'L',-12],['KOONG',37.57431,126.98544,0,-12],['Doma',37.57381,126.98581,0,16],['Mijin',37.57056,126.97994,0,26],['Seowonjuk',37.56119,126.98744],['Chang Hwa Dang',37.55944,126.92531],['Kimchi jjim',37.55681,126.90469,'L']]},
+    {name:'KBBQ',c:'var(--branch)',pins:[['Dalmaji BBQ',37.56581,126.99044],['TheDoi',37.55769,126.93544]]},
+    {name:'Cafés & Paper',c:'var(--lantern-blue)',pins:[['Perception',37.54669,126.91844,0,10],['Maha Hannam',37.52444,126.99606],['Coffee Hanyakbang',37.56656,126.98856,'L'],['Point Two Five',37.54856,127.04581,'L',-10],['Woomul',37.5500,126.9125,'L',-6],['Poset',37.54781,127.04131,'L',14],['29cm Home',37.54256,127.05581,0,16]]},
+    {name:'Maybe',c:'var(--ink-2)',pins:[['Seongbuk-dong',37.5935,127.0000],['Dongmyo Flea Market',37.57319,127.01769]]}];
+  var legend=document.getElementById('mapLegend'),pinEls=[],focus=-1,lastMP=0;
+  groups.forEach(function(gr,gi){
+    var li=document.createElement('li');li.tabIndex=0;li.setAttribute('role','button');li.addEventListener('click',function(){focus=focus===gi?-1:gi;mapUpdate(lastMP)});li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();li.click()}});li.innerHTML='<i style="background:'+gr.c+'"></i>';li.appendChild(document.createTextNode(gr.name+' · '+gr.pins.length));legend.appendChild(li);gr.li=li;
+    gr.els=gr.pins.map(function(pn,k){var q=P(pn[1],pn[2]),pg=el('g',{class:'pin'});
+      el('path',{d:'M0 0 C-9 -10 -12 -16 -12 -22 A12 12 0 1 1 12 -22 C12 -16 9 -10 0 0Z',fill:gr.c,stroke:'var(--paper)','stroke-width':2.5},pg);
+      el('circle',{cx:0,cy:-22,r:4.5,fill:'var(--paper)'},pg);
+      var left=pn[3]==='L',tl=el('text',{class:'pin-label',x:left?-16:16,y:-18+(pn[4]||0),'text-anchor':left?'end':'start'},pg);tl.textContent=pn[0];
+      var tt=el('title',{},pg);tt.textContent=pn[0];
+      return{g:pg,x:q[0],y:q[1],t:tl,k:k}});
+  });
+  var labelLayer=el('g',{});groups.forEach(function(gr){gr.els.forEach(function(pe){pe.lg=el('g',{},labelLayer);pe.lg.appendChild(pe.t)})});
+  function mapLayout(){var m=innerWidth<720;svg.setAttribute('viewBox',m?'130 20 880 420':'0 0 1000 450');svg.style.setProperty('--mf',m?'30px':'17px')}
+  mapLayout();addEventListener('resize',mapLayout);
+  function mapUpdate(p){lastMP=p;
+    drawn.forEach(function(d){d.e.style.strokeDashoffset=(1-clamp((p-d.a)/(d.b-d.a))).toFixed(3)});
+    var start=.32,span=(.96-start)/groups.length,active=-1;for(var ai=0;ai<groups.length;ai++)if(p>start+ai*span)active=ai;var show=focus>=0?focus:(p<.97?active:-1);
+    groups.forEach(function(gr,gi){var gp=clamp((p-start-gi*span)/span);
+      gr.els.forEach(function(pe){var nn=gr.els.length+2,q=clamp((gp-pe.k/nn)*nn/2);var ease=1-Math.pow(1-q,3);
+        var tr='translate('+pe.x.toFixed(1)+' '+(pe.y-(1-ease)*50).toFixed(1)+')';pe.g.setAttribute('transform',tr);pe.g.style.opacity=q>0?1:0;pe.lg.setAttribute('transform',tr);
+        pe.t.style.opacity=(gi===show||(gi===0&&p>start))&&q>.6?1:0});
+      gr.li.classList.toggle('on',gi===show)});
+    var st=document.getElementById('mapStatus');
+    st.textContent=focus>=0?'Showing: '+groups[focus].name+' — tap again to clear':p<.05?'Scroll to draw the city ↓':p<start?'Drawing the Han River…':p>=.97?'All pinned — tap a category below to name its pins':active>=0?'Pinned: '+groups[active].name+' ('+groups[active].pins.length+')':'';
+  }
+
+  // ---- stacking chapters ----
+  var acts=[].slice.call(document.querySelectorAll('section.act'));
+  var dims=[];
+  function stackTops(){}
+  stackTops();addEventListener('resize',stackTops);addEventListener('load',stackTops);
+  try{var ro=new ResizeObserver(stackTops);acts.forEach(function(a){ro.observe(a)})}catch(e){}
+
+  // ---- leaf windows ----
+  var frames=[].slice.call(document.querySelectorAll('.lw-frame'));
+  var band=document.querySelector('.pull-band'),bandImg=band&&band.querySelector('.band-img');
+
+  function update(){
+    var VH=innerHeight;
+    var r=mapSec.getBoundingClientRect(),mp=still()?1:clamp(-r.top/(r.height-VH));
+    if(r.bottom>-50&&r.top<VH+50)mapUpdate(mp);
+    if(still()){dims.forEach(function(d){__set(d,'opacity','0')});return}
+    
+    frames.forEach(function(f){var fr=f.getBoundingClientRect();if(fr.bottom<0||fr.top>VH)return;var p=clamp((VH-fr.top)/(VH*.85));
+      __set(f,'--lp',p.toFixed(2));__set(f,'--ms',(40+Math.pow(p,2.2)*1400).toFixed(0)+'%');f.classList.toggle('open',p>.97)});
+    if(bandImg){var br=band.getBoundingClientRect();if(br.bottom>0&&br.top<VH){var bp=(br.top+br.height/2-VH/2)/VH;bandImg.style.transform='translate3d(0,'+(bp*-80).toFixed(1)+'px,0)'}}
+  }
+  window.__extra=function(){update()};
+  addEventListener('scroll',function(){if(still())update()},{passive:true});
+  update();
+})();
+</script>
+<script>
+(function(){
+  // ---- drawn scenes (flat colour, same world as the hero) ----
+  var root=document.documentElement,dpr=Math.min(window.devicePixelRatio||1,1.25);
+  var list=[].slice.call(document.querySelectorAll('canvas.scene')).map(function(c){return{c:c,g:c.getContext('2d'),name:c.getAttribute('data-scene'),w:0,h:0,drawn:false}});
+  function still(){return root.classList.contains('still')}
+  function tok(v){return getComputedStyle(root).getPropertyValue(v).trim()||'#888'}
+  var K={};function readK(){K={ink:tok('--ink'),paper:tok('--paper'),paper2:tok('--paper-2'),gold:tok('--ginkgo'),maple:tok('--maple'),per:tok('--persimmon'),pine:tok('--pine'),river:tok('--river'),lr:tok('--lantern-red'),lb:tok('--lantern-blue'),branch:tok('--branch'),la:tok('--leaf-a'),lb2:tok('--leaf-b'),lc:tok('--leaf-c')};list.forEach(function(s){s.drawn=false})}
+  function R(seed){return function(){seed=(seed*16807)%2147483647;return(seed-1)/2147483646}}
+  function A(g,a){g.globalAlpha=a}
+  function bands(g,W,H,y0,color,max){for(var i=0;i<12;i++){A(g,max*i/12);g.fillStyle=color;g.fillRect(0,y0+i*(H-y0)/12,W,(H-y0)/12+1)}A(g,1)}
+  function ridge(g,W,H,base,amp,f,ph,color,a){A(g,a);g.fillStyle=color;g.beginPath();g.moveTo(0,H);for(var x=0;x<=W+10;x+=10){g.lineTo(x,base-amp*(Math.sin(x*f+ph)*.6+Math.sin(x*f*2.3+ph*1.7)*.3+Math.sin(x*f*5.1)*.1))}g.lineTo(W,H);g.closePath();g.fill();A(g,1)}
+  function canopy(g,x,y,r,color,a){A(g,a);g.fillStyle=color;g.beginPath();g.arc(x,y-r,r,0,6.3);g.arc(x-r*.62,y-r*.42,r*.72,0,6.3);g.arc(x+r*.62,y-r*.5,r*.74,0,6.3);g.fill();A(g,1)}
+  function roof(g,x0,w,rb,rh,color,a){A(g,a);g.fillStyle=color;g.beginPath();g.moveTo(x0-w*.04,rb-rh*.35);g.quadraticCurveTo(x0+w*.2,rb+rh*.1,x0+w/2,rb+rh*.08);g.quadraticCurveTo(x0+w*.8,rb+rh*.1,x0+w*1.04,rb-rh*.35);g.lineTo(x0+w*.82,rb-rh);g.quadraticCurveTo(x0+w/2,rb-rh+rh*.15,x0+w*.18,rb-rh);g.closePath();g.fill();g.fillRect(x0+w*.16,rb-rh-rh*.12,w*.68,rh*.14);A(g,1)}
+  function leafShape(g,s,k){if(k){g.beginPath();for(var i=0;i<10;i++){var an=-Math.PI/2+i*Math.PI/5,rd=i%2?s*.28:s*.55;g.lineTo(Math.cos(an)*rd,Math.sin(an)*rd)}g.closePath();g.fill()}else{g.beginPath();g.moveTo(0,s*.4);g.bezierCurveTo(-s*.7,-s*.1,-s*.6,-s*.7,0,-s*.5);g.bezierCurveTo(s*.6,-s*.7,s*.7,-s*.1,0,s*.4);g.fill()}}
+  function falling(g,W,H,t,n,seed,cols,a){var r=R(seed);for(var i=0;i<n;i++){var sp=.018+r()*.03,x=r()*W+Math.sin(t/1600+i)*18,y=((r()*H+t*sp)%(H+40))-20,s=6+r()*9,rot=t/900*(r()-.5)*2+i;g.save();g.translate(x,y);g.rotate(rot);A(g,a);g.fillStyle=cols[i%cols.length];leafShape(g,s,i%3===0);g.restore()}A(g,1)}
+  function steam(g,x,y,h,t,n,color,a){g.strokeStyle=color;g.lineCap='round';for(var i=0;i<n;i++){var ph=((t/2200+i/n)%1);A(g,a*Math.sin(ph*Math.PI));g.lineWidth=3;g.beginPath();var bx=x+(i-(n-1)/2)*h*.18;for(var k=0;k<=10;k++){var yy=y-ph*h*.5-k*h*.06;g.lineTo(bx+Math.sin(k*.9+t/500+i)*h*.05,yy)}g.stroke()}A(g,1)}
+
+  var S={
+  arrival:function(g,W,H,t){
+    g.fillStyle=K.paper;g.fillRect(0,0,W,H);bands(g,W,H,H*.2,K.gold,.16);
+    var vx=W*.5,vy=H*.44,r=R(3);
+    for(var i=0;i<16;i++){var bw=W*(.03+r()*.05),bh=H*(.08+r()*.22),bx=W*.18+r()*W*.64;A(g,.07+r()*.05);g.fillStyle=K.ink;g.fillRect(bx,vy-bh,bw,bh)}A(g,1);
+    // elevated line + Line 6 train
+    A(g,.35);g.fillStyle=K.ink;g.fillRect(0,H*.34,W,4);for(var p=0;p<W;p+=W/9)g.fillRect(p,H*.34,3,vy-H*.34);A(g,1);
+    var tl=W*.22,tx=((t*.06)%(W+tl*2))-tl;g.fillStyle='#CD7C2F';g.beginPath();g.roundRect(tx,H*.34-18,tl,16,5);g.fill();g.fillStyle=K.paper;for(var w=8;w<tl-12;w+=18)g.fillRect(tx+w,H*.34-14,10,6);
+    // ground + road
+    g.fillStyle=K.paper2;g.fillRect(0,vy,W,H-vy);
+    A(g,.16);g.fillStyle=K.ink;g.beginPath();g.moveTo(vx-10,vy);g.lineTo(vx+10,vy);g.lineTo(W*.88,H);g.lineTo(W*.12,H);g.closePath();g.fill();A(g,1);
+    for(var k=0;k<9;k++){var s=((k/9+t*.00012)%1),y=vy+(H-vy)*s*s,hw=1+s*6,hh=2+s*s*26;A(g,.85);g.fillStyle=K.gold;g.fillRect(vx-hw,y,hw*2,hh)}A(g,1);
+    // ginkgo rows
+    for(var j=11;j>=0;j--){var d=.06+Math.pow(j/11,1.5)*.94,gy=vy+d*(H-vy)*.92,rr=5+d*H*.2,off=d*W*.56;
+      [vx-off,vx+off].forEach(function(x,side){A(g,.7);g.fillStyle=K.branch;g.fillRect(x-1-d*3,gy-rr*1.3,2+d*6,rr*1.3);canopy(g,x,gy-rr*1.1,rr,(j+side)%4===0?K.lc:K.gold,.92)})}
+    var rg=R(9);for(var q=0;q<60;q++){A(g,.8);g.fillStyle=K.gold;g.beginPath();g.ellipse(rg()*W,H*.8+rg()*H*.2,4,2.5,rg()*3,0,6.3);g.fill()}A(g,1);
+    falling(g,W,H,t,26,4,[K.gold,K.lc],.85);
+  },
+  palaces:function(g,W,H,t){
+    var sky=g.createLinearGradient(0,0,0,H*.56);sky.addColorStop(0,'#121731');sky.addColorStop(1,'#2B3668');g.fillStyle=sky;g.fillRect(0,0,W,H);
+    var r=R(5);for(var i=0;i<60;i++){A(g,.25+.35*Math.abs(Math.sin(t/900+i)));g.fillStyle='#F6EBCB';g.fillRect(r()*W,r()*H*.45,1.6,1.6)}A(g,1);
+    var mx=W*.8,my=H*.16,mr=Math.min(W,H)*.06,glow=g.createRadialGradient(mx,my,mr*.5,mx,my,mr*4);glow.addColorStop(0,'rgba(246,230,180,.35)');glow.addColorStop(1,'rgba(246,230,180,0)');g.fillStyle=glow;g.fillRect(0,0,W,H*.6);
+    g.fillStyle='#F3E3B0';g.beginPath();g.arc(mx,my,mr,0,6.3);g.fill();
+    var hz=H*.56;ridge(g,W,hz+2,hz-H*.08,H*.05,.004,2,'#0D1126',1);
+    // pavilion
+    var pw=Math.min(W*.62,H*1.35),px=W/2-pw/2,base=hz-6,rb=hz-H*.25,rh=H*.1;
+    g.fillStyle='#3A3F55';g.fillRect(px+pw*.04,base-10,pw*.92,12);
+    var np=13;for(var k=0;k<np;k++){var cx=px+pw*.08+k*(pw*.84/(np-1));g.fillStyle='#8E2C22';g.fillRect(cx-3,rb+rh*.2,6,base-10-rb-rh*.2)}
+    g.fillStyle='#2E5B4B';g.fillRect(px+pw*.06,rb+2,pw*.88,rh*.14);g.fillStyle='#C9A24A';g.fillRect(px+pw*.06,rb+2+rh*.14,pw*.88,3);
+    roof(g,px,pw,rb+4,rh,'#0A0C17',1);
+    for(var l=0;l<np-1;l++){var lx=px+pw*.08+(l+.5)*(pw*.84/(np-1));var gl=g.createRadialGradient(lx,rb+rh*.55,1,lx,rb+rh*.55,16);gl.addColorStop(0,'rgba(255,196,96,.95)');gl.addColorStop(1,'rgba(255,196,96,0)');g.fillStyle=gl;g.fillRect(lx-16,rb+rh*.55-16,32,32)}
+    // water + rippled reflection copied from the canvas itself
+    g.fillStyle='#0E1430';g.fillRect(0,hz,W,H-hz);
+    var c=g.canvas,sc=c.width/W;
+    for(var y=hz;y<H;y+=2){var sy=hz-(y-hz)*1.02;if(sy<0)break;var dx=Math.sin(y*.13+t/320)*(2+(y-hz)*.03);A(g,.42);g.drawImage(c,0,sy*sc,c.width,2*sc,dx,y,W,2)}A(g,1);
+    A(g,.25);g.fillStyle='#0E1430';g.fillRect(0,hz,W,H-hz);A(g,1);
+    var rl=R(12);for(var q=0;q<9;q++){var lx2=rl()*W,ly=hz+H*.12+rl()*H*.3;A(g,.9);g.fillStyle='#233F35';g.beginPath();g.ellipse(lx2,ly,W*.03,H*.012,0,0,6.3);g.fill()}A(g,1);
+  },
+  views:function(g,W,H,t){
+    var sky=g.createLinearGradient(0,0,0,H*.62);sky.addColorStop(0,'#F4E2C2');sky.addColorStop(.6,'#F0B56E');sky.addColorStop(1,'#DE7442');g.fillStyle=sky;g.fillRect(0,0,W,H);
+    var sx=W*.34,sy=H*.52,sr=Math.min(W,H)*.09;g.fillStyle='#FCE7A8';A(g,.95);g.beginPath();g.arc(sx,sy,sr,0,6.3);g.fill();A(g,1);
+    var r=R(8);for(var i=0;i<30;i++){var bw=W*(.02+r()*.035),bh=H*(.03+r()*.1);A(g,.45);g.fillStyle='#A35E45';g.fillRect(r()*W,H*.6-bh,bw,bh)}A(g,1);
+    var nx=W*.74;g.fillStyle='#6E3B30';g.beginPath();g.ellipse(nx,H*.61,W*.16,H*.13,0,Math.PI,0);g.fill();
+    g.fillRect(nx-3,H*.3,6,H*.2);g.fillRect(nx-13,H*.3,26,10);g.fillRect(nx-8,H*.28,16,8);g.fillRect(nx-1,H*.18,2,H*.1);
+    var hz=H*.62;g.fillStyle='#C9764F';g.fillRect(0,hz,W,H-hz);
+    for(var k=0;k<18;k++){var yy=hz+8+k*(H-hz)/18,ww=sr*(1.6-k*.05)*(1+.25*Math.sin(t/400+k));A(g,.55-k*.02);g.fillStyle='#FCE1A0';g.fillRect(sx-ww/2,yy,ww,2)}A(g,1);
+    // bridge
+    var dy=hz-H*.07;g.fillStyle='#3A2622';g.fillRect(0,dy,W,7);
+    for(var a=0;a<W+60;a+=W/7){g.fillRect(a-4,dy,8,hz-dy+6);g.strokeStyle='#3A2622';g.lineWidth=4;g.beginPath();g.moveTo(a,dy+7);g.quadraticCurveTo(a+W/14,dy+7+H*.05,a+W/7,dy+7);g.stroke()}
+    for(var c2=0;c2<8;c2++){var cx=((t*.05*(c2%2?1:-1)+c2*W/8)%W+W)%W;g.fillStyle=c2%2?'#FFE6A6':'#E0503F';g.fillRect(cx,dy-3,6,3)}
+  },
+  museums:function(g,W,H,t){
+    g.fillStyle='#F2EEE3';g.fillRect(0,0,W,H);bands(g,W,H,H*.1,'#D9A82E',.14);
+    ridge(g,W,H,H*.38,H*.08,.005,.8,'#3E5E4A',.18);
+    var r=R(21);for(var i=0;i<12;i++){var bw=W*(.025+r()*.03),bh=H*(.1+r()*.22);A(g,.12);g.fillStyle='#2E2A26';g.fillRect(W*.55+r()*W*.45,H*.45-bh,bw,bh)}A(g,1);
+    for(var cl=0;cl<3;cl++){var cx=((t*.01+cl*W/2.6)%(W+300))-150;A(g,.7);g.fillStyle='#FBF8F1';g.beginPath();g.ellipse(cx,H*(.12+cl*.07),90,16,0,0,6.3);g.fill()}A(g,1);
+    for(var row=0;row<5;row++){var ry=H*(.42+row*.135),rw=W*(.13+row*.045),n=Math.ceil(W/rw)+1,shift=(row%2)*rw*.5;
+      for(var k=-1;k<n;k++){var x0=k*rw*1.02-shift,rh=rw*.2;
+        g.fillStyle='#E6DFCF';g.fillRect(x0+rw*.1,ry,rw*.8,rw*.26);A(g,.8);g.fillStyle='#6B5140';g.fillRect(x0+rw*.1,ry,rw*.8,3);for(var b=0;b<4;b++)g.fillRect(x0+rw*.12+b*rw*.25,ry,3,rw*.26);A(g,1);
+        roof(g,x0,rw,ry+2,rh,'#2E2A26',.72+row*.06);
+        A(g,.14);g.strokeStyle='#F2EEE3';g.lineWidth=1;for(var tl=x0+rw*.12;tl<x0+rw*.88;tl+=6){g.beginPath();g.moveTo(tl,ry-rh*.9);g.lineTo(tl,ry);g.stroke()}A(g,1)}}
+    A(g,.9);g.fillStyle='#5A4232';g.fillRect(W*.1,H*.5,10,H*.5);canopy(g,W*.1,H*.55,H*.18,'#E2AE2A',.95);
+    falling(g,W,H,t,14,6,[K.gold,K.lc],.8);
+  },
+  food:function(g,W,H,t){
+    g.fillStyle='#3B2A20';g.fillRect(0,0,W,H);
+    var r=R(2);A(g,.12);g.strokeStyle='#000';g.lineWidth=2;for(var i=0;i<14;i++){var y=r()*H;g.beginPath();g.moveTo(0,y);g.bezierCurveTo(W*.3,y+10,W*.6,y-10,W,y+4);g.stroke()}A(g,1);
+    var cx=W/2,cy=H*.52,R0=Math.min(W*.3,H*.36);
+    g.fillStyle='#1B1B1D';g.beginPath();g.arc(cx,cy,R0*1.12,0,6.3);g.fill();g.fillStyle='#2D2D30';g.beginPath();g.arc(cx,cy,R0,0,6.3);g.fill();
+    g.save();g.beginPath();g.arc(cx,cy,R0*.96,0,6.3);g.clip();g.strokeStyle='#48484C';g.lineWidth=3;for(var gx=cx-R0;gx<cx+R0;gx+=12){g.beginPath();g.moveTo(gx,cy-R0);g.lineTo(gx,cy+R0);g.stroke()}g.restore();
+    var strips=[[-.45,-.3,.1],[-.1,-.12,-.08],[.25,.1,.12],[-.3,.35,-.05]];
+    strips.forEach(function(s,i){g.save();g.translate(cx+s[0]*R0,cy+s[1]*R0);g.rotate(s[2]);var sw=R0*.95,sh=R0*.2;
+      g.fillStyle='#B8643E';g.beginPath();g.roundRect(-sw/2,-sh/2,sw,sh,6);g.fill();g.fillStyle='#E9A48C';g.beginPath();g.roundRect(-sw/2+3,-sh/2+3,sw-6,sh-6,4);g.fill();
+      g.fillStyle='#F7E7DA';for(var f=0;f<3;f++)g.fillRect(-sw/2+3,-sh/2+5+f*(sh-10)/3,sw-6,(sh-10)/9);
+      A(g,.6);g.fillStyle='#8A3F22';for(var m=0;m<5;m++)g.fillRect(-sw/2+8+m*sw/5,-sh/2+2,sw*.08,3);A(g,1);g.restore()});
+    var r2=R(4);for(var q=0;q<7;q++){var a2=r2()*6.3,d=r2()*R0*.8;g.fillStyle=q%2?'#F3EAD0':'#6E9A3E';g.beginPath();g.ellipse(cx+Math.cos(a2)*d,cy+Math.sin(a2)*d,7,5,a2,0,6.3);g.fill()}
+    var dishes=['#C8452E','#4E7A3A','#E8DDB0','#8A4A25','#D96A2B','#7FA35A','#E9E2CF','#B33A2A'];
+    for(var k=0;k<8;k++){var an=-Math.PI/2+k*Math.PI/4+.3,br=Math.min(W,H)*.075,bx=cx+Math.cos(an)*(R0*1.12+br*1.6)*(W>H*1.4?1.35:1),by=cy+Math.sin(an)*(R0*1.12+br*1.3);
+      if(by<-br||by>H+br)continue;g.fillStyle='#C9A45C';g.beginPath();g.arc(bx,by,br,0,6.3);g.fill();g.fillStyle='#E7D7AE';g.beginPath();g.arc(bx,by,br*.86,0,6.3);g.fill();
+      g.fillStyle=dishes[k];g.beginPath();g.ellipse(bx,by,br*.62,br*.5,k,0,6.3);g.fill()}
+    steam(g,cx,cy,R0*1.6,t,5,'#FFFFFF',.22);
+    var r3=R(Math.floor(t/140)+1);for(var z=0;z<10;z++){A(g,.7);g.fillStyle='#FFD9A0';g.fillRect(cx+(r3()-.5)*R0*1.6,cy+(r3()-.5)*R0*1.2,2,2)}A(g,1);
+  },
+  cafes:function(g,W,H,t){
+    g.fillStyle=K.paper2;g.fillRect(0,0,W,H);
+    var wx=W*.52,wy=H*.08,ww=W*.4,wh=H*.5;g.fillStyle='#F6E6C0';g.fillRect(wx,wy,ww,wh);
+    A(g,.8);g.strokeStyle=K.branch;g.lineWidth=4;g.strokeRect(wx,wy,ww,wh);g.lineWidth=2;for(var i=1;i<6;i++){g.beginPath();g.moveTo(wx+i*ww/6,wy);g.lineTo(wx+i*ww/6,wy+wh);g.stroke()}for(var j=1;j<5;j++){g.beginPath();g.moveTo(wx,wy+j*wh/5);g.lineTo(wx+ww,wy+j*wh/5);g.stroke()}A(g,1);
+    A(g,.18);g.fillStyle='#F6E6C0';g.beginPath();g.moveTo(wx,wy+wh);g.lineTo(wx+ww,wy+wh);g.lineTo(wx+ww*.6,H);g.lineTo(wx-ww*.5,H);g.closePath();g.fill();A(g,1);
+    var ty=H*.66;g.fillStyle='#8A6547';g.fillRect(0,ty,W,H-ty);g.fillStyle='#6E4E36';g.fillRect(0,ty,W,6);
+    var r=R(7);A(g,.25);g.strokeStyle='#5A3E2A';g.lineWidth=1.5;for(var k=0;k<10;k++){var y=ty+12+r()*(H-ty-14);g.beginPath();g.moveTo(0,y);g.bezierCurveTo(W*.3,y+4,W*.7,y-4,W,y+2);g.stroke()}A(g,1);
+    function bowl(x,s){var bw=s,bh=s*.62,by=ty+s*.06;A(g,.25);g.fillStyle='#000';g.beginPath();g.ellipse(x+bw*.1,by+2,bw*.62,bw*.1,0,0,6.3);g.fill();A(g,1);
+      g.fillStyle='#EFE6D6';g.beginPath();g.moveTo(x-bw/2,by-bh);g.bezierCurveTo(x-bw/2,by-bh*.2,x-bw*.3,by,x,by);g.bezierCurveTo(x+bw*.3,by,x+bw/2,by-bh*.2,x+bw/2,by-bh);g.closePath();g.fill();
+      A(g,.12);g.fillStyle='#6E4E36';g.beginPath();g.moveTo(x+bw*.1,by-bh);g.bezierCurveTo(x+bw*.45,by-bh*.4,x+bw*.3,by,x,by);g.bezierCurveTo(x+bw*.3,by,x+bw/2,by-bh*.2,x+bw/2,by-bh);g.closePath();g.fill();A(g,1);
+      g.fillStyle='#E4D8C4';g.beginPath();g.ellipse(x,by-bh,bw/2,bw*.1,0,0,6.3);g.fill();g.fillStyle='#C8943A';g.beginPath();g.ellipse(x,by-bh+2,bw*.44,bw*.075,0,0,6.3);g.fill();
+      steam(g,x,by-bh,bw*1.5,t+x*7,3,'#FFFFFF',.35)}
+    var s=Math.min(W*.16,H*.3);bowl(W*.36,s);bowl(W*.36+s*1.25,s*.9);
+    g.save();g.translate(W*.72,ty+H*.14);g.rotate(.5);g.fillStyle=K.gold;leafShape(g,26,0);g.restore();
+  },
+  week:function(g,W,H,t){
+    g.fillStyle='#F4E8C8';g.fillRect(0,0,W,H);
+    var vx=W*.5,vy=H*.5;
+    g.fillStyle='#E7B93A';g.beginPath();g.moveTo(0,vy);g.lineTo(W,vy);g.lineTo(W,H);g.lineTo(0,H);g.fill();
+    g.fillStyle='#F2CF63';g.beginPath();g.moveTo(vx-6,vy);g.lineTo(vx+6,vy);g.lineTo(W*.75,H);g.lineTo(W*.25,H);g.closePath();g.fill();
+    for(var j=12;j>=0;j--){var d=.05+Math.pow(j/12,1.6)*.95,gy=vy+d*(H-vy),th=d*H*.9,off=d*W*.42,tw=2+d*9;
+      [vx-off,vx+off].forEach(function(x){g.fillStyle='#4A3526';g.fillRect(x-tw/2,gy-th,tw,th)})}
+    var r=R(31);for(var i=0;i<70;i++){var x=r()*W,y=r()*H*.42,cr=H*(.05+r()*.1);A(g,.9);g.fillStyle=i%5===0?'#E08A2E':(i%2?'#E9B330':'#F1C84A');g.beginPath();g.arc(x,y,cr,0,6.3);g.fill()}A(g,1);
+    var r2=R(13);for(var q=0;q<120;q++){var yy=vy+r2()*(H-vy);A(g,.7);g.fillStyle=q%3?'#D9A22A':'#F6D878';g.beginPath();g.ellipse(r2()*W,yy,3+yy/H*4,2+yy/H*2,r2()*3,0,6.3);g.fill()}A(g,1);
+    falling(g,W,H,t,40,8,['#E9B330','#F1C84A','#E08A2E'],.9);
+  },
+  lanterns:function(g,W,H,t){
+    g.fillStyle='#231A13';g.fillRect(0,0,W,H);
+    var rows=3,cols=Math.ceil(W/120)+1;
+    for(var r0=0;r0<rows;r0++)for(var c=0;c<cols;c++){var x=c*W/(cols-1)+(r0%2)*W/(cols-1)/2-20,top=r0*H*.3-20,len=H*.12+((c*7+r0*3)%5)*H*.03,lw=38+r0*6,lh=lw*1.25,sw=Math.sin(t/1300+c*.7+r0)*.05;
+      g.save();g.translate(x,top);g.rotate(sw);A(g,.5);g.strokeStyle='#8A7560';g.lineWidth=1;g.beginPath();g.moveTo(0,0);g.lineTo(0,len);g.stroke();
+      var gl=g.createRadialGradient(0,len+lh/2,4,0,len+lh/2,lw*1.4);gl.addColorStop(0,'rgba(255,214,150,.35)');gl.addColorStop(1,'rgba(255,214,150,0)');A(g,1);g.fillStyle=gl;g.fillRect(-lw*1.5,len-lw,lw*3,lh+lw*2);
+      g.fillStyle='#F4EBDD';g.beginPath();g.roundRect(-lw/2,len,lw,lh,lw*.35);g.fill();
+      A(g,.2);g.strokeStyle='#8A7560';for(var k=1;k<4;k++){g.beginPath();g.moveTo(-lw/2+k*lw/4,len+3);g.lineTo(-lw/2+k*lw/4,len+lh-3);g.stroke()}A(g,1);
+      g.fillStyle='#2B2118';g.fillRect(-lw*.2,len-3,lw*.4,5);g.fillRect(-lw*.2,len+lh-2,lw*.4,5);
+      g.fillStyle='#EFE3CC';g.fillRect(-lw*.18,len+lh+6,lw*.36,lh*.35);A(g,.7);g.strokeStyle='#2B2118';g.lineWidth=2;g.strokeRect(-lw*.18,len+lh+6,lw*.36,lh*.35);A(g,1);
+      g.restore()}
+  },
+  footer:function(g,W,H,t){
+    g.fillStyle=K.paper;g.fillRect(0,0,W,H);
+    var r=R(41);for(var i=0;i<90;i++){var x=r()*W,y=r()*H*.55-H*.05,cr=H*(.06+r()*.12);A(g,.85);g.fillStyle=i%6===0?K.lc:K.gold;g.beginPath();g.arc(x,y,cr,0,6.3);g.fill()}A(g,1);
+    for(var k=0;k<6;k++){A(g,.6);g.fillStyle=K.branch;g.fillRect(W*(.08+k*.17),H*.3,6+k%2*4,H*.7)}A(g,1);
+    falling(g,W,H,t,30,17,[K.gold,K.lc],.85);
+  }};
+  S.gate=S.week;
+
+  function fit(s){var w=s.c.clientWidth,h=s.c.clientHeight;if(!w||!h)return false;if(w!==s.w||h!==s.h){s.w=w;s.h=h;s.c.width=Math.round(w*dpr);s.c.height=Math.round(h*dpr);s.drawn=false}return true}
+  function visible(s){if(s.name==='gate'){var gt=document.getElementById('gate');return gt&&!gt.classList.contains('skip')}var r=s.c.getBoundingClientRect();return r.bottom>-50&&r.top<innerHeight+50}
+  function drawOne(s,t){if(!fit(s))return;var g=s.g;g.setTransform(dpr,0,0,dpr,0,0);g.globalAlpha=1;try{S[s.name](g,s.w,s.h,t)}catch(e){console.error(s.name,e)}s.drawn=true}
+  function loop(t){var st=still();list.forEach(function(s){var v=visible(s),live=window.__live('scene-'+s.name,v);if(!v)return;if(st||!live){if(!s.drawn)drawOne(s,s.lastT||0)}else{drawOne(s,t);s.lastT=t}});requestAnimationFrame(loop)}
+  readK();
+  new MutationObserver(readK).observe(root,{attributes:true,attributeFilter:['data-theme']});
+  try{matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readK)}catch(e){}
+  requestAnimationFrame(loop);
+})();
+</script>
+<script>
+(function(){var m=document.querySelector('.homemap');if(!m||!('IntersectionObserver' in window))return;
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){m.classList.remove('play-map');void m.offsetWidth;m.classList.add('play-map')}})},{threshold:.4}).observe(m)})();
+</script>
+<script>
+(function(){
+  // ---- itinerary booklet: days live in the page's saved data (db "plan") ----
+  var book=document.getElementById('book'),tabs=document.getElementById('bkTabs'),prev=document.getElementById('bkPrev'),next=document.getElementById('bkNext'),empty=document.getElementById('bkEmpty'),hint=document.getElementById('bkHint');
+  var FALLBACK=[{"id": "d03", "date": "2026-10-03", "dow": "Sat", "day": 3, "title": "Land and settle into Mangwon", "chips": [{"t": "Mapo", "k": "area"}, {"t": "National Foundation Day", "k": "warn"}], "slots": [{"when": "Afternoon", "text": "Land at Incheon → AREX to Digital Media City → Line 6 to Mangwon, Exit 2 (about 70 min). Or Bus 6002 to Hapjeong if the bags are heavy."}, {"when": "Evening", "text": "Kimchi jjim at **산청엔흑돼지**, a few minutes from the Airbnb. Walk it off at Mangwon Hangang Park by the river."}], "tip": "Keep day one light — the Airbnb is the only fixed point."}, {"id": "d04", "date": "2026-10-04", "dow": "Sun", "day": 4, "title": "Food Road on the bridge", "chips": [{"t": "Mapo", "k": "area"}, {"t": "Han River", "k": "area"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Late morning", "text": "Perilla oil noodles at **Chang Hwa Dang** (Hongdae side, close to home)."}, {"when": "Afternoon", "text": "**Jamsugyo Food Road** — 100+ food trucks on the bridge and Banpo Hangang Park. Graze instead of lunch."}, {"when": "Evening", "text": "Stay by the river for sunset, then an easy night."}], "tip": "Oct 4 is the only Food Road day while you're there."}, {"id": "d05", "date": "2026-10-05", "dow": "Mon", "day": 5, "title": "A Monday-proof day in the old centre", "chips": [{"t": "Jung", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Seongbuk", "k": "area"}, {"t": "Monday — closures", "k": "warn"}], "slots": [{"when": "Morning", "text": "Abalone porridge at **Seowonjuk**, Myeongdong. Coffee at **Coffee Hanyakbang** nearby."}, {"when": "Afternoon", "text": "Rummage at **Dongmyo Flea Market**, then taxi up to **Seongbuk-dong** for the hillside streets."}, {"when": "Evening", "text": "Grilled chicken BBQ at **Dalmaji Plaza BBQ**, Euljiro."}], "tip": "Nothing on this day is on your closed-Monday list. Changdeokgung, SeMA, Futura, Poset and Woomul are all shut today."}, {"id": "d06", "date": "2026-10-06", "dow": "Tue", "day": 6, "title": "Seongsu, then sunset on the river", "chips": [{"t": "Seongdong", "k": "area"}, {"t": "Gangdong", "k": "area"}], "slots": [{"when": "Late morning", "text": "**Point Two Five Second** café, then **29cm Home** and **Poset** for paper."}, {"when": "Afternoon", "text": "**HAUS NOWHERE SEOUL** — Gentle Monster's space, a short walk away."}, {"when": "Sunset", "text": "**Gwangjingyo Observatory**, the deck under the bridge — about 20 minutes further east."}], "tip": "Poset is shut Mondays, so Tuesday is the right day for Seongsu."}, {"id": "d07", "date": "2026-10-07", "dow": "Wed", "day": 7, "title": "Art day: SeMA, MMCA, Futura", "chips": [{"t": "Jung", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Book ahead", "k": "book"}], "slots": [{"when": "Morning", "text": "**SeMA** — Yoo Youngkuk: A Mountain Within Me."}, {"when": "Lunch", "text": "Tonkatsu and cold noodles at **Gwanghwamun Mijin**."}, {"when": "Afternoon", "text": "**MMCA Seoul** (Do Ho Suh), then **Futura Seoul** in Bukchon — book a Naver slot for it."}, {"when": "Evening", "text": "Cube pork and stew at **Doma Insadong**."}], "tip": "The lotus show opens tonight — skip opening night and go tomorrow instead."}, {"id": "d08", "date": "2026-10-08", "dow": "Thu", "day": 8, "title": "Palace by day, lotus pond by night", "chips": [{"t": "Mapo", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Book ahead", "k": "book"}], "slots": [{"when": "Morning", "text": "Near home: **Park Seo-Bo Foundation** in Yeonhui-dong, coffee at **Woomul**."}, {"when": "Afternoon", "text": "**Changdeokgung** and its Secret Garden — check the Secret Garden entry separately."}, {"when": "Early dinner", "text": "Chicken noodle soup at **Maegchon**, a short walk from the palace."}, {"when": "Night", "text": "**Moonlight Lotus Show** at Changgyeonggung, 19:30 slot — tickets online only."}], "tip": "Book the lotus slot now; 400 people per session, first come first served."}, {"id": "d09", "date": "2026-10-09", "dow": "Fri", "day": 9, "title": "Yeouido high up, Nodeul lit up", "chips": [{"t": "Yeongdeungpo", "k": "area"}, {"t": "Yongsan", "k": "area"}, {"t": "Public holiday", "k": "warn"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Afternoon", "text": "**The Hyundai Seoul** in Yeouido — expect holiday crowds."}, {"when": "Sunset", "text": "**63 Skypicnic** — the deck saved for sunsets."}, {"when": "Night", "text": "**Nodeul Island Light Up**, 18:30–22:30. Nodeul Station (Line 9), Exit 2, 9–11 min walk."}], "tip": "Hangul Day — a public holiday, so everywhere will be busier."}, {"id": "d10", "date": "2026-10-10", "dow": "Sat", "day": 10, "title": "Slow Insadong", "chips": [{"t": "Jongno", "k": "area"}], "slots": [{"when": "Lunch", "text": "Dumplings at **KOONG**, Insadong 10-gil."}, {"when": "Afternoon", "text": "Wander Insadong and Bukchon lanes; anything you missed on Wednesday."}, {"when": "Dinner", "text": "Stew and bossam at **Odozip** — open today (it shuts Sundays)."}], "tip": "Backup night for the lotus show if Thursday didn't work out (Saturday shows run)."}, {"id": "d11", "date": "2026-10-11", "dow": "Sun", "day": 11, "title": "Hannam, the bridge again, last lights", "chips": [{"t": "Yongsan", "k": "area"}, {"t": "Han River", "k": "area"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Late morning", "text": "Brunch coffee at **Maha Hannam** (4th floor)."}, {"when": "Afternoon", "text": "**Jamsugyo Festival** — a regular Sunday on the bridge."}, {"when": "Evening", "text": "Last night of **Nodeul Island Light Up**, if Friday was too crowded."}], "tip": "Odozip is shut today."}, {"id": "d12", "date": "2026-10-12", "dow": "Mon", "day": 12, "title": "Home turf", "chips": [{"t": "Mapo", "k": "area"}, {"t": "Seodaemun", "k": "area"}, {"t": "Monday — closures", "k": "warn"}], "slots": [{"when": "Morning", "text": "Coffee at **Perception** in Hapjeong."}, {"when": "Afternoon", "text": "Mangwon Market and the river — souvenirs, snacks, a slow day."}, {"when": "Evening", "text": "KBBQ at **TheDoi Sinchon**, 5 min from Sinchon Station Exit 2."}], "tip": "Monday again — this day stays near home on purpose."}, {"id": "d13", "date": "2026-10-13", "dow": "Tue", "day": 13, "title": "Flex day", "chips": [{"t": "Anywhere", "k": "area"}, {"t": "Flex day", "k": "plain"}], "slots": [{"when": "All day", "text": "Go back to a favourite, catch anything missed, or rest. Pack in the evening."}], "tip": "Most places on your list are open on Tuesdays."}, {"id": "d14", "date": "2026-10-14", "dow": "Wed", "day": 14, "title": "Fly home to Singapore", "chips": [{"t": "Mapo → Incheon", "k": "area"}, {"t": "Travel day", "k": "plain"}], "slots": [{"when": "Before the flight", "text": "Mangwon → Line 6 to Digital Media City → AREX to Incheon (about 70 min). Leave about 3½ hours before departure."}], "tip": "Flight time not in your notes — adjust once you know it."}];
+  function localDays(){var m={};try{m=JSON.parse(localStorage.getItem('seoul_plan_v1')||'{}')||{}}catch(e){}return FALLBACK.map(function(d){return m[d.id]?Object.assign({id:d.id},m[d.id]):d})}
+  function localSave(id,body){var m={};try{m=JSON.parse(localStorage.getItem('seoul_plan_v1')||'{}')||{}}catch(e){}m[id]=body;localStorage.setItem('seoul_plan_v1',JSON.stringify(m))}
+  var days=[],db=null,canWrite=true,editing=null,draft=null,saving=false,err='',spread=0,single=false,built='',pageEls=[];
+  function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  function rich(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>')}
+  var today='';try{today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul'}).format(new Date())}catch(e){}
+  function pages(){return ['intro'].concat(days.map(function(d){return d.id}),['end'])}
+  function dayById(id){for(var i=0;i<days.length;i++)if(days[i].id===id)return days[i];return null}
+  function introHTML(){
+    var toc=days.map(function(d,i){return '<li><button type="button" data-jump="'+(i+1)+'"><b>'+esc(d.dow)+' '+esc(d.day)+'</b><span>'+esc(d.title)+'</span></button></li>'}).join('');
+    return '<div class="pg-intro"><div class="mono" style="color:var(--maple)">The Plan · 일정</div><h2>Twelve days, <span>3–14 Oct</span></h2>'+
+      '<p>A starting point, not a timetable — every saved place fitted in once, grouped by neighbourhood, dodging closed days. Arrival and flight times aren\'t in the notes, so day 1 and day 12 assume an afternoon landing and a daytime flight.</p>'+
+      '<p class="book-now"><b>Book now:</b> the lotus show (Thu 8 Oct, 19:30) and a Futura Seoul slot (Wed 7 Oct).</p>'+
+      '<ul class="toc">'+toc+'</ul></div>';
+  }
+  function endHTML(){return '<div class="pg-end"><div class="big">서울</div><div class="mono" style="color:var(--maple)">Wed 14 Oct · home to Singapore</div><p>Every day in this booklet can be changed — tap ✎ Edit on its page.</p></div>'}
+  function chipsHTML(c){return (c||[]).map(function(x){var k=x&&x.k&&x.k!=='plain'?' '+esc(x.k):'';return '<span class="chip'+k+'">'+esc(x&&x.t)+'</span>'}).join('')}
+  function dayHTML(d){
+    var head='<div class="pg-head"><span class="num">'+esc(d.day)+'</span><span class="dt">'+esc(d.dow)+' · Oct<small>Day '+(days.indexOf(d)+1)+'</small></span>'+(canWrite&&editing!==d.id?'<button class="edit" type="button" data-edit="'+esc(d.id)+'">✎ Edit</button>':'')+'</div>';
+    if(editing===d.id)return head+formHTML();
+    return head+'<h3>'+esc(d.title)+'</h3><div class="chips">'+chipsHTML(d.chips)+'</div><ol class="slots">'+
+      (d.slots||[]).map(function(s){return '<li><span class="when mono">'+esc(s.when)+'</span><span>'+rich(s.text)+'</span></li>'}).join('')+'</ol>'+(d.tip?'<p class="tip">'+rich(d.tip)+'</p>':'');
+  }
+  function formHTML(){
+    var d=draft;return '<div class="ef"><label for="ef-title">Title</label><input id="ef-title" data-f="title" value="'+esc(d.title)+'">'+
+      '<label>Plan — time and what to do</label>'+d.slots.map(function(s,i){return '<div class="srow"><input aria-label="Time of day" data-f="when" data-i="'+i+'" value="'+esc(s.when)+'"><textarea aria-label="What to do" data-f="text" data-i="'+i+'" rows="'+Math.max(2,Math.ceil((s.text||'').length/34)+1)+'">'+esc(s.text)+'</textarea><button type="button" data-rm="'+i+'" aria-label="Remove this row">✕</button></div>'}).join('')+
+      '<div class="acts" style="margin-top:4px"><button type="button" data-add="1">+ Add a row</button></div>'+
+      '<label for="ef-tip">Note</label><textarea id="ef-tip" data-f="tip" rows="2">'+esc(d.tip)+'</textarea>'+
+      '<div class="note">Wrap words in **double stars** to make them bold.</div>'+(err?'<div class="err">'+esc(err)+'</div>':'')+
+      '<div class="acts"><button class="save" type="button" data-save="1"'+(saving?' disabled':'')+'>'+(saving?'Saving…':'Save')+'</button><button type="button" data-cancel="1">Cancel</button></div></div>';
+  }
+  function pageHTML(key,idx){
+    var side=single?'right':(idx%2?'right':'left'),inner,cls='pg '+side;
+    if(key==='intro')inner=introHTML();else if(key==='end'){inner=endHTML();cls+=' pg-end'}else{var d=dayById(key);inner=d?dayHTML(d):'';if(d&&d.date===today)cls+=' today'}
+    return '<div class="'+cls+'" data-key="'+esc(key)+'">'+inner+'<span class="pg-num">'+(idx+1)+'</span></div>';
+  }
+  // build the physical book (leaves) once per layout; fill faces separately
+  function build(){
+    var P=pages(),sig=(single?'s':'d')+P.join(',');if(sig===built)return;built=sig;
+    book.classList.toggle('single',single);book.innerHTML='';pageEls=[];
+    if(single){var one=document.createElement('div');one.className='bk-single';book.appendChild(one);return}
+    var L=document.createElement('div');L.className='bk-base l';book.appendChild(L);pageEls[0]=L;
+    var R=document.createElement('div');R.className='bk-base r';book.appendChild(R);pageEls[P.length-1]=R;
+    for(var j=0;j<(P.length-2)/2;j++){var lf=document.createElement('div');lf.className='leaf';lf.dataset.j=j;
+      var f=document.createElement('div');f.className='face front';var b=document.createElement('div');b.className='face back';lf.appendChild(f);lf.appendChild(b);book.appendChild(lf);
+      pageEls[2*j+1]=f;pageEls[2*j+2]=b}
+  }
+  function spreads(){return single?pages().length:pages().length/2}
+  function fill(){
+    var P=pages();
+    if(single){var el=book.querySelector('.bk-single');if(el)el.innerHTML=pageHTML(P[spread],spread);return}
+    P.forEach(function(k,i){var el=pageEls[i];if(!el)return;var h=pageHTML(k,i);if(el.__h!==h){el.innerHTML=h;el.__h=h}});
+  }
+  function place(){
+    if(single)return;
+    book.querySelectorAll('.leaf').forEach(function(lf){var j=+lf.dataset.j,fl=j<spread;lf.classList.toggle('flipped',fl);lf.style.zIndex=fl?(10+j):(40-j)});
+  }
+  function controls(){
+    var n=spreads();prev.disabled=spread<=0;next.disabled=spread>=n-1;
+    var P=pages(),cur=single?[spread]:[spread*2,spread*2+1];
+    [].forEach.call(tabs.children,function(t){var i=+t.dataset.p;t.classList.toggle('on',cur.indexOf(i)>=0)});
+  }
+  function tabsBuild(){
+    tabs.innerHTML='';pages().forEach(function(k,i){if(k==='intro'||k==='end')return;var d=dayById(k);var b=document.createElement('button');b.type='button';b.className='bk-tab'+(d&&d.date===today?' today':'');b.textContent=d?d.day:'';b.dataset.p=i;b.setAttribute('aria-label',(d?d.dow+' '+d.day+' October':'Day'));b.addEventListener('click',function(){go(single?i:Math.floor(i/2))});tabs.appendChild(b)});
+  }
+  function go(s){
+    var n=spreads();s=Math.max(0,Math.min(n-1,s));if(s===spread)return;
+    if(editing){if(!confirmLeave())return}
+    if(single){var el=book.querySelector('.bk-single'),still=document.documentElement.classList.contains('still');
+      if(still||!el){spread=s;fill();controls();return}
+      el.classList.add('out');setTimeout(function(){spread=s;fill();el.classList.remove('out');el.classList.add('in');void el.offsetWidth;el.classList.remove('in');controls()},340);return}
+    var moving=book.querySelectorAll('.leaf');moving.forEach(function(lf){var j=+lf.dataset.j;if((j<s)!==(j<spread))lf.style.zIndex=60});
+    spread=s;setTimeout(place,1000);controls();
+    book.querySelectorAll('.leaf').forEach(function(lf){var j=+lf.dataset.j;lf.classList.toggle('flipped',j<spread)});
+  }
+  function confirmLeave(){editing=null;draft=null;err='';saving=false;return true}
+  function render(){
+    if(!days.length){empty&&(empty.style.display='');return}
+    if(empty&&empty.parentNode)empty.remove();
+    build();fill();place();controls();
+  }
+  // layout mode
+  function mode(){var s2=innerWidth<=760;if(s2!==single){var P=pages();var firstPage=single?spread:spread*2+ (spread?0:0);single=s2;spread=single?Math.min(firstPage,P.length-1):Math.floor(firstPage/2);built='';render()}}
+  // events
+  prev.addEventListener('click',function(){go(spread-1)});next.addEventListener('click',function(){go(spread+1)});
+  book.addEventListener('keydown',function(e){if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight'){e.preventDefault();go(spread+1)}else if(e.key==='ArrowLeft'){e.preventDefault();go(spread-1)}});
+  var sx=null;book.addEventListener('pointerdown',function(e){if(e.target.closest('input,textarea,button'))return;sx=e.clientX});
+  book.addEventListener('pointerup',function(e){if(sx==null)return;var dx=e.clientX-sx;sx=null;if(Math.abs(dx)>60)go(spread+(dx<0?1:-1))});
+  book.addEventListener('click',function(e){
+    var t=e.target.closest('button');if(!t)return;
+    if(t.dataset.jump){var i=+t.dataset.jump;go(single?i:Math.floor(i/2));return}
+    if(t.dataset.edit){var d=dayById(t.dataset.edit);if(!d)return;editing=d.id;err='';draft={title:d.title||'',tip:d.tip||'',slots:(d.slots||[]).map(function(s){return{when:s.when||'',text:s.text||''}})};render();return}
+    if(t.dataset.add){draft.slots.push({when:'',text:''});rerenderEdit();return}
+    if(t.dataset.rm!=null){draft.slots.splice(+t.dataset.rm,1);rerenderEdit();return}
+    if(t.dataset.cancel){editing=null;draft=null;err='';render();return}
+    if(t.dataset.save){save();return}
+  });
+  book.addEventListener('input',function(e){var f=e.target.dataset&&e.target.dataset.f;if(!f||!draft)return;if(f==='when'||f==='text')draft.slots[+e.target.dataset.i][f]=e.target.value;else draft[f]=e.target.value});
+  function rerenderEdit(){pageEls.concat([book.querySelector('.bk-single')]).forEach(function(el){if(el&&el.querySelector&&el.querySelector('.ef')){el.__h='';}});fill()}
+  async function save(){
+    if(!editing||saving)return;var d=dayById(editing);if(!d)return;
+    var body={date:d.date,dow:d.dow,day:d.day,chips:d.chips||[],title:draft.title.trim()||d.title,tip:draft.tip.trim(),slots:draft.slots.filter(function(s){return (s.when+s.text).trim()}).map(function(s){return{when:s.when.trim(),text:s.text.trim()}})};
+    saving=true;err='';rerenderEdit();
+    try{if(db){await db.doc('plan/'+editing).set(body)}else{localSave(editing,body);var id0=editing;days=days.map(function(x){return x.id===id0?Object.assign({id:id0},body):x})}editing=null;draft=null;saving=false;render()}
+    catch(x){saving=false;err=x&&x.code==='invalid_argument'?'You can view this plan but not change it.':'Couldn\'t save just now — try again in a moment.';if(x&&x.code==='invalid_argument'){canWrite=false}rerenderEdit()}
+  }
+  // data
+  (async function(){
+    try{var u=await window.claude?.use?.('user');var w=u?await u.can('data.write'):null;if(w===false)canWrite=false}catch(e){}
+    try{db=await window.claude?.use?.('db')}catch(e){db=null}
+    if(!db){canWrite=true;days=localDays();hint.textContent='Edits save on this device only.';var ti=-1;days.forEach(function(d,i){if(d.date===today)ti=i+1});single=innerWidth<=760;if(ti>0)spread=single?ti:Math.floor(ti/2);tabsBuild();render();return}
+    if(!canWrite)hint.textContent='Read-only for you — only the plan\'s owner can edit.';
+    db.collection('plan').orderBy('date').onSnapshot(function(snap){
+      days=snap.docs.filter(function(d){return d.exists}).map(function(d){var x=d.data()||{};return{id:d.id,date:String(x.date||''),dow:String(x.dow||''),day:x.day,title:String(x.title||''),chips:Array.isArray(x.chips)?x.chips:[],slots:Array.isArray(x.slots)?x.slots:[],tip:String(x.tip||'')}});
+      if(!days.length){empty.textContent='No days in the plan yet.';return}
+      var first=!tabs.children.length;tabsBuild();
+      if(first){var ti=-1;days.forEach(function(d,i){if(d.date===today)ti=i+1});single=innerWidth<=760;if(ti>0)spread=single?ti:Math.floor(ti/2)}
+      render();
+    },function(e){empty.textContent='Couldn\'t load the plan right now — reload the page to try again.'});
+  })();
+  addEventListener('resize',function(){if(days.length)mode()});
+})();
+</script>
+
