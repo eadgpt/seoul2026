@@ -520,6 +520,42 @@ html.still .leaf{transition:none}
 .bk-single.in{transform:perspective(1400px) rotateY(12deg);opacity:0;transition:none}
 html.still .bk-single{transition:none}
 @media (max-width:760px){.book{height:auto;min-height:560px}.pg{position:relative;min-height:560px;padding:26px 20px 40px}.pg .slots li{grid-template-columns:1fr}.toc{columns:1}.ef .srow{grid-template-columns:1fr 34px}.ef .srow input{grid-column:1/-1}}
+.cal-row.you i.on{background:var(--pine)}
+.cal-row.you i.on[title]{background:var(--maple);box-shadow:0 0 0 2px var(--pine) inset}
+.cal-key.you{background:var(--pine)}
+.pg-notes{height:100%;background-image:repeating-linear-gradient(transparent 0 31px,var(--rule) 31px 32px);background-position:0 56px}
+
+/* must-go stars */
+.star-btn{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;line-height:1;background:transparent;border:1.5px solid var(--ginkgo);color:var(--ginkgo);cursor:pointer;padding:6px 10px;margin-left:10px;vertical-align:4px;border-radius:999px;white-space:nowrap}
+.star-btn:hover{background:color-mix(in srgb,var(--ginkgo) 15%,transparent)}
+.star-btn[aria-pressed="true"]{background:var(--ginkgo);color:#fff}
+.star-btn:focus-visible{outline:2px solid var(--ginkgo)}
+.entry.starred,.maybe-row.starred{box-shadow:inset 3px 0 0 var(--ginkgo)}
+.entry.starred{padding-left:14px!important}
+.lotus.starred{box-shadow:0 0 0 3px var(--ginkgo)}
+.mg{color:var(--ginkgo);margin-right:3px}
+.must{margin:4px 0 12px;padding:10px 12px;border:1px solid var(--ginkgo);border-radius:6px}
+.must .mono{color:var(--ginkgo);margin-bottom:6px}
+.must ul{list-style:none;margin:0;padding:0}
+.must li{display:flex;justify-content:space-between;gap:10px;font-size:14px;padding:3px 0;border-bottom:1px dotted var(--rule)}
+.must li:last-child{border-bottom:0}
+.must em{font-style:normal;font-family:var(--f-mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.must em.miss{color:var(--maple)}
+.must-empty{font-size:13px;color:var(--ink-2);border:1px dashed var(--rule);padding:8px 10px;border-radius:6px}
+#mapSvg .pin.starred path{stroke:var(--ginkgo);stroke-width:5}
+.star-count{font-family:var(--f-mono);font-size:12px;color:var(--ginkgo);white-space:nowrap}
+.district-card h4 span{display:block;margin-left:0!important;font-size:16px;white-space:nowrap}
+.district-card.wide{grid-column:1/-1}
+.district-card.wide ul{display:flex;flex-wrap:wrap;gap:4px 18px}
+
+/* floating jump buttons */
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;flex-direction:column;align-items:flex-end;gap:8px;transition:opacity .25s,transform .25s}
+.fab.off{opacity:0;transform:translateY(12px);pointer-events:none}
+.fab button{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:12px 16px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.fab button:focus-visible{outline:2px solid var(--ginkgo);outline-offset:2px}
+.fab-menu{background:var(--paper);border:1px solid var(--ink);border-radius:12px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,.25);max-height:60vh;overflow:auto;min-width:180px}
+.fab-menu a{display:block;padding:10px 12px;font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-radius:8px}
+.fab-menu a:hover,.fab-menu a:focus-visible{background:color-mix(in srgb,var(--ginkgo) 18%,transparent);outline:none}
 </style>
 
 <div id="gate" role="dialog" aria-label="Welcome">
@@ -549,6 +585,7 @@ html.still .bk-single{transition:none}
       <li><a href="#museums">Museums</a></li>
       <li><a href="#tables">Food</a></li>
       <li><a href="#cafes">Cafés</a></li>
+      <li><a href="#suwon">Suwon</a></li>
       <li><a href="#week">The Week</a></li>
       <li><a href="#index">Links</a></li>
     </ul>
@@ -599,7 +636,7 @@ html.still .bk-single{transition:none}
     <div class="act-head">
       <div class="mono">The Plan — 일정</div>
       <div>
-        <h2>Twelve Days, 3&#8288;–&#8288;14&nbsp;October<span>일정</span></h2>
+        <h2>Eleven Days, 3&#8288;–&#8288;13&nbsp;October<span>일정</span></h2>
         <div class="mono dek">Every saved place fitted in once, grouped by neighbourhood, dodging the closed days</div>
       </div>
     </div>
@@ -717,7 +754,7 @@ html.still .bk-single{transition:none}
       <div class="mono">Chapter II — Events</div>
       <div>
         <h2>Autumn Nights Out<span>행사</span></h2>
-        <div class="mono dek">A lotus show, a bridge festival, an island lit up — three things with dates</div>
+        <div class="mono dek">An appointment, a lotus show, a bridge festival, an island lit up — the things with dates</div>
       </div>
     </div>
     <div class="act-body">
@@ -725,11 +762,12 @@ html.still .bk-single{transition:none}
       <div class="main">
         <div class="cal-wrap"><div class="cal">
           <div class="cal-row cal-head"><div class="cal-lbl mono">Oct 2026 → Nov 1</div><div class="cal-cells"><b class="">1<small>T</small></b><b class="">2<small>F</small></b><b class="">3<small>S</small></b><b class="">4<small>S</small></b><b class="mon">5<small>M</small></b><b class="">6<small>T</small></b><b class="">7<small>W</small></b><b class="">8<small>T</small></b><b class="">9<small>F</small></b><b class="">10<small>S</small></b><b class="">11<small>S</small></b><b class="mon">12<small>M</small></b><b class="">13<small>T</small></b><b class="">14<small>W</small></b><b class="">15<small>T</small></b><b class="">16<small>F</small></b><b class="">17<small>S</small></b><b class="">18<small>S</small></b><b class="mon">19<small>M</small></b><b class="">20<small>T</small></b><b class="">21<small>W</small></b><b class="">22<small>T</small></b><b class="">23<small>F</small></b><b class="">24<small>S</small></b><b class="">25<small>S</small></b><b class="mon">26<small>M</small></b><b class="">27<small>T</small></b><b class="">28<small>W</small></b><b class="">29<small>T</small></b><b class="">30<small>F</small></b><b class="">31<small>S</small></b><b class="">1<small>S</small></b></div></div>
+          <div class="cal-row you"><div class="cal-lbl">You in Seoul<small>Oct 3–13 · ● appointment</small></div><div class="cal-cells"><i class=""></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on mon" title="Hev Clinic 10:30"></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on mon"></i><i class="on "></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
           <div class="cal-row nod"><div class="cal-lbl">Nodeul Island Light Up<small>Oct 2–11</small></div><div class="cal-cells"><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on mon"></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
           <div class="cal-row jam"><div class="cal-lbl">Jamsugyo Festival<small>Sundays</small></div><div class="cal-cells"><i class=""></i><i class=""></i><i class=""></i><i class="on " title="Food Road — 100+ food trucks"></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="on "></i><i class="mon"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
           <div class="cal-row lot"><div class="cal-lbl">Moonlight Lotus Show<small>Oct 7 – Nov 1</small></div><div class="cal-cells"><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="mon"></i><i class=""></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i><i class="on "></i></div></div>
         </div></div>
-        <div class="legend"><span><span class="cal-key nod"></span> Nodeul Island, daily 18:30–22:30</span><span><span class="cal-key jam"></span> Jamsugyo festival, Sundays (Oct 4 = Food Road)</span><span><span class="cal-key lot"></span> Lotus show, Wed–Sun evenings</span><span><span class="cal-key mon"></span> Monday</span></div>
+        <div class="legend"><span><span class="cal-key you"></span> Your days in Seoul (● Oct 5 appointment)</span><span><span class="cal-key nod"></span> Nodeul Island, daily 18:30–22:30</span><span><span class="cal-key jam"></span> Jamsugyo festival, Sundays (Oct 4 = Food Road)</span><span><span class="cal-key lot"></span> Lotus show, Wed–Sun evenings</span><span><span class="cal-key mon"></span> Monday</span></div>
 
         <div class="lotus" style="margin-top:40px">
           <div class="l">
@@ -754,6 +792,16 @@ html.still .bk-single{transition:none}
         </div>
 
         <div class="entries">
+          <article class="entry wide">
+            <div class="fig mono"><span>Appointment · Mon 5 Oct, 10:30</span><span class="district">Gangnam-gu</span></div>
+            <h3>Hev Clinic</h3>
+            <p class="where">16F, 119 Dosan-daero, Gangnam-gu</p>
+            <p>Fixed in the plan for Monday morning — leave Mangwon by about 9:30.</p>
+            <div class="btns">
+              <a class="btn" href="https://www.hevclinic.co/" target="_blank" rel="noopener">Website ↗</a>
+              <a class="btn" href="https://maps.app.goo.gl/UtzZ6HgXytBeNjB39" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
           <article class="entry">
             <div class="fig mono"><span>Note 01 · Festival</span><span class="district">Seocho-gu · Han River</span></div>
             <h3>Jamsugyo TtubeokTtubeok Festival</h3>
@@ -805,13 +853,23 @@ html.still .bk-single{transition:none}
       <div class="mono">Chapter III — Places</div>
       <div>
         <h2>Places to Stand In<span>명소</span></h2>
-        <div class="mono dek">A sunset deck, a river bridge, a palace garden, a department store, a flagship</div>
+        <div class="mono dek">A park, a sunset deck, a river bridge, a palace garden, a department store, a flagship</div>
       </div>
     </div>
     <div class="act-body">
-      <div class="side mono">Five places<br>+ a maybe list</div>
+      <div class="side mono">Six places<br>+ a maybe list</div>
       <div class="main">
         <div class="entries">
+          <article class="entry wide">
+            <div class="fig mono"><span>Park</span><span class="district">Seongdong-gu</span></div>
+            <h3>Seoul Forest Park</h3>
+            <div class="ko">서울숲</div>
+            <p class="where">Seoul Forest Station</p>
+            <p>Right next to Seongsu — start the Seongsu day here.</p>
+            <div class="btns">
+              <a class="btn" href="https://maps.app.goo.gl/ED53siG9qzNJFGyi6" target="_blank" rel="noopener">Google ↗</a>
+            </div>
+          </article>
           <article class="entry">
             <div class="fig mono"><span>Note 03 · Sunset deck</span><span class="district">Yeongdeungpo-gu</span></div>
             <h3>63 Skypicnic</h3>
@@ -1179,6 +1237,81 @@ html.still .bk-single{transition:none}
   </div>
 </section>
 
+<!-- DAY TRIP -->
+<section class="act" id="suwon">
+  <div class="wrap">
+    <div class="act-head">
+      <div class="mono">Chapter VII — Day Trip</div>
+      <div>
+        <h2>A Day in Suwon<span>수원</span></h2>
+        <div class="mono dek">A fortress wall, a mural village, two museums and a mall — about an hour south by train</div>
+      </div>
+    </div>
+    <div class="act-body">
+      <div class="side mono">Planned for<br>Tue 6 Oct</div>
+      <div class="main">
+        <div class="routes" style="margin-top:0">
+          <div class="route">
+            <div class="mono" style="color:var(--maple)">Getting there</div>
+            <h3>From Mangwon</h3>
+            <div class="mono t">Subway + KTX</div>
+            <ol>
+              <li><span class="line6">Line 6</span> Mangwon → Gongdeok<small>3rd stop</small></li>
+              <li>Transfer to <b>Seoul Station</b></li>
+              <li><b>KTX</b> Seoul Station → Suwon</li>
+            </ol>
+          </div>
+          <div class="route">
+            <div class="mono" style="color:var(--maple)">To the fortress</div>
+            <h3>From Suwon Station</h3>
+            <div class="mono t">Bus · about 10–15 min · ₩1,500–2,500</div>
+            <ol>
+              <li>Exit near <b>Exit 4</b> or the tourist information centre</li>
+              <li><span class="bus">11 · 13 · 36 · 39</span> bus to the <b>Paldalmun Gate</b> stop<small>Or bus 777 from Exit 7 to Jangan Park</small></li>
+              <li>Walk the <b>Hwaseong Fortress</b> wall</li>
+            </ol>
+          </div>
+        </div>
+        <div class="entries" style="margin-top:40px">
+          <article class="entry">
+            <div class="fig mono"><span>Fortress</span><span class="district">Suwon</span></div>
+            <h3>Hwaseong Fortress</h3>
+            <div class="ko">수원화성</div>
+            <p>Start at Paldalmun Gate.</p>
+            <div class="btns"><a class="btn" href="https://map.naver.com/p/search/%EC%88%98%EC%9B%90%ED%99%94%EC%84%B1" target="_blank" rel="noopener">Naver ↗</a></div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Village</span><span class="district">Suwon</span></div>
+            <h3>Haenggung-dong Mural Village</h3>
+            <div class="ko">행궁동 벽화마을</div>
+            <p>Painted lanes near the fortress.</p>
+            <div class="btns"><a class="btn" href="https://map.naver.com/p/search/%ED%96%89%EA%B6%81%EB%8F%99%20%EB%B2%BD%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" rel="noopener">Naver ↗</a></div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Museum</span><span class="district">Suwon</span></div>
+            <h3>Suwon I&#39;Park Museum of Art</h3>
+            <div class="ko">수원시립미술관</div>
+            <div class="btns"><a class="btn" href="https://map.naver.com/p/search/%EC%88%98%EC%9B%90%EC%8B%9C%EB%A6%BD%EB%AF%B8%EC%88%A0%EA%B4%80" target="_blank" rel="noopener">Naver ↗</a></div>
+          </article>
+          <article class="entry">
+            <div class="fig mono"><span>Museum</span><span class="district">Suwon</span></div>
+            <h3>Samsung Innovation Museum</h3>
+            <div class="ko">삼성이노베이션뮤지엄</div>
+            <p>Check opening days and booking before going.</p>
+            <div class="btns"><a class="btn" href="https://map.naver.com/p/search/%EC%82%BC%EC%84%B1%EC%9D%B4%EB%85%B8%EB%B2%A0%EC%9D%B4%EC%85%98%EB%AE%A4%EC%A7%80%EC%97%84" target="_blank" rel="noopener">Naver ↗</a></div>
+          </article>
+          <article class="entry wide">
+            <div class="fig mono"><span>Mall</span><span class="district">Suwon</span></div>
+            <h3>Starfield Suwon</h3>
+            <p>If there&#39;s time before the train back.</p>
+            <div class="btns"><a class="btn" href="https://map.naver.com/p/search/Starfield%20Suwon" target="_blank" rel="noopener">Naver ↗</a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- THE WEEK -->
 <section class="act" id="week">
   <div class="rail" aria-hidden="true"><svg class="decor" viewBox="0 0 320 320" aria-hidden="true"><g style="color:var(--leaf-a)"><use href="#ginkgo" x="40" y="30" width="50" height="50" transform="rotate(-20 65 55)"/><use href="#ginkgo" x="220" y="160" width="44" height="44" transform="rotate(60 242 182)"/><use href="#ginkgo" x="110" y="230" width="40" height="40" transform="rotate(140 130 250)"/></g><g style="color:var(--leaf-b)"><use href="#maple" x="160" y="40" width="56" height="56" transform="rotate(25 188 68)"/><use href="#maple" x="40" y="160" width="46" height="46" transform="rotate(-40 63 183)"/></g><g style="color:var(--leaf-c)"><use href="#maple" x="250" y="60" width="40" height="40"/><use href="#maple" x="200" y="260" width="36" height="36" transform="rotate(70 218 278)"/></g></svg></div>
@@ -1218,16 +1351,21 @@ html.still .bk-single{transition:none}
     </div>
 
     <div style="margin-top:64px">
-      <div class="mono" style="color:var(--maple);margin-bottom:16px">By neighbourhood — group days by district</div>
+      <div class="mono" style="color:var(--maple);margin-bottom:16px">By neighbourhood — group days by area</div>
       <div class="districts">
-        <div class="district-card"><h4>Jongno<span>종로</span></h4><div class="mono n">10 places</div><ul><li>Changdeokgung</li><li>Lotus Show</li><li>MMCA Seoul</li><li>Futura Seoul</li><li>Dongmyo Flea Market</li><li>Maegchon</li><li>Odozip</li><li>KOONG</li><li>Doma Insadong</li><li>Gwanghwamun Mijin</li></ul></div>
-        <div class="district-card"><h4>Jung<span>중구</span></h4><div class="mono n">4 places</div><ul><li>SeMA</li><li>Seowonjuk</li><li>Dalmaji Plaza BBQ</li><li>Coffee Hanyakbang</li></ul></div>
-        <div class="district-card"><h4>Mapo<span>마포</span></h4><div class="mono n">5 places</div><ul><li>Airbnb, Mangwon</li><li>Chang Hwa Dang</li><li>Kimchi jjim (산청엔흑돼지)</li><li>Perception</li><li>Woomul</li></ul></div>
-        <div class="district-card"><h4>Seongdong<span>성동</span></h4><div class="mono n">4 places</div><ul><li>HAUS NOWHERE</li><li>Point Two Five Second</li><li>Poset Seongsu</li><li>29cm Home</li></ul></div>
-        <div class="district-card"><h4>Yeongdeungpo<span>영등포</span></h4><div class="mono n">2 places</div><ul><li>63 Skypicnic</li><li>The Hyundai Seoul</li></ul></div>
-        <div class="district-card"><h4>Seodaemun<span>서대문</span></h4><div class="mono n">2 places</div><ul><li>Park Seo-Bo Foundation</li><li>TheDoi Sinchon</li></ul></div>
-        <div class="district-card"><h4>Yongsan<span>용산</span></h4><div class="mono n">2 places</div><ul><li>Nodeul Island</li><li>Maha Hannam</li></ul></div>
-        <div class="district-card"><h4>Elsewhere<span>기타</span></h4><div class="mono n">3 places</div><ul><li>Gwangjingyo (Gangdong)</li><li>Jamsugyo (Seocho)</li><li>Seongbuk-dong (Seongbuk)</li></ul></div>
+        <div class="district-card"><h4>Mangwon · Hapjeong<span>망원·합정</span></h4><div class="mono n">4 places · home · Mapo-gu</div><ul><li>Airbnb, Mangwon</li><li>Kimchi jjim (산청엔흑돼지)</li><li>Perception</li><li>Woomul</li></ul></div>
+        <div class="district-card"><h4>Hongdae · Yeonhui · Sinchon<span>홍대·연희·신촌</span></h4><div class="mono n">3 places · Mapo · Seodaemun</div><ul><li>Chang Hwa Dang</li><li>Park Seo-Bo Foundation</li><li>TheDoi Sinchon</li></ul></div>
+        <div class="district-card"><h4>Insadong · Bukchon<span>인사동·북촌</span></h4><div class="mono n">8 places · Jongno-gu</div><ul><li>Changdeokgung</li><li>Lotus Show</li><li>MMCA Seoul</li><li>Futura Seoul</li><li>Maegchon</li><li>Odozip</li><li>KOONG</li><li>Doma Insadong</li></ul></div>
+        <div class="district-card"><h4>Gwanghwamun · City Hall<span>광화문·시청</span></h4><div class="mono n">2 places · Jongno · Jung</div><ul><li>Gwanghwamun Mijin</li><li>SeMA</li></ul></div>
+        <div class="district-card"><h4>Myeongdong · Euljiro<span>명동·을지로</span></h4><div class="mono n">3 places · Jung-gu</div><ul><li>Seowonjuk</li><li>Coffee Hanyakbang</li><li>Dalmaji Plaza BBQ</li></ul></div>
+        <div class="district-card"><h4>Seongsu<span>성수</span></h4><div class="mono n">5 places · Seongdong-gu</div><ul><li>Seoul Forest Park</li><li>HAUS NOWHERE</li><li>Point Two Five Second</li><li>Poset Seongsu</li><li>29cm Home</li></ul></div>
+        <div class="district-card"><h4>Yeouido<span>여의도</span></h4><div class="mono n">2 places · Yeongdeungpo-gu</div><ul><li>63 Skypicnic</li><li>The Hyundai Seoul</li></ul></div>
+        <div class="district-card"><h4>On the Han River<span>한강</span></h4><div class="mono n">3 places · riverside</div><ul><li>Nodeul Island</li><li>Jamsugyo (Banpo)</li><li>Gwangjingyo Observatory</li></ul></div>
+        <div class="district-card"><h4>Sinsa<span>신사</span></h4><div class="mono n">1 place · Gangnam-gu</div><ul><li>Hev Clinic</li></ul></div>
+        <div class="district-card"><h4>Hannam<span>한남</span></h4><div class="mono n">1 place · Yongsan-gu</div><ul><li>Maha Hannam</li></ul></div>
+        <div class="district-card"><h4>Seongbuk-dong<span>성북동</span></h4><div class="mono n">1 place · Seongbuk-gu</div><ul><li>Hillside streets</li></ul></div>
+        <div class="district-card"><h4>Dongmyo<span>동묘</span></h4><div class="mono n">1 place · Jongno-gu</div><ul><li>Dongmyo Flea Market</li></ul></div>
+        <div class="district-card wide"><h4>Suwon — day trip<span>수원</span></h4><div class="mono n">5 places · Gyeonggi-do</div><ul><li>Hwaseong Fortress</li><li>Haenggung-dong Mural Village</li><li>Suwon I&#39;Park Museum of Art</li><li>Samsung Innovation Museum</li><li>Starfield Suwon</li></ul></div>
       </div>
     </div>
   </div>
@@ -1285,7 +1423,7 @@ window.__set=function(el,k,v){var c=el.__sv||(el.__sv={});if(c[k]===v)return;c[k
   });
 
   // index
-  var links=[["Airbnb — Naver", "https://naver.me/xBM1SnqC"], ["Airbnb — Google", "https://maps.app.goo.gl/hQsCkWkSUkqDpXXu6"], ["Moonlight Lotus Show — booking guide", "https://negunde.com/en/news/2026-09-03-royal-changgyeonggung-mulbit-yeonhwa-reservation"], ["Jamsugyo TtubeokTtubeok Festival", "https://world.nol.com/en/content/festas/019e38f3-d2c0-76e1-bff8-6d564ccc77f1"], ["Nodeul Island Light Up", "https://theseoulog.com/en/korea-seoul-nodeul-island-seoul-light-bitseom-festival-2026-en/"], ["63 Skypicnic", "https://63skypicnic.com/?locale=en"], ["63 Skypicnic — map", "https://maps.app.goo.gl/JJ6hVkvm43ekHaBu6"], ["Gwangjingyo Observatory", "https://maps.app.goo.gl/BKEiZxeRg7nsaTbHA"], ["The Hyundai Seoul", "https://maps.app.goo.gl/dCJA2xrKVNkvvcwo9"], ["HAUS NOWHERE SEOUL", "https://maps.app.goo.gl/6nDdfDAHUHWUbXHp8"], ["Changdeokgung", "https://maps.app.goo.gl/uDA1vKrLEypLgGPV7"], ["Seongbuk-dong — Time Out", "https://www.timeout.com/seoul/things-to-do/hold-your-breath-for-seongbukdong"], ["Dongmyo Flea Market", "https://maps.app.goo.gl/87hrGeyVT9HUyEcC8"], ["Park Seo-Bo Foundation", "https://parkseobofoundation.org/"], ["Park Seo-Bo Foundation — map", "https://maps.app.goo.gl/8HtDPE7cmjUur59g8"], ["MMCA — Do Ho Suh", "https://www.mmca.go.kr/eng/exhibitions/exhibitionsDetail.do?exhFlag=1"], ["MMCA — map", "https://maps.app.goo.gl/2DbRzpK3GkYNFvvb8"], ["SeMA — Yoo Youngkuk", "https://sema.seoul.go.kr/en/whatson/exhibition/detail"], ["SeMA — map", "https://maps.app.goo.gl/MQ6sbDqeVyi45F5q8"], ["Futura Seoul — map", "https://maps.app.goo.gl/bVvF66wapcDSGAaAA"], ["Futura Seoul — Naver booking", "https://booking.naver.com/booking/5/bizes/1562003"], ["Futura Seoul — Es Devlin article", "https://www.koreajoongangdaily.com/lifestyle/es-devlin-brings-her-works-on-breaching-voids-creating-connection-to-seoul/12823848"], ["Maegchon — Naver", "https://naver.me/GvWNeCmG"], ["Maegchon — Google", "https://maps.app.goo.gl/QHdzXoqBetRYMH7b7"], ["Odozip", "https://maps.app.goo.gl/9siAkCFbL87zvW9Q8"], ["KOONG", "https://maps.app.goo.gl/eKVjZwuD2iQfoNQg7"], ["Doma Insadong", "https://maps.app.goo.gl/n2aACn6xhHX7GbqQ7"], ["Gwanghwamun Mijin", "https://mijin1954.modoo.at/"], ["Gwanghwamun Mijin — map", "https://maps.app.goo.gl/iX9Z6tyRgMUFQjb76"], ["Seowonjuk", "https://maps.app.goo.gl/JRtnQgL7KJy52d7z9"], ["Chang Hwa Dang", "https://maps.app.goo.gl/yXJxVyC9WmvgYxX6A"], ["산청엔흑돼지 — kimchi jjim", "https://maps.app.goo.gl/KgHFD1G8Z7e1qEQAA"], ["Dalmaji Plaza BBQ", "https://maps.app.goo.gl/Q9HTTAtfkSjoduNz5"], ["TheDoi Sinchon", "https://maps.app.goo.gl/7xJjkVRUDmTFNAw69"], ["Perception", "https://maps.app.goo.gl/DdrS6giTPp32455M7"], ["Maha Hannam", "https://maps.app.goo.gl/zKjREnpZj6uuGz536"], ["Coffee Hanyakbang", "https://coffeehanyakbang.com/"], ["Coffee Hanyakbang — map", "https://maps.app.goo.gl/tR2MVK5Ciax1kQgY7"], ["Point Two Five Second", "https://www.pointtwofivesecond.com/"], ["Point Two Five Second — map", "https://maps.app.goo.gl/K8ZWLEJwjvzWAjaV8"], ["Woomul — Instagram", "https://www.instagram.com/woomul.seoul"], ["Poset Seongsu", "https://poset.co.kr/"], ["Poset Seongsu — map", "https://maps.app.goo.gl/NNAzfmeZmR1LEzYT8"], ["29cm Home", "https://maps.app.goo.gl/xfGkRKpUSq3XZTZr7"]];
+  var links=[["Airbnb — Naver", "https://naver.me/xBM1SnqC"], ["Airbnb — Google", "https://maps.app.goo.gl/hQsCkWkSUkqDpXXu6"], ["Moonlight Lotus Show — booking guide", "https://negunde.com/en/news/2026-09-03-royal-changgyeonggung-mulbit-yeonhwa-reservation"], ["Jamsugyo TtubeokTtubeok Festival", "https://world.nol.com/en/content/festas/019e38f3-d2c0-76e1-bff8-6d564ccc77f1"], ["Nodeul Island Light Up", "https://theseoulog.com/en/korea-seoul-nodeul-island-seoul-light-bitseom-festival-2026-en/"], ["63 Skypicnic", "https://63skypicnic.com/?locale=en"], ["63 Skypicnic — map", "https://maps.app.goo.gl/JJ6hVkvm43ekHaBu6"], ["Gwangjingyo Observatory", "https://maps.app.goo.gl/BKEiZxeRg7nsaTbHA"], ["The Hyundai Seoul", "https://maps.app.goo.gl/dCJA2xrKVNkvvcwo9"], ["HAUS NOWHERE SEOUL", "https://maps.app.goo.gl/6nDdfDAHUHWUbXHp8"], ["Changdeokgung", "https://maps.app.goo.gl/uDA1vKrLEypLgGPV7"], ["Seongbuk-dong — Time Out", "https://www.timeout.com/seoul/things-to-do/hold-your-breath-for-seongbukdong"], ["Dongmyo Flea Market", "https://maps.app.goo.gl/87hrGeyVT9HUyEcC8"], ["Park Seo-Bo Foundation", "https://parkseobofoundation.org/"], ["Park Seo-Bo Foundation — map", "https://maps.app.goo.gl/8HtDPE7cmjUur59g8"], ["MMCA — Do Ho Suh", "https://www.mmca.go.kr/eng/exhibitions/exhibitionsDetail.do?exhFlag=1"], ["MMCA — map", "https://maps.app.goo.gl/2DbRzpK3GkYNFvvb8"], ["SeMA — Yoo Youngkuk", "https://sema.seoul.go.kr/en/whatson/exhibition/detail"], ["SeMA — map", "https://maps.app.goo.gl/MQ6sbDqeVyi45F5q8"], ["Futura Seoul — map", "https://maps.app.goo.gl/bVvF66wapcDSGAaAA"], ["Futura Seoul — Naver booking", "https://booking.naver.com/booking/5/bizes/1562003"], ["Futura Seoul — Es Devlin article", "https://www.koreajoongangdaily.com/lifestyle/es-devlin-brings-her-works-on-breaching-voids-creating-connection-to-seoul/12823848"], ["Maegchon — Naver", "https://naver.me/GvWNeCmG"], ["Maegchon — Google", "https://maps.app.goo.gl/QHdzXoqBetRYMH7b7"], ["Odozip", "https://maps.app.goo.gl/9siAkCFbL87zvW9Q8"], ["KOONG", "https://maps.app.goo.gl/eKVjZwuD2iQfoNQg7"], ["Doma Insadong", "https://maps.app.goo.gl/n2aACn6xhHX7GbqQ7"], ["Gwanghwamun Mijin", "https://mijin1954.modoo.at/"], ["Gwanghwamun Mijin — map", "https://maps.app.goo.gl/iX9Z6tyRgMUFQjb76"], ["Seowonjuk", "https://maps.app.goo.gl/JRtnQgL7KJy52d7z9"], ["Chang Hwa Dang", "https://maps.app.goo.gl/yXJxVyC9WmvgYxX6A"], ["산청엔흑돼지 — kimchi jjim", "https://maps.app.goo.gl/KgHFD1G8Z7e1qEQAA"], ["Dalmaji Plaza BBQ", "https://maps.app.goo.gl/Q9HTTAtfkSjoduNz5"], ["TheDoi Sinchon", "https://maps.app.goo.gl/7xJjkVRUDmTFNAw69"], ["Perception", "https://maps.app.goo.gl/DdrS6giTPp32455M7"], ["Maha Hannam", "https://maps.app.goo.gl/zKjREnpZj6uuGz536"], ["Coffee Hanyakbang", "https://coffeehanyakbang.com/"], ["Coffee Hanyakbang — map", "https://maps.app.goo.gl/tR2MVK5Ciax1kQgY7"], ["Point Two Five Second", "https://www.pointtwofivesecond.com/"], ["Point Two Five Second — map", "https://maps.app.goo.gl/K8ZWLEJwjvzWAjaV8"], ["Woomul — Instagram", "https://www.instagram.com/woomul.seoul"], ["Poset Seongsu", "https://poset.co.kr/"], ["Poset Seongsu — map", "https://maps.app.goo.gl/NNAzfmeZmR1LEzYT8"], ["29cm Home", "https://maps.app.goo.gl/xfGkRKpUSq3XZTZr7"], ["Hev Clinic", "https://www.hevclinic.co/"], ["Hev Clinic — map", "https://maps.app.goo.gl/UtzZ6HgXytBeNjB39"], ["Seoul Forest Park", "https://maps.app.goo.gl/ED53siG9qzNJFGyi6"]];
   var box=document.getElementById('indexList');
   links.forEach(function(l,i){
     var r=document.createElement('div');r.className='index-row';
@@ -1487,7 +1625,7 @@ window.__set=function(el,k,v){var c=el.__sv||(el.__sv={});if(c[k]===v)return;c[k
   // pins
   var groups=[
     {name:'Home',c:'var(--maple)',pins:[['Airbnb · Mangwon',37.55442,126.90524]]},
-    {name:'Places',c:'var(--persimmon)',pins:[['63 Skypicnic',37.51981,126.94006,'L'],['The Hyundai Seoul',37.52606,126.92831,'L',-10],['HAUS NOWHERE',37.53806,127.05894],['Changdeokgung',37.57944,126.99106],['Gwangjingyo',37.54444,127.11419,'L']]},
+    {name:'Places',c:'var(--persimmon)',pins:[['Seoul Forest',37.54369,127.04469,0,-14],['Hev Clinic (appt)',37.51731,127.02144,'L'],['63 Skypicnic',37.51981,126.94006,'L'],['The Hyundai Seoul',37.52606,126.92831,'L',-10],['HAUS NOWHERE',37.53806,127.05894],['Changdeokgung',37.57944,126.99106],['Gwangjingyo',37.54444,127.11419,'L']]},
     {name:'Events',c:'var(--lantern-red)',pins:[['Lotus Show',37.5800,126.9948],['Jamsugyo Festival',37.5110,126.9960],['Nodeul Island',37.5176,126.9587]]},
     {name:'Museums',c:'var(--pine)',pins:[['Park Seo-Bo',37.57144,126.93556],['MMCA',37.57881,126.98044,'L'],['SeMA',37.56406,126.97381,'L'],['Futura Seoul',37.58231,126.98469]]},
     {name:'Food',c:'var(--ginkgo)',pins:[['Maegchon',37.57356,126.98144,'L',14],['Odozip',37.57519,126.98219,'L',-12],['KOONG',37.57431,126.98544,0,-12],['Doma',37.57381,126.98581,0,16],['Mijin',37.57056,126.97994,0,26],['Seowonjuk',37.56119,126.98744],['Chang Hwa Dang',37.55944,126.92531],['Kimchi jjim',37.55681,126.90469,'L']]},
@@ -1710,23 +1848,31 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
 (function(){
   // ---- itinerary booklet: days live in the page's saved data (db "plan") ----
   var book=document.getElementById('book'),tabs=document.getElementById('bkTabs'),prev=document.getElementById('bkPrev'),next=document.getElementById('bkNext'),empty=document.getElementById('bkEmpty'),hint=document.getElementById('bkHint');
-  var FALLBACK=[{"id": "d03", "date": "2026-10-03", "dow": "Sat", "day": 3, "title": "Land and settle into Mangwon", "chips": [{"t": "Mapo", "k": "area"}, {"t": "National Foundation Day", "k": "warn"}], "slots": [{"when": "Afternoon", "text": "Land at Incheon → AREX to Digital Media City → Line 6 to Mangwon, Exit 2 (about 70 min). Or Bus 6002 to Hapjeong if the bags are heavy."}, {"when": "Evening", "text": "Kimchi jjim at **산청엔흑돼지**, a few minutes from the Airbnb. Walk it off at Mangwon Hangang Park by the river."}], "tip": "Keep day one light — the Airbnb is the only fixed point."}, {"id": "d04", "date": "2026-10-04", "dow": "Sun", "day": 4, "title": "Food Road on the bridge", "chips": [{"t": "Mapo", "k": "area"}, {"t": "Han River", "k": "area"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Late morning", "text": "Perilla oil noodles at **Chang Hwa Dang** (Hongdae side, close to home)."}, {"when": "Afternoon", "text": "**Jamsugyo Food Road** — 100+ food trucks on the bridge and Banpo Hangang Park. Graze instead of lunch."}, {"when": "Evening", "text": "Stay by the river for sunset, then an easy night."}], "tip": "Oct 4 is the only Food Road day while you're there."}, {"id": "d05", "date": "2026-10-05", "dow": "Mon", "day": 5, "title": "A Monday-proof day in the old centre", "chips": [{"t": "Jung", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Seongbuk", "k": "area"}, {"t": "Monday — closures", "k": "warn"}], "slots": [{"when": "Morning", "text": "Abalone porridge at **Seowonjuk**, Myeongdong. Coffee at **Coffee Hanyakbang** nearby."}, {"when": "Afternoon", "text": "Rummage at **Dongmyo Flea Market**, then taxi up to **Seongbuk-dong** for the hillside streets."}, {"when": "Evening", "text": "Grilled chicken BBQ at **Dalmaji Plaza BBQ**, Euljiro."}], "tip": "Nothing on this day is on your closed-Monday list. Changdeokgung, SeMA, Futura, Poset and Woomul are all shut today."}, {"id": "d06", "date": "2026-10-06", "dow": "Tue", "day": 6, "title": "Seongsu, then sunset on the river", "chips": [{"t": "Seongdong", "k": "area"}, {"t": "Gangdong", "k": "area"}], "slots": [{"when": "Late morning", "text": "**Point Two Five Second** café, then **29cm Home** and **Poset** for paper."}, {"when": "Afternoon", "text": "**HAUS NOWHERE SEOUL** — Gentle Monster's space, a short walk away."}, {"when": "Sunset", "text": "**Gwangjingyo Observatory**, the deck under the bridge — about 20 minutes further east."}], "tip": "Poset is shut Mondays, so Tuesday is the right day for Seongsu."}, {"id": "d07", "date": "2026-10-07", "dow": "Wed", "day": 7, "title": "Art day: SeMA, MMCA, Futura", "chips": [{"t": "Jung", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Book ahead", "k": "book"}], "slots": [{"when": "Morning", "text": "**SeMA** — Yoo Youngkuk: A Mountain Within Me."}, {"when": "Lunch", "text": "Tonkatsu and cold noodles at **Gwanghwamun Mijin**."}, {"when": "Afternoon", "text": "**MMCA Seoul** (Do Ho Suh), then **Futura Seoul** in Bukchon — book a Naver slot for it."}, {"when": "Evening", "text": "Cube pork and stew at **Doma Insadong**."}], "tip": "The lotus show opens tonight — skip opening night and go tomorrow instead."}, {"id": "d08", "date": "2026-10-08", "dow": "Thu", "day": 8, "title": "Palace by day, lotus pond by night", "chips": [{"t": "Mapo", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Book ahead", "k": "book"}], "slots": [{"when": "Morning", "text": "Near home: **Park Seo-Bo Foundation** in Yeonhui-dong, coffee at **Woomul**."}, {"when": "Afternoon", "text": "**Changdeokgung** and its Secret Garden — check the Secret Garden entry separately."}, {"when": "Early dinner", "text": "Chicken noodle soup at **Maegchon**, a short walk from the palace."}, {"when": "Night", "text": "**Moonlight Lotus Show** at Changgyeonggung, 19:30 slot — tickets online only."}], "tip": "Book the lotus slot now; 400 people per session, first come first served."}, {"id": "d09", "date": "2026-10-09", "dow": "Fri", "day": 9, "title": "Yeouido high up, Nodeul lit up", "chips": [{"t": "Yeongdeungpo", "k": "area"}, {"t": "Yongsan", "k": "area"}, {"t": "Public holiday", "k": "warn"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Afternoon", "text": "**The Hyundai Seoul** in Yeouido — expect holiday crowds."}, {"when": "Sunset", "text": "**63 Skypicnic** — the deck saved for sunsets."}, {"when": "Night", "text": "**Nodeul Island Light Up**, 18:30–22:30. Nodeul Station (Line 9), Exit 2, 9–11 min walk."}], "tip": "Hangul Day — a public holiday, so everywhere will be busier."}, {"id": "d10", "date": "2026-10-10", "dow": "Sat", "day": 10, "title": "Slow Insadong", "chips": [{"t": "Jongno", "k": "area"}], "slots": [{"when": "Lunch", "text": "Dumplings at **KOONG**, Insadong 10-gil."}, {"when": "Afternoon", "text": "Wander Insadong and Bukchon lanes; anything you missed on Wednesday."}, {"when": "Dinner", "text": "Stew and bossam at **Odozip** — open today (it shuts Sundays)."}], "tip": "Backup night for the lotus show if Thursday didn't work out (Saturday shows run)."}, {"id": "d11", "date": "2026-10-11", "dow": "Sun", "day": 11, "title": "Hannam, the bridge again, last lights", "chips": [{"t": "Yongsan", "k": "area"}, {"t": "Han River", "k": "area"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Late morning", "text": "Brunch coffee at **Maha Hannam** (4th floor)."}, {"when": "Afternoon", "text": "**Jamsugyo Festival** — a regular Sunday on the bridge."}, {"when": "Evening", "text": "Last night of **Nodeul Island Light Up**, if Friday was too crowded."}], "tip": "Odozip is shut today."}, {"id": "d12", "date": "2026-10-12", "dow": "Mon", "day": 12, "title": "Home turf", "chips": [{"t": "Mapo", "k": "area"}, {"t": "Seodaemun", "k": "area"}, {"t": "Monday — closures", "k": "warn"}], "slots": [{"when": "Morning", "text": "Coffee at **Perception** in Hapjeong."}, {"when": "Afternoon", "text": "Mangwon Market and the river — souvenirs, snacks, a slow day."}, {"when": "Evening", "text": "KBBQ at **TheDoi Sinchon**, 5 min from Sinchon Station Exit 2."}], "tip": "Monday again — this day stays near home on purpose."}, {"id": "d13", "date": "2026-10-13", "dow": "Tue", "day": 13, "title": "Flex day", "chips": [{"t": "Anywhere", "k": "area"}, {"t": "Flex day", "k": "plain"}], "slots": [{"when": "All day", "text": "Go back to a favourite, catch anything missed, or rest. Pack in the evening."}], "tip": "Most places on your list are open on Tuesdays."}, {"id": "d14", "date": "2026-10-14", "dow": "Wed", "day": 14, "title": "Fly home to Singapore", "chips": [{"t": "Mapo → Incheon", "k": "area"}, {"t": "Travel day", "k": "plain"}], "slots": [{"when": "Before the flight", "text": "Mangwon → Line 6 to Digital Media City → AREX to Incheon (about 70 min). Leave about 3½ hours before departure."}], "tip": "Flight time not in your notes — adjust once you know it."}];
+  var FALLBACK=[{"id": "d03", "date": "2026-10-03", "dow": "Sat", "day": 3, "title": "Land and settle into Mangwon", "chips": [{"t": "Mapo", "k": "area"}, {"t": "National Foundation Day", "k": "warn"}], "slots": [{"when": "Afternoon", "text": "Land at Incheon → AREX to Digital Media City → Line 6 to Mangwon, Exit 2 (about 70 min). Or Bus 6002 to Hapjeong if the bags are heavy."}, {"when": "Evening", "text": "Kimchi jjim at **산청엔흑돼지**, a few minutes from the Airbnb. Walk it off at Mangwon Hangang Park by the river."}], "tip": "Keep day one light — the Airbnb is the only fixed point."}, {"id": "d04", "date": "2026-10-04", "dow": "Sun", "day": 4, "title": "Food Road on the bridge", "chips": [{"t": "Mapo", "k": "area"}, {"t": "Han River", "k": "area"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Late morning", "text": "Perilla oil noodles at **Chang Hwa Dang** (Hongdae side, close to home)."}, {"when": "Afternoon", "text": "**Jamsugyo Food Road** — 100+ food trucks on the bridge and Banpo Hangang Park. Graze instead of lunch."}, {"when": "Evening", "text": "Stay by the river for sunset, then an easy night."}], "tip": "Oct 4 is the only Food Road day while you're there."}, {"id": "d05", "date": "2026-10-05", "dow": "Mon", "day": 5, "title": "Appointment, then the old centre", "chips": [{"t": "Gangnam", "k": "area"}, {"t": "Jung", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "10:30 appointment", "k": "book"}, {"t": "Monday — closures", "k": "warn"}], "slots": [{"when": "10:30", "text": "**Hev Clinic** — 16F, 119 Dosan-daero, Gangnam. Leave Mangwon by about 9:30."}, {"when": "Lunch", "text": "Abalone porridge at **Seowonjuk**, Myeongdong — gentle after the clinic. Coffee at **Coffee Hanyakbang** nearby."}, {"when": "Afternoon", "text": "Rummage at **Dongmyo Flea Market**."}, {"when": "Evening", "text": "Grilled chicken BBQ at **Dalmaji Plaza BBQ**, Euljiro."}], "tip": "Nothing after the appointment is on your closed-Monday list."}, {"id": "d06", "date": "2026-10-06", "dow": "Tue", "day": 6, "title": "Day trip: Suwon", "chips": [{"t": "Suwon", "k": "plain"}, {"t": "Gyeonggi", "k": "area"}], "slots": [{"when": "Morning", "text": "Line 6 Mangwon → Gongdeok (3rd stop) → transfer to Seoul Station → KTX to Suwon."}, {"when": "Late morning", "text": "**Hwaseong Fortress** — from Suwon Station (near Exit 4 / tourist info) take bus 11, 13, 36 or 39 to the Paldalmun Gate stop."}, {"when": "Afternoon", "text": "**Haenggung-dong Mural Village** and **Suwon I'Park Museum of Art**."}, {"when": "If time", "text": "**Samsung Innovation Museum** or **Starfield Suwon** before the train back."}], "tip": "Check the Samsung museum's opening days and booking before going."}, {"id": "d07", "date": "2026-10-07", "dow": "Wed", "day": 7, "title": "Seoul Forest and Seongsu, sunset on the river", "chips": [{"t": "Seongdong", "k": "area"}, {"t": "Gangdong", "k": "area"}], "slots": [{"when": "Morning", "text": "**Seoul Forest Park** (Seoul Forest Station)."}, {"when": "Late morning", "text": "**Point Two Five Second** café, then **29cm Home** and **Poset** for paper."}, {"when": "Afternoon", "text": "**HAUS NOWHERE SEOUL** — Gentle Monster's space, a short walk away."}, {"when": "Sunset", "text": "**Gwangjingyo Observatory**, the deck under the bridge — about 20 minutes further east."}], "tip": "Poset is shut Mondays, so a weekday like this suits Seongsu."}, {"id": "d08", "date": "2026-10-08", "dow": "Thu", "day": 8, "title": "Art day: SeMA, MMCA, Futura", "chips": [{"t": "Jung", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Book ahead", "k": "book"}], "slots": [{"when": "Morning", "text": "**SeMA** — Yoo Youngkuk: A Mountain Within Me."}, {"when": "Lunch", "text": "Tonkatsu and cold noodles at **Gwanghwamun Mijin**."}, {"when": "Afternoon", "text": "**MMCA Seoul** (Do Ho Suh), then **Futura Seoul** in Bukchon — book a Naver slot for it."}, {"when": "Evening", "text": "Cube pork and stew at **Doma Insadong**."}], "tip": ""}, {"id": "d09", "date": "2026-10-09", "dow": "Fri", "day": 9, "title": "Yeouido high up, Nodeul lit up", "chips": [{"t": "Yeongdeungpo", "k": "area"}, {"t": "Yongsan", "k": "area"}, {"t": "Public holiday", "k": "warn"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Afternoon", "text": "**The Hyundai Seoul** in Yeouido — expect holiday crowds."}, {"when": "Sunset", "text": "**63 Skypicnic** — the deck saved for sunsets."}, {"when": "Night", "text": "**Nodeul Island Light Up**, 18:30–22:30. Nodeul Station (Line 9), Exit 2, 9–11 min walk."}], "tip": "Hangul Day — a public holiday, so everywhere will be busier."}, {"id": "d10", "date": "2026-10-10", "dow": "Sat", "day": 10, "title": "Palace by day, lotus pond by night", "chips": [{"t": "Seodaemun", "k": "area"}, {"t": "Mapo", "k": "area"}, {"t": "Jongno", "k": "area"}, {"t": "Book ahead", "k": "book"}], "slots": [{"when": "Morning", "text": "Near home: **Park Seo-Bo Foundation** in Yeonhui-dong, coffee at **Woomul**."}, {"when": "Afternoon", "text": "**Changdeokgung** and its Secret Garden — check the Secret Garden entry separately."}, {"when": "Early dinner", "text": "Chicken noodle soup at **Maegchon**, a short walk from the palace."}, {"when": "Night", "text": "**Moonlight Lotus Show** at Changgyeonggung, 19:30 slot — tickets online only."}], "tip": "Book the lotus slot now; 400 people per session, first come first served."}, {"id": "d11", "date": "2026-10-11", "dow": "Sun", "day": 11, "title": "Hannam, the bridge again, KBBQ", "chips": [{"t": "Yongsan", "k": "area"}, {"t": "Han River", "k": "area"}, {"t": "Seodaemun", "k": "area"}, {"t": "Festival", "k": "fest"}], "slots": [{"when": "Late morning", "text": "Brunch coffee at **Maha Hannam** (4th floor)."}, {"when": "Afternoon", "text": "**Jamsugyo Festival** — a regular Sunday on the bridge."}, {"when": "Evening", "text": "KBBQ at **TheDoi Sinchon**, 5 min from Sinchon Station Exit 2."}], "tip": "Odozip is shut today — it's on Monday instead."}, {"id": "d12", "date": "2026-10-12", "dow": "Mon", "day": 12, "title": "Slow Insadong and Seongbuk-dong", "chips": [{"t": "Jongno", "k": "area"}, {"t": "Seongbuk", "k": "area"}, {"t": "Monday — closures", "k": "warn"}], "slots": [{"when": "Lunch", "text": "Dumplings at **KOONG**, Insadong 10-gil."}, {"when": "Afternoon", "text": "Wander Insadong, then taxi up to **Seongbuk-dong** for the hillside streets."}, {"when": "Dinner", "text": "Stew and bossam at **Odozip** — last big dinner."}], "tip": "Monday again — nothing today is on your closed-Monday list."}, {"id": "d13", "date": "2026-10-13", "dow": "Tue", "day": 13, "title": "Fly home to Singapore", "chips": [{"t": "Mapo → Incheon", "k": "area"}, {"t": "Travel day", "k": "plain"}], "slots": [{"when": "Morning", "text": "Coffee at **Perception** in Hapjeong, then pack."}, {"when": "Before the flight", "text": "Mangwon → Line 6 to Digital Media City → AREX to Incheon (about 70 min). Leave about 3½ hours before departure."}], "tip": "Flight time not in your notes — adjust once you know it."}];
   function localDays(){var m={};try{m=JSON.parse(localStorage.getItem('seoul_plan_v1')||'{}')||{}}catch(e){}return FALLBACK.map(function(d){return m[d.id]?Object.assign({id:d.id},m[d.id]):d})}
   function localSave(id,body){var m={};try{m=JSON.parse(localStorage.getItem('seoul_plan_v1')||'{}')||{}}catch(e){}m[id]=body;localStorage.setItem('seoul_plan_v1',JSON.stringify(m))}
   var days=[],db=null,canWrite=true,editing=null,draft=null,saving=false,err='',spread=0,single=false,built='',pageEls=[];
   function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function rich(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>')}
+  function isStar(x){return !!(window.__starMatch&&window.__starMatch(x))}
+  function rich(t){return esc(t).replace(/\*\*(.+?)\*\*/g,function(m,x){return (isStar(x)?'<span class="mg" title="Must-go">★</span>':'')+'<b>'+x+'</b>'}).replace(/\n/g,'<br>')}
   var today='';try{today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul'}).format(new Date())}catch(e){}
-  function pages(){return ['intro'].concat(days.map(function(d){return d.id}),['end'])}
+  function pages(){var P=['intro'].concat(days.map(function(d){return d.id}));if(P.length%2)P.push('notes');return P.concat(['end'])}
   function dayById(id){for(var i=0;i<days.length;i++)if(days[i].id===id)return days[i];return null}
   function introHTML(){
     var toc=days.map(function(d,i){return '<li><button type="button" data-jump="'+(i+1)+'"><b>'+esc(d.dow)+' '+esc(d.day)+'</b><span>'+esc(d.title)+'</span></button></li>'}).join('');
-    return '<div class="pg-intro"><div class="mono" style="color:var(--maple)">The Plan · 일정</div><h2>Twelve days, <span>3–14 Oct</span></h2>'+
-      '<p>A starting point, not a timetable — every saved place fitted in once, grouped by neighbourhood, dodging closed days. Arrival and flight times aren\'t in the notes, so day 1 and day 12 assume an afternoon landing and a daytime flight.</p>'+
-      '<p class="book-now"><b>Book now:</b> the lotus show (Thu 8 Oct, 19:30) and a Futura Seoul slot (Wed 7 Oct).</p>'+
-      '<ul class="toc">'+toc+'</ul></div>';
+    return '<div class="pg-intro"><div class="mono" style="color:var(--maple)">The Plan · 일정</div><h2>Eleven days, <span>3–13 Oct</span></h2>'+
+      '<p>A starting point, not a timetable — every saved place fitted in once, grouped by neighbourhood, dodging closed days. Arrival and flight times aren\'t in the notes, so the first and last days assume an afternoon landing and a daytime flight.</p>'+
+      '<p class="book-now"><b>Fixed:</b> Hev Clinic, Mon 5 Oct 10:30. <b>Book now:</b> the lotus show (Sat 10 Oct, 19:30) and a Futura Seoul slot (Thu 8 Oct).</p>'+
+      mustHTML()+'<ul class="toc">'+toc+'</ul></div>';
   }
-  function endHTML(){return '<div class="pg-end"><div class="big">서울</div><div class="mono" style="color:var(--maple)">Wed 14 Oct · home to Singapore</div><p>Every day in this booklet can be changed — tap ✎ Edit on its page.</p></div>'}
+  function mustHTML(){
+    var st=(window.__starList&&window.__starList())||[];
+    if(!st.length)return '<p class="must-empty">Tap ☆ Must-go on any place card below to add it here — it will show here with its day.</p>';
+    return '<div class="must"><div class="mono">★ Must-go · '+st.length+'</div><ul>'+st.map(function(n){
+      var on=days.filter(function(d){return (d.slots||[]).some(function(sl){var m,re=/\*\*(.+?)\*\*/g;while((m=re.exec(sl.text||'')))if(window.__starSame(n,m[1]))return true;return false})}).map(function(d){return esc(d.dow)+' '+esc(d.day)});
+      return '<li><span>'+esc(n)+'</span><em class="'+(on.length?'':'miss')+'">'+(on.length?on.join(', '):'not in the plan yet')+'</em></li>'}).join('')+'</ul></div>';
+  }
+  function endHTML(){return '<div class="pg-end"><div class="big">서울</div><div class="mono" style="color:var(--maple)">Tue 13 Oct · home to Singapore</div><p>Every day in this booklet can be changed — tap ✎ Edit on its page.</p></div>'}
   function chipsHTML(c){return (c||[]).map(function(x){var k=x&&x.k&&x.k!=='plain'?' '+esc(x.k):'';return '<span class="chip'+k+'">'+esc(x&&x.t)+'</span>'}).join('')}
   function dayHTML(d){
     var head='<div class="pg-head"><span class="num">'+esc(d.day)+'</span><span class="dt">'+esc(d.dow)+' · Oct<small>Day '+(days.indexOf(d)+1)+'</small></span>'+(canWrite&&editing!==d.id?'<button class="edit" type="button" data-edit="'+esc(d.id)+'">✎ Edit</button>':'')+'</div>';
@@ -1744,7 +1890,7 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
   }
   function pageHTML(key,idx){
     var side=single?'right':(idx%2?'right':'left'),inner,cls='pg '+side;
-    if(key==='intro')inner=introHTML();else if(key==='end'){inner=endHTML();cls+=' pg-end'}else{var d=dayById(key);inner=d?dayHTML(d):'';if(d&&d.date===today)cls+=' today'}
+    if(key==='intro')inner=introHTML();else if(key==='notes')inner='<div class="pg-notes"><div class="mono" style="color:var(--maple)">Notes · 메모</div></div>';else if(key==='end'){inner=endHTML();cls+=' pg-end'}else{var d=dayById(key);inner=d?dayHTML(d):'';if(d&&d.date===today)cls+=' today'}
     return '<div class="'+cls+'" data-key="'+esc(key)+'">'+inner+'<span class="pg-num">'+(idx+1)+'</span></div>';
   }
   // build the physical book (leaves) once per layout; fill faces separately
@@ -1774,7 +1920,7 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
     [].forEach.call(tabs.children,function(t){var i=+t.dataset.p;t.classList.toggle('on',cur.indexOf(i)>=0)});
   }
   function tabsBuild(){
-    tabs.innerHTML='';pages().forEach(function(k,i){if(k==='intro'||k==='end')return;var d=dayById(k);var b=document.createElement('button');b.type='button';b.className='bk-tab'+(d&&d.date===today?' today':'');b.textContent=d?d.day:'';b.dataset.p=i;b.setAttribute('aria-label',(d?d.dow+' '+d.day+' October':'Day'));b.addEventListener('click',function(){go(single?i:Math.floor(i/2))});tabs.appendChild(b)});
+    tabs.innerHTML='';pages().forEach(function(k,i){if(k==='intro'||k==='end'||k==='notes')return;var d=dayById(k);var b=document.createElement('button');b.type='button';b.className='bk-tab'+(d&&d.date===today?' today':'');b.textContent=d?d.day:'';b.dataset.p=i;b.setAttribute('aria-label',(d?d.dow+' '+d.day+' October':'Day'));b.addEventListener('click',function(){go(single?i:Math.floor(i/2))});tabs.appendChild(b)});
   }
   function go(s){
     var n=spreads();s=Math.max(0,Math.min(n-1,s));if(s===spread)return;
@@ -1832,6 +1978,67 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
     },function(e){empty.textContent='Couldn\'t load the plan right now — reload the page to try again.'});
   })();
   addEventListener('resize',function(){if(days.length)mode()});
+  document.addEventListener('stars-change',function(){if(!days.length)return;pageEls.forEach(function(el){if(el)el.__h=''});var one=book.querySelector('.bk-single');if(one)one.__h='';fill()});
+})();
+</script>
+<script>
+(function(){
+  // ---- must-go stars: saved in db doc stars/all {ids:[...]}, or on this device when db isn't available ----
+  function slug(t){return String(t||'').toLowerCase().replace(/[^0-9a-zㄱ-힝]+/g,'')}
+  function same(a,b){var x=slug(a),y=slug(b);if(!x||!y)return false;if(x===y||x.indexOf(y)>=0&&y.length>=4||y.indexOf(x)>=0&&x.length>=4)return true;
+    var fa=slug(String(a).split(/[\s—\-|]+/)[0]),fb=slug(String(b).split(/[\s—\-|]+/)[0]);return fa.length>=5&&fa===fb}
+  var cards=[];
+  document.querySelectorAll('.entry h3, .lotus h3, .maybe-row b').forEach(function(h){
+    var name=h.textContent.trim();if(!name)return;var host=h.closest('.entry,.lotus,.maybe-row');
+    var b=document.createElement('button');b.type='button';b.className='star-btn';b.setAttribute('aria-pressed','false');b.setAttribute('aria-label','Mark '+name+' as must-go');b.textContent='☆ Must-go';b.hidden=true;
+    h.appendChild(b);cards.push({id:slug(name),name:name,btn:b,host:host});
+  });
+  var ids=[],db=null,busy=false,canWrite=true;
+  window.__starSame=same;
+  window.__starMatch=function(x){return ids.some(function(id){var c=cards.find(function(c){return c.id===id});return c&&same(c.name,x)})};
+  window.__starList=function(){return ids.map(function(id){var c=cards.find(function(c){return c.id===id});return c?c.name:null}).filter(Boolean)};
+  function paint(){
+    cards.forEach(function(c){var on=ids.indexOf(c.id)>=0;c.btn.textContent=on?'★ Must-go':'☆ Must-go';c.btn.setAttribute('aria-pressed',String(on));c.btn.title=on?'Must-go — tap to remove':'Tap to mark as must-go';c.host.classList.toggle('starred',on)});
+    document.querySelectorAll('#mapSvg .pin').forEach(function(g){var t=g.querySelector('title');g.classList.toggle('starred',!!(t&&window.__starMatch(t.textContent)))});
+    document.dispatchEvent(new Event('stars-change'));
+  }
+  function localGet(){try{var v=JSON.parse(localStorage.getItem('seoul_stars_v1')||'[]');return Array.isArray(v)?v:[]}catch(e){return []}}
+  async function toggle(c){
+    if(busy||!canWrite)return;var next=ids.indexOf(c.id)>=0?ids.filter(function(x){return x!==c.id}):ids.concat([c.id]);
+    ids=next;paint();
+    if(!db){try{localStorage.setItem('seoul_stars_v1',JSON.stringify(ids))}catch(e){}return}
+    busy=true;try{await db.doc('stars/all').set({ids:next})}catch(x){if(x&&x.code==='invalid_argument'){canWrite=false;cards.forEach(function(c){c.btn.hidden=true})}}busy=false;
+  }
+  cards.forEach(function(c){c.btn.addEventListener('click',function(e){e.preventDefault();toggle(c)})});
+  (async function(){
+    try{var u=await window.claude?.use?.('user');var w=u?await u.can('data.write'):null;if(w===false)canWrite=false}catch(e){}
+    try{db=await window.claude?.use?.('db')}catch(e){db=null}
+    if(!db){canWrite=true;ids=localGet();cards.forEach(function(c){c.btn.hidden=false});paint();return}
+    cards.forEach(function(c){c.btn.hidden=!canWrite});
+    db.doc('stars/all').onSnapshot(function(snap){var d=snap.exists?snap.data():null;var v=d&&Array.isArray(d.ids)?d.ids.filter(function(x){return typeof x==='string'}):[];if(!busy){ids=v;paint()}},function(){});
+  })();
+  // map pins are drawn by another script; repaint once they exist
+  setTimeout(paint,1500);
+})();
+</script>
+<div class="fab off" id="fab">
+  <div class="fab-menu" id="fabMenu" hidden></div>
+  <button type="button" id="fabSections" aria-expanded="false" aria-controls="fabMenu">☰ Sections</button>
+  <button type="button" id="fabTop" aria-label="Back to top">↑ Top</button>
+</div>
+<script>
+(function(){
+  var fab=document.getElementById('fab'),menu=document.getElementById('fabMenu'),sec=document.getElementById('fabSections');
+  document.querySelectorAll('nav.top ul a').forEach(function(a){var b=a.cloneNode(true);menu.appendChild(b)});
+  var t=document.createElement('a');t.href='#';t.textContent='↑ Top of page';menu.insertBefore(t,menu.firstChild);
+  function close(){menu.hidden=true;sec.setAttribute('aria-expanded','false')}
+  sec.addEventListener('click',function(){var o=menu.hidden;menu.hidden=!o;sec.setAttribute('aria-expanded',String(o))});
+  menu.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;if(a.getAttribute('href')==='#'){e.preventDefault();scrollTo(0,0)}close()});
+  document.getElementById('fabTop').addEventListener('click',function(){close();scrollTo(0,0)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+  document.addEventListener('click',function(e){if(!fab.contains(e.target))close()});
+  function upd(){fab.classList.toggle('off',scrollY<innerHeight*.8);if(scrollY<innerHeight*.8)close()}
+  addEventListener('scroll',upd,{passive:true});upd();
 })();
 </script>
 
