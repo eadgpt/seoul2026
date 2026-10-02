@@ -523,6 +523,9 @@ html.still .bk-single{transition:none}
 .cal-row.you i.on{background:var(--pine)}
 .cal-row.you i.on[title]{background:var(--maple);box-shadow:0 0 0 2px var(--pine) inset}
 .cal-key.you{background:var(--pine)}
+.pg a.gm{color:inherit;text-decoration:underline;text-decoration-color:var(--ginkgo);text-decoration-thickness:2px;text-underline-offset:3px}
+.pg a.gm:hover{color:var(--maple)}
+.pg a.gm::after{content:" ↗";font-size:.8em;color:var(--ginkgo)}
 .pg-notes{height:100%;background-image:repeating-linear-gradient(transparent 0 31px,var(--rule) 31px 32px);background-position:0 56px}
 
 /* must-go stars */
@@ -648,7 +651,7 @@ html.still .bk-single{transition:none}
     <div class="book" id="book" tabindex="0" aria-label="Itinerary booklet — use arrow keys to turn pages">
       <div class="bk-empty" id="bkEmpty">Opening your plan…</div>
     </div>
-    <div class="mono bk-hint" id="bkHint">Tap ✎ Edit on any day to change it — edits are saved for next time.</div>
+    <div class="mono bk-hint" id="bkHint">Tap a gold-underlined name to open it in Google Maps · ✎ Edit to change a day.</div>
   </div>
 </section>
 
@@ -1887,7 +1890,16 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
   var days=[],db=null,canWrite=true,editing=null,draft=null,saving=false,err='',spread=0,single=false,built='',pageEls=[];
   function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function isStar(x){return !!(window.__starMatch&&window.__starMatch(x))}
-  function rich(t){return esc(t).replace(/\*\*(.+?)\*\*/g,function(m,x){return (isStar(x)?'<span class="mg" title="Must-go">★</span>':'')+'<b>'+x+'</b>'}).replace(/\n/g,'<br>')}
+  // bold names link to Google Maps: the place card's own Google link, else a Google Maps search
+  var GQ={'kondae':'Konkuk University Station, Seoul','seokchonlake':'Seokchon Lake, Songpa-gu, Seoul','jamsugyofoodroad':'Jamsugyo Bridge, Seoul','jamsugyofestival':'Jamsugyo Bridge, Seoul','nodeulislandlightup':'Nodeul Island, Seoul','moonlightlotusshow':'Chundangji Pond, Changgyeonggung Palace, Seoul'};
+  function gmap(x){
+    var same=window.__starSame||function(a,b){return a===b},hit=null;
+    document.querySelectorAll('.entry h3, .lotus h3, .maybe-row b').forEach(function(h){if(hit)return;var n=(h.firstChild&&h.firstChild.textContent||'').trim();if(n&&same(n,x))hit={n:n,h:h}});
+    var key=String(x).toLowerCase().replace(/[^0-9a-zㄱ-힝]+/g,'');if(GQ[key])return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(GQ[key]);
+    if(hit){var host=hit.h.closest('.entry,.lotus,.maybe-row');var g=[].find.call(host.querySelectorAll('a.btn'),function(a){return /google/i.test(a.textContent)});if(g)return g.href;
+      var w=host.querySelector('.where'),inSuwon=!!host.closest('#suwon');return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(hit.n+', '+(w?w.textContent.split('·')[0].trim():(inSuwon?'Suwon':'Seoul')))}
+    return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(x+', Seoul')}
+  function rich(t){return esc(t).replace(/\*\*(.+?)\*\*/g,function(m,x){return (isStar(x)?'<span class="mg" title="Must-go">★</span>':'')+'<a class="gm" href="'+esc(gmap(x.replace(/&amp;/g,'&').replace(/&#39;/g,"'")))+'" target="_blank" rel="noopener" title="Open in Google Maps"><b>'+x+'</b></a>'}).replace(/\n/g,'<br>')}
   var today='';try{today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul'}).format(new Date())}catch(e){}
   function pages(){var P=['intro'].concat(days.map(function(d){return d.id}));if(P.length%2)P.push('notes');return P.concat(['end'])}
   function dayById(id){for(var i=0;i<days.length;i++)if(days[i].id===id)return days[i];return null}
